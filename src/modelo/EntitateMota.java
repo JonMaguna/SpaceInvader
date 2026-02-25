@@ -1,5 +1,8 @@
 package modelo;
 
-public class EntitateMota {
-
+public enum EntitateMota {
+	BALA,
+	ESPAZIONTZI,
+	ETSAIA,
+	HUTSA
 }

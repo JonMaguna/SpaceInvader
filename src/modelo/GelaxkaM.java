@@ -13,15 +13,15 @@ public class GelaxkaM extends Observable {
 		this.entitate = entitate;
 	}
 	
-	public int getKordenatuaX() {
-		return koordenatuaX;
-		
-	}
-	public int getKoordenatuaY() {
-		return koordenatuaY;
-	}
+	public int getKordenatuaX() { return koordenatuaX; }
 	
-//	public EntitateMota zerDago() {
-		
-	//}
+	public int getKoordenatuaY() { return koordenatuaY; }
+	
+	public EntitateMota zerDago() { return this.entitate; }
+	
+	public void setEntitate(EntitateMota entitate){ 
+		this.entitate = entitate;
+		setChanged();	
+		notifyObservers();
+	}
 }
