@@ -18,5 +18,27 @@ public abstract class Pertsonai {
 	private int getYposizioa() {
 		return this.y;
 	}
+	public void mugituGora() {
+		if(y > 0) {
+			y--;
+		}
+	}
+	public void mugituBehera() {
+		if(y < 59) {
+			y++;
+		}
+	}
+	public void mugituEzkerrera() {
+		if(x > 0) {
+			x--;
+		}
+	}
+	public void mugituEskumara() {
+		if(x < 99) {
+			x++;
+		}
+	}
+	public abstract Integer[] lortuEgoera();
+	
 	
 }
