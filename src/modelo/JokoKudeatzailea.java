@@ -23,10 +23,10 @@ public class JokoKudeatzailea {
 		        this.jokoanDa = true;
 		        System.out.println("Jokoa hasieratzen...");
 		        jokoanDa= true;
-		        MatrizeaM.getnMatrizeaM().sortuMatrizea();
+		  //      MatrizeaM.getnMatrizeaM().sortuMatrizea();
 		        //System.out.println("Matrizea sortuta eta jokoa martxan!");
-		        while(MatrizeaM.pertsonaiaTopatu().bizirikDago()== true) {this.jokatzen();}
-		        if(MatrizeaM.pertsonaiaTopatu().bizirikDago()== false) {this.jokoanDa= false;}
+		     //   while(MatrizeaM.pertsonaiaTopatu().bizirikDago()== true) {this.jokatzen();}
+		 //       if(MatrizeaM.pertsonaiaTopatu().bizirikDago()== false) {this.jokoanDa= false;}
 		    } else {
 		        System.out.println("Tekla okerra. 'l' sakatu behar duzu.");
 		        saiakera++;

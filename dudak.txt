@@ -1,0 +1,5 @@
+koordenatuak 1-100 edo 0-99
+JokoKontroladorea beharrezkoa? JokoKudeatzailearen berdina? zeintzuk dira bere erresponabilitateak
+master eta sprint1 adar desberdinak
+borderra nola kendu
+
