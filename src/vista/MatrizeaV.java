@@ -4,7 +4,8 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.awt.event.KeyEvent;
-
+import java.util.Observer;
+import vista.
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -63,18 +64,23 @@ public class MatrizeaV extends JFrame implements Observer{
 	
 	
 	public void keyPressed(KeyEvent e) {
-		int tekla= e.getKeyCode();
-		if(tekla== KeyEvent.VK_LEFT) {mugitu("EZKERRA");}
-		else if(tekla== KeyEvent.VK_UP) {mugitu("GORA");}
-		else if(tekla== KeyEvent.VK_RIGHT) {mugitu("ESKUINA");}
-		else if(tekla== KeyEvent.VK_DOWN) {mugitu("BEHERA");}
-		else if(tekla== KeyEvent.VK_W) {mugitu("GORA");}
-		else if(tekla== KeyEvent.VK_A) {mugitu("EZKERRA");}
-		else if(tekla== KeyEvent.VK_S) {mugitu("BEHERA");}
-		else if(tekla== KeyEvent.VK_D) {mugitu("ESKUINA");}
-		else if(tekla== KeyEvent.VK_L) {mugitu("L");}
-		else if(tekla== KeyEvent.VK_ENTER) {mugitu("");}
-		
+	    int tekla = e.getKeyCode();
+	    MatrizeaM modelo = MatrizeaM.getnMatrizeaM();
+	    
+	    // 2. Llamamos al método mugituOntzia pasándole el ENUM Mugimendua
+	    if(tekla == KeyEvent.VK_LEFT || tekla == KeyEvent.VK_A) {
+	        modelo.mugituOntzia(Mugimendua.EZKERRA);
+	    } 
+	    else if(tekla == KeyEvent.VK_RIGHT || tekla == KeyEvent.VK_D) {
+	        modelo.mugituOntzia(Mugimendua.ESKUMA);
+	    } 
+	    else if(tekla == KeyEvent.VK_UP || tekla == KeyEvent.VK_W) {
+	        modelo.mugituOntzia(Mugimendua.GORA);
+	    } 
+	    else if(tekla == KeyEvent.VK_DOWN || tekla == KeyEvent.VK_S) {
+	        modelo.mugituOntzia(Mugimendua.BEHERA);
+	    }
+	    // ... aquí puedes añadir el disparo (VK_SPACE) llamando a otro método
 	}
 
 }
