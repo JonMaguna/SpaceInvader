@@ -1,5 +1,6 @@
 package modelo;
 
+<<<<<<< HEAD
 import java.util.Observable;
 
 public class GelaxkaM extends Observable {
@@ -24,4 +25,8 @@ public class GelaxkaM extends Observable {
 		setChanged();	
 		notifyObservers();
 	}
+=======
+public class GelaxkaM {
+
+>>>>>>> Jonzeta
 }
