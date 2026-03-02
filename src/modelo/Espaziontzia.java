@@ -2,7 +2,11 @@ package modelo;
 
 public class Espaziontzia extends Pertsonai{
 	
-	public Espaziontzia(int x, int y, boolean bizirik) {super(x,y,bizirik);}
+	private int abiadura;
+	public Espaziontzia(int x, int y, boolean bizirik) {
+		super(x,y,bizirik);
+		this.abiadura= 1;
+	}
 	
 	public void mugitu(String pNorabidea) {
 		if(pNorabidea.equals("GORA")) {y--;}

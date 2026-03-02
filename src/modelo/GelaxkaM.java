@@ -1,17 +1,16 @@
 package modelo;
 
-<<<<<<< HEAD
 import java.util.Observable;
 
 public class GelaxkaM extends Observable {
 	private int koordenatuaX;
 	private int koordenatuaY;
-	private EntitateMota entitate;
+	//private EntitateMota entitate;
 	
-	public GelaxkaM(int koordenatuaX, int koordenatuaY, EntitateMota entitate) {
+	public GelaxkaM(int koordenatuaX, int koordenatuaY){//, EntitateMota entitate) {
 		this.koordenatuaX = koordenatuaX;
 		this.koordenatuaY = koordenatuaY;
-		this.entitate = entitate;
+		//this.entitate = entitate;
 	}
 	
 	public int getKordenatuaX() { return koordenatuaX; }

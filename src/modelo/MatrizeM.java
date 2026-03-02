@@ -1,25 +1,28 @@
 package modelo;
-import GelaxkaM;
 import java.util.Observable;
 
 public class MatrizeM extends Observable{
-	private MatrizeM nMatrizeM;
+	private static MatrizeM nMatrizeM= null;
 	private GelaxkaM[][] matrizea;
+	private Espaziontzia jokalaria;
 	
-	private MatrizeM() {
+	private MatrizeM() {}
 	
-	}
-	public MatrizeM getnMatrizeM() {
+	public static MatrizeM getnMatrizeM() {
+		if(nMatrizeM== null) {
+			nMatrizeM= new MatrizeM();
+		}
 		return nMatrizeM;
 	}
+	
 	public void SortuMatrizea() {
 		for (int i = 0; i<100; i++) {
 			for (int j=0;j<60;j++) {
-				matrizea[i][j] = new GelaxkaM();
+				matrizea[i][j] = new GelaxkaM(i,j,HUTSA);
 			}
 		}
 	}
-	public void mugituOntzia (int Mugimendua) {
-		
+	public void mugituOntzia (String pNorabidea) {
+		this.jokalaria.mugitu(pNorabidea);
 	}
 }
