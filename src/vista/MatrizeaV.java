@@ -44,10 +44,9 @@ public class MatrizeaV extends JFrame {
 		
 		for (int i = 1; i < 61; i++) {
 			for (int j = 1; j < 101; j++) {
-				JPanel panel = new JPanel();
-				panel.setLayout(new GridLayout(i, j, 0, 0));
+				GelaxkaV gelaxka = new GelaxkaV();
 				Border redborder = BorderFactory.createLineBorder(Color.RED, 1);
-				panel.setBackground(Color.BLACK);
+				gelaxka.setBackground(Color.BLACK);
 				panel.setBorder(redborder);
 				getContentPane().add(panel);
 			}
@@ -55,5 +54,13 @@ public class MatrizeaV extends JFrame {
 		}
 
 	}
+	
+	
+	
+	
+	
+	
+	
+	public KeyPressed
 
 }
