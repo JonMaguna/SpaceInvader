@@ -65,7 +65,6 @@ public class MatrizeaV extends JFrame implements Observer{
 	public void keyPressed(KeyEvent e) {
 	    int tekla = e.getKeyCode();
 	    MatrizeM matrizeM = MatrizeM.getnMatrizeM();
-	    // 2. Llamamos al método mugituOntzia pasándole el ENUM Mugimendua
 	    if(tekla == KeyEvent.VK_LEFT || tekla == KeyEvent.VK_A) {matrizeM.mugituOntzia("EZKERRA");} 
 	    else if(tekla == KeyEvent.VK_RIGHT || tekla == KeyEvent.VK_D) {matrizeM.mugituOntzia("ESKUMA");} 
 	    else if(tekla == KeyEvent.VK_UP || tekla == KeyEvent.VK_W) {matrizeM.mugituOntzia("GORA");} 

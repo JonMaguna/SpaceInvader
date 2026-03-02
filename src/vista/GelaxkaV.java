@@ -10,6 +10,6 @@ public class GelaxkaV extends JLabel {
     	super(texto); 
         this.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
         this.setForeground(Color.BLACK);
-        this,setBackground(Color.BLACK);
+        this.setBackground(Color.BLACK);
     }
 }

@@ -15,13 +15,18 @@ public class MatrizeM extends Observable{
 		return nMatrizeM;
 	}
 	
-	public void SortuMatrizea() {
+	public void sortuMatrizea() {
 		for (int i = 0; i<100; i++) {
 			for (int j=0;j<60;j++) {
-				matrizea[i][j] = new GelaxkaM(i,j,HUTSA);
+				matrizea[i][j] = new GelaxkaM(i,j);
 			}
 		}
 	}
+	
+	public void sortuPertsonaia() {
+		Espaziontzia e= new Espaziontzia(50,55,true);
+	}
+	
 	public void mugituOntzia (String pNorabidea) {
 		this.jokalaria.mugitu(pNorabidea);
 	}

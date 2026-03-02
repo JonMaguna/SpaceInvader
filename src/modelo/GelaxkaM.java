@@ -5,12 +5,16 @@ import java.util.Observable;
 public class GelaxkaM extends Observable {
 	private int koordenatuaX;
 	private int koordenatuaY;
-	//private EntitateMota entitate;
+	private EntitateMota entitate;
 	
-	public GelaxkaM(int koordenatuaX, int koordenatuaY){//, EntitateMota entitate) {
+	public GelaxkaM(int koordenatuaX, int koordenatuaY){
 		this.koordenatuaX = koordenatuaX;
 		this.koordenatuaY = koordenatuaY;
-		//this.entitate = entitate;
+		if(koordenatuaX== 50 && koordenatuaY== 55) {
+			this.entitate = EntitateMota.ESPAZIONTZI;
+		}else {
+			this.entitate = EntitateMota.HUTSA;
+		}
 	}
 	
 	public int getKordenatuaX() { return koordenatuaX; }
@@ -24,8 +28,4 @@ public class GelaxkaM extends Observable {
 		setChanged();	
 		notifyObservers();
 	}
-=======
-public class GelaxkaM {
-
->>>>>>> Jonzeta
 }
