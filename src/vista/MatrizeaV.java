@@ -3,6 +3,7 @@ package vista;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.GridLayout;
+import java.awt.event.KeyEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
@@ -10,7 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
-public class MatrizeaV extends JFrame {
+public class MatrizeaV extends JFrame implements Observer{
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -61,6 +62,19 @@ public class MatrizeaV extends JFrame {
 	
 	
 	
-	public KeyPressed
+	public void keyPressed(KeyEvent e) {
+		int tekla= e.getKeyCode();
+		if(tekla== KeyEvent.VK_LEFT) {mugitu("EZKERRA");}
+		else if(tekla== KeyEvent.VK_UP) {mugitu("GORA");}
+		else if(tekla== KeyEvent.VK_RIGHT) {mugitu("ESKUINA");}
+		else if(tekla== KeyEvent.VK_DOWN) {mugitu("BEHERA");}
+		else if(tekla== KeyEvent.VK_W) {mugitu("GORA");}
+		else if(tekla== KeyEvent.VK_A) {mugitu("EZKERRA");}
+		else if(tekla== KeyEvent.VK_S) {mugitu("BEHERA");}
+		else if(tekla== KeyEvent.VK_D) {mugitu("ESKUINA");}
+		else if(tekla== KeyEvent.VK_L) {mugitu("L");}
+		else if(tekla== KeyEvent.VK_ENTER) {mugitu("");}
+		
+	}
 
 }
