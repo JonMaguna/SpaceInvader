@@ -2,17 +2,18 @@ package vista;
 
 import java.awt.Color;
 import java.awt.EventQueue;
-import java.awt.GridLayout;
-import java.awt.event.KeyEvent;
-import java.util.Observer;
-import modelo.MatrizeM;
+
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
-public class MatrizeaV extends JFrame implements Observer{
+import modelo.MatrizeM;
+
+import java.awt.GridLayout;
+import java.awt.event.KeyEvent;
+
+public class MatrizeV extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -24,7 +25,7 @@ public class MatrizeaV extends JFrame implements Observer{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MatrizeaV frame = new MatrizeaV();
+					MatrizeV frame = new MatrizeV();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -36,31 +37,26 @@ public class MatrizeaV extends JFrame implements Observer{
 	/**
 	 * Create the frame.
 	 */
-	public MatrizeaV() {
+	public MatrizeV() {
+		setTitle("SPACE INVADER");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(0, 0, 816, 519);
-		getContentPane().setLayout(new GridLayout(60, 100, 0, 0));
-		setLocationRelativeTo(null);
-		getContentPane().setBackground(Color.BLACK);
-		//pack();
-		
-		for (int i = 1; i < 61; i++) {
-			for (int j = 1; j < 101; j++) {
-				GelaxkaV gelaxka = new GelaxkaV("");
-				gelaxka.setBorder(BorderFactory.createLineBorder(Color.RED));
-				gelaxka.setBackground(Color.BLACK);
-				contentPane.add(gelaxka);
-			}
-			
-		}
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(new GridLayout(60, 100, 0, 0));
+		this.matrizeaSortu();
 
 	}
 	
-	
-	
-	
-	
-	
+	public void matrizeaSortu() {
+		for (int i = 0; i < 60; i++) {
+			for (int j = 0; j < 100; j++) {
+				GelaxkaV gelaxka = new GelaxkaV("");
+				contentPane.add(gelaxka);
+			}	
+		}
+	}
 	
 	public void keyPressed(KeyEvent e) {
 	    int tekla = e.getKeyCode();
@@ -69,7 +65,6 @@ public class MatrizeaV extends JFrame implements Observer{
 	    else if(tekla == KeyEvent.VK_RIGHT || tekla == KeyEvent.VK_D) {matrizeM.mugituOntzia("ESKUMA");} 
 	    else if(tekla == KeyEvent.VK_UP || tekla == KeyEvent.VK_W) {matrizeM.mugituOntzia("GORA");} 
 	    else if(tekla == KeyEvent.VK_DOWN || tekla == KeyEvent.VK_S) {matrizeM.mugituOntzia("BEHERA");}
-	    
 	}
 
 }
