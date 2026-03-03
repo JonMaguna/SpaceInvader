@@ -39,6 +39,7 @@ public abstract class Pertsonai {
 		}
 	}
 	public abstract Integer[] lortuEgoera();
+	public abstract void mugitu(Mugimendua m);
 	
 	
 }

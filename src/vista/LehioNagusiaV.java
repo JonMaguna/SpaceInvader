@@ -53,18 +53,18 @@ public class LehioNagusiaV extends JFrame implements Observer{
 	    matrizea = new MatrizeaV();         
 	    contentPane.add(hasieraPanela, "MENUA");
 	    contentPane.add(matrizea, "JOKOA");
-	    JokoKudeatzailea kudeatzailea = new JokoKudeatzailea();
-	    this.addKeyListener(kudeatzailea);
+	    JokoKontrolatzailea kontrolatzailea = new JokoKontrolatzailea();
+	    this.addKeyListener(kontrolatzailea);
 	    this.btnJolastu = new JButton("Jolastu");
 	    hasieraPanela.add(btnJolastu);
-		btnJolastu.addActionListener(kudeatzailea);
+		btnJolastu.addActionListener(kontrolatzailea);
 	    pack();
 	    setLocationRelativeTo(null);
 	}
 
 	@Override
 	public void update(Observable o, Object arg) {
-		matrizea.repaint();
+		matrizea.repaint(); 
 		
 	}
 

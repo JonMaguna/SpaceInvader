@@ -10,5 +10,22 @@ public class Etsaiak extends Pertsonai {
 	public Integer[] lortuEgoera() {
 		return new Integer[] {0,1,0,0};
 	}
-
+	
+	public void mugitu(Mugimendua m) {
+		switch(m) {
+		case GORA:
+			break;
+		case BEHERA:
+			mugituBehera();
+			break;
+		case EZKERRA:
+			mugituEzkerrera();
+			break;
+		case ESKUMA:
+			mugituEskumara();
+			break;
+		default:
+			break;
+		}
+	}
 }
