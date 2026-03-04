@@ -42,7 +42,7 @@ public class MatrizeV extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBorder(new EmptyBorder(1, 1, 1, 1));
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(60, 100, 0, 0));
 		this.matrizeaSortu();
@@ -52,8 +52,18 @@ public class MatrizeV extends JFrame {
 	public void matrizeaSortu() {
 		for (int i = 0; i < 60; i++) {
 			for (int j = 0; j < 100; j++) {
-				GelaxkaV gelaxka = new GelaxkaV("");
-				contentPane.add(gelaxka);
+				if(i!= 50 && j!= 55) {
+					GelaxkaV gelaxka = new GelaxkaV("");
+					gelaxka.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
+			        gelaxka.setForeground(Color.BLACK);
+			        gelaxka.setBackground(Color.BLACK);
+			        gelaxka.setOpaque(true);
+					contentPane.add(gelaxka);
+				}else {
+					GelaxkaV perts= new GelaxkaV("");
+					perts.setBackground(Color.WHITE);
+					perts.setOpaque(true);
+				}
 			}	
 		}
 	}
