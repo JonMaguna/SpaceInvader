@@ -1,11 +1,5 @@
-koordenatuak 1-100 edo 0-99
-JokoKontroladorea beharrezkoa? JokoKudeatzailearen berdina? zeintzuk dira bere erresponabilitateak
-
-balaren timer
-gelaxkaV beharrezkoa da? pertsonaiak azken finean ez dira gelaxkak kolore desberdinekin?
-grid-a ikusi behar da?
-master eta sprint1 adar desberdinak
-borderra nola kendu
+GelaxkaV eta GelaxkaM enumeration atributo berbera euki dezakete?
+zer da obeagoa, matrize osoa bidaltzea MatrizeV edo MatrizeV-k eskatzea gelaxka bakoitzaren atributoak?
 
 
 
