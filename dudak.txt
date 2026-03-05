@@ -1,6 +1,6 @@
 GelaxkaV eta GelaxkaM enumeration atributo berbera euki dezakete?
 zer da obeagoa, matrize osoa bidaltzea MatrizeV edo MatrizeV-k eskatzea gelaxka bakoitzaren atributoak?
-
+ondo dago sortzea private matrizeV gelaxkaV[][] 
 
 
 
