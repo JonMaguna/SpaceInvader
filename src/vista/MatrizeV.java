@@ -16,14 +16,7 @@ import java.awt.event.KeyListener;
 import modelo.EntitateMota;
 import modelo.GelaxkaM;
 import modelo.MatrizeM;
-//import modelo.MatrizeM;
-
-public class MatrizeV extends JFrame implements KeyListener {
 /*
-	private static final long serialVersionUID = 1L;
-    private JPanel contentPane;
-    private Espaziontzia espaziontzianew;
-=======
 import java.awt.GridLayout;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -31,19 +24,16 @@ import java.awt.event.KeyListener;
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
 */
 
-//public class MatrizeV extends JFrame implements Observer{
+public class MatrizeV extends JFrame implements KeyListener {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private GelaxkaV[][] matrizeV;
-//>>>>>>> 95dbae67b4c7f3da4a5bd4896c0a050391de1d32
-
-	/**
-	 * Launch the application.
-	 */
+	private boolean presionatuta = false;
+	
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -65,7 +55,7 @@ import javax.swing.JPanel;
 		contentPane.setBorder(new EmptyBorder(1, 1, 1, 1));
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(60, 100, 0, 0));
-        
+		setBackground(Color.BLACK);
 		
         this.addKeyListener(this); 
         this.setFocusable(true);
@@ -81,25 +71,29 @@ import javax.swing.JPanel;
 	
 	
 	public void keyPressed(KeyEvent e) {
-     //   int tekla = e.getKeyCode();
-     //   if(tekla == KeyEvent.VK_LEFT || tekla == KeyEvent.VK_A) { espaziontzianew.mugitu("EZKERRA"); } 
-     //   else if(tekla == KeyEvent.VK_RIGHT || tekla == KeyEvent.VK_D) { espaziontzianew.mugitu("ESKUINA"); } 
-     //   else if(tekla == KeyEvent.VK_UP || tekla == KeyEvent.VK_W) { espaziontzianew.mugitu("GORA"); } 
-   //     else if(tekla == KeyEvent.VK_DOWN || tekla == KeyEvent.VK_S) { espaziontzianew.mugitu("BEHERA"); }
-        //else if(tekla == KeyEvent.VK_SPACE) {navePrincipal.bala()}
-    }
-	
-	public void keyTyped(KeyEvent e) {}
-    public void keyReleased(KeyEvent e) {} 
-    
-	/*    int tekla = e.getKeyCode();
 	    MatrizeM matrizeM = MatrizeM.getnMatrizeM();
+		int tekla = e.getKeyCode();
 	    if(tekla == KeyEvent.VK_LEFT || tekla == KeyEvent.VK_A) {matrizeM.mugituOntzia("EZKERRA");} 
 	    else if(tekla == KeyEvent.VK_RIGHT || tekla == KeyEvent.VK_D) {matrizeM.mugituOntzia("ESKUMA");} 
 	    else if(tekla == KeyEvent.VK_UP || tekla == KeyEvent.VK_W) {matrizeM.mugituOntzia("GORA");} 
 	    else if(tekla == KeyEvent.VK_DOWN || tekla == KeyEvent.VK_S) {matrizeM.mugituOntzia("BEHERA");}
-	}
-*/
+	    
+	    else if(tekla == KeyEvent.VK_SPACE && !presionatuta) {
+	    	presionatuta = true;
+	    	matrizeM.tiroEgin();
+	    }
+	    
+	    else if(tekla == KeyEvent.VK_ENTER) {JokoKudeatzailea.getnJokoKudeatzailea().hasieratuJokoa();}
+	
+    }
+	
+	public void keyTyped(KeyEvent e) {}
+    public void keyReleased(KeyEvent e) {
+    	int tekla = e.getKeyCode();
+    	if(tekla == KeyEvent.VK_SPACE) {presionatuta = false;}
+    } 
+    
+	
 
 	public void update(Observable o, Object arg) {
 		if (o instanceof MatrizeM) {
