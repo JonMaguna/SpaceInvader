@@ -13,7 +13,7 @@ public class GelaxkaM extends Observable {
 		if(koordenatuaX== 50 && koordenatuaY== 55) {
 			this.entitate = EntitateMota.ESPAZIONTZI;
 		}else {
-			this.entitate = EntitateMota.HUTSA;
+			this.entitate = null;
 		}
 	}
 	

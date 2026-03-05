@@ -2,7 +2,6 @@ package vista;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import java.awt.Color;
-import java.util.Observable;
 import java.util.Observer;
 
 
@@ -12,6 +11,7 @@ import modelo.EntitateMota;
 
 public class GelaxkaV extends JLabel{
 	
+	private static final long serialVersionUID = 1L;
 	private int koordenatuX;
 	private int koordenatuY;
 	private EntitateMota mota;
@@ -25,12 +25,10 @@ public class GelaxkaV extends JLabel{
 		koloreaEzarri(this.mota);
 	}
 	
+	
 	public void koloreaEzarri(EntitateMota mota) {
 		this.mota = mota;
 		switch (mota) {
-			case HUTSA:
-				setBackground(Color.BLACK);
-				break;
 			case ESPAZIONTZI:
 				setBackground(Color.MAGENTA);
 				setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
@@ -42,6 +40,9 @@ public class GelaxkaV extends JLabel{
 			case BALA:
 				setBackground(Color.WHITE);
 				setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+				break;
+			default:
+				setBackground(Color.BLACK);
 				break;
 		}
 	}
