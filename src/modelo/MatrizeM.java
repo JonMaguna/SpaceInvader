@@ -24,7 +24,7 @@ public class MatrizeM extends Observable{
 	}
 	
 	public void sortuPertsonaia() {
-		Espaziontzia e= new Espaziontzia(50,55,true);
+		Espaziontzia e= new Espaziontzia(50,55);
 	}
 	
 	public void mugituOntzia (String pNorabidea) {

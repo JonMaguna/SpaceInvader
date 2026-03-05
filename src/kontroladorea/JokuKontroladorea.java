@@ -20,7 +20,6 @@ public class JokuKontroladorea {
     }
 
     private void iniciarTimerDisparos() {
-        // El enunciado especifica que el tiro se mueve cada 50 milisegundos 
         int delay = 50; 
 
         timerBala = new Timer(delay, new ActionListener() {
@@ -29,34 +28,22 @@ public class JokuKontroladorea {
                 actualizarBalas();
             }
         });
-        
-        // Arrancamos el reloj
         timerBala.start();
     }
 
     private void actualizarBalas() {
-        // Recorremos la lista de balas activas
         for (int i = 0; i < balasActivas.size(); i++) {
             Bala bala = balasActivas.get(i);
             
-            // Le decimos al modelo que calcule su nueva posición
             bala.run();
 
-            // Limpieza: Si la bala se ha desactivado (salió de la pantalla o chocó)
             if (!bala.isActive()) {
                 balasActivas.remove(i);
-                i--; // Ajustamos el índice del bucle tras eliminar un elemento
+                i--;
             }
         }
-        
-        // IMPORTANTE: Después de actualizar los modelos, le decimos a la Vista que se repinte
         // vista.repintarPantalla(); 
     }
-
-    /**
-     * Este método se llamará cuando el Controller detecte que el jugador
-     * ha pulsado la tecla de disparo.
-     */
     public void jugadorDispara(int naveX, int naveY) {
         Bala nuevaBala = new Bala(naveX, naveY);
         balasActivas.add(nuevaBala);

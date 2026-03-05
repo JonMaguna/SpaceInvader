@@ -21,18 +21,13 @@ public class Bala extends Observable implements Runnable{
     public void run() {
         while (balaOK) {
             this.y --; 
-            // 2. Comprobar si salió de los límites de la matriz
             if (this.y<= 0) {
-                this.balaOK = false; // Al ponerla en false, el bucle while terminará
-            
+                this.balaOK = false;             
                 setChanged();
                 notifyObservers();
-                
-            // 3. Dormir el hilo 50 milisegundos 
             try {
                 Thread.sleep(50);
             } catch (InterruptedException e) {
-                // Esto ocurre si alguien interrumpe el hilo de golpe
                 this.balaOK = false; 
             }
             }

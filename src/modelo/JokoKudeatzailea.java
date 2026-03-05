@@ -26,6 +26,7 @@ public class JokoKudeatzailea {
 		        jokoanDa= true;
 		        m.sortuMatrizea();
 		        m.sortuPertsonaia();
+		        //MatrizeV();
 		        //while(MatrizeaM.pertsonaiaTopatu().bizirikDago()== true) {this.jokatzen();}
 		        //if(MatrizeaM.pertsonaiaTopatu().bizirikDago()== false) {this.jokoanDa= false;}
 		    } else {
