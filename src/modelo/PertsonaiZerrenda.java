@@ -5,15 +5,12 @@ import java.util.HashMap;
 
 public class PertsonaiZerrenda {
 	private static PertsonaiZerrenda nPertsonaiZerrenda;
-	public static final String Ontzia = "Ontzia";
-	public static final String Etsaia = "Etsaia";
-	public static final String Bala = "Bala";
-	private HashMap<String, ArrayList<Pertsonai>> mapa;
+	private HashMap<EntitateMota, ArrayList<Pertsonai>> mapa;
 	private PertsonaiZerrenda() {
-		this.mapa = new HashMap<String, ArrayList<Pertsonai>>();
-		this.mapa.put(Ontzia, new ArrayList<Pertsonai>());
-		this.mapa.put(Etsaia, new ArrayList<Pertsonai>());
-		this.mapa.put(Bala, new ArrayList<Pertsonai>());
+		this.mapa = new HashMap<EntitateMota, ArrayList<Pertsonai>>();
+		this.mapa.put(EntitateMota.ESPAZIONTZI, new ArrayList<Pertsonai>());
+		this.mapa.put(EntitateMota.ETSAIA, new ArrayList<Pertsonai>());
+		this.mapa.put(EntitateMota.BALA, new ArrayList<Pertsonai>());
 	}
 	public static PertsonaiZerrenda getnPertsonaiZerrenda() {
 		if(nPertsonaiZerrenda == null) {
@@ -21,38 +18,40 @@ public class PertsonaiZerrenda {
 		}
 		return nPertsonaiZerrenda;
 	}
-	public void gehituPertsonai(String pMota, Pertsonai pPertsonai) {
-		this.mapa.get(pMota).add(pPertsonai);
+	public void gehituPertsonai(EntitateMota pMota, Pertsonai pPertsonai) {
+		if(this.mapa.containsKey(pMota)) {	
+			this.mapa.get(pMota).add(pPertsonai);
+		}
 	}
 	public Espaziontzi getEspaziontzi() {
-		ArrayList<Pertsonai> lista = this.mapa.get(Ontzia);
-		if(!lista.isEmpty()) {
+		ArrayList<Pertsonai> lista = this.mapa.get(EntitateMota.ESPAZIONTZI);
+		if(!lista.isEmpty() && lista!=null) {
 			return (Espaziontzi) lista.get(0);
 		}
 		return null;
 	}
 	public ArrayList<Pertsonai> getEtsaiak() {
-		return this.mapa.get(Etsaia);
+		return this.mapa.get(EntitateMota.ETSAIA);
 	}
 	public ArrayList<Pertsonai> getBalak() {
-		return this.mapa.get(Bala);
+		return this.mapa.get(EntitateMota.BALA);
 	}
-	public void kenduPertsonai(String pMota, Pertsonai pPertsonai) {
+	public void kenduPertsonai(EntitateMota pMota, Pertsonai pPertsonai) {
 		if(this.mapa.get(pMota).contains(pPertsonai)) {
 			this.mapa.get(pMota).remove(pPertsonai);
 		}
 	}
-	public void gehituPertsonai(String pMota, int pX, int pY) {
+	public void gehituPertsonai(EntitateMota pMota, int pX, int pY) {
 		Pertsonai p = null;
 		switch(pMota) {
-			case Ontzia:
+			case ESPAZIONTZI:
 				p = new Espaziontzi(pX, pY, true);
 				break;
-			case Etsaia:
+			case ETSAIA:
 				p = new Etsaiak(pX, pY, true);
 				break;
-			case Bala:
-				//p = new Bala(pX, pY);
+			case BALA:
+				p = new Bala(pX, pY);
 				break;
 		}
 		this.mapa.get(pMota).add(p);
@@ -64,18 +63,19 @@ public class PertsonaiZerrenda {
 		}
 	}
 	public void mugituEtsaiak(Mugimendua m) {
-		for(Pertsonai p : this.mapa.get(Etsaia)) {
-			Etsaiak e = (Etsaiak) p;
-			e.mugitu(m);
+		ArrayList<Pertsonai> Etsaia = this.mapa.get(EntitateMota.ETSAIA);
+		for(Pertsonai p : Etsaia) {
+			p.mugitu(m);
 		}
 	}
-	//Bala mugitu eta balak pantailatik kanpo badaude, kendu
+	//Bala mugitu eta balak pantailatik kanpo badaude kendu
 	public void mugituBalak() {
 		ArrayList<Pertsonai> balak = getBalak();
 		for(int i=0; i<balak.size(); i++) {
-			balak.get(i).mugitu(Mugimendua.GORA);
-			if(balak.get(i).getYposizioa() < 0) {
-				kenduPertsonai(Bala, balak.get(i));
+			Pertsonai bala = balak.get(i);
+			bala.mugitu(Mugimendua.GORA);
+			if(bala.getYposizioa() < 0) {
+				kenduPertsonai(EntitateMota.ETSAIA, bala);
 				i--;
 			}
 		}
