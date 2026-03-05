@@ -30,4 +30,8 @@ public class MatrizeM extends Observable{
 	public void mugituOntzia (String pNorabidea) {
 		this.jokalaria.mugitu(pNorabidea);
 	}
+
+	public GelaxkaM getGelaxka(int i, int j) {
+		return matrizea[i][j];
+	}
 }
