@@ -12,10 +12,10 @@ public abstract class Pertsonai {
 		this.bizirik = true;
 	}
 	
-	private int getXposizioa() {
+	public int getXposizioa() {
 		return this.x;
 	}
-	private int getYposizioa() {
+	public int getYposizioa() {
 		return this.y;
 	}
 	public void mugituGora() {

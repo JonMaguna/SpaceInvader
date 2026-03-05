@@ -11,22 +11,19 @@ public class Espaziontzi extends Pertsonai {
 		return new Integer[] {1,0,0,0};
 	}
 	
+	@Override
 	public void mugitu(Mugimendua m) {
-		switch(m) {
-		case GORA:
-			mugituGora();
-			break;
-		case BEHERA:
-			mugituBehera();
-			break;
-		case EZKERRA:
-			mugituEzkerrera();
-			break;
-		case ESKUMA:
-			mugituEskumara();
-			break;
-		default:
-			break;
-		}
+	    switch(m) {
+	        case GORA:    super.mugituGora(); break;
+	        case BEHERA:  super.mugituBehera(); break;
+	        case EZKERRA: super.mugituEzkerrera(); break;
+	        case ESKUMA:  super.mugituEskumara(); break;
+	    }
 	}
+	public int getXposizioa() {return x;}
+    public int getYposizioa() {return y;}
+    
+    public Bala disparatu() {
+        return new Bala(this.x, this.y - 1);
+    }
 }
