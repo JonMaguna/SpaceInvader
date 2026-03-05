@@ -9,6 +9,10 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import modelo.JokoKudeatzailea;
+import modelo.MatrizeM;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
@@ -19,7 +23,7 @@ public class LehioNagusiaV extends JFrame implements Observer{
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private MatrizeaV matrizea;
+	private MatrizeV matrizea;
 	private JButton btnJolastu;
 	private CardLayout diseinua;
 	/**
@@ -45,19 +49,14 @@ public class LehioNagusiaV extends JFrame implements Observer{
 	    setTitle("Space Invaders");
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    setResizable(false);
-	    MatrizeM.getMatrizea().addObserver(this);
+	    MatrizeM.getnMatrizeM().addObserver(this);
 	    CardLayout diseinua = new CardLayout();
 	    contentPane = new JPanel(diseinua); 
 	    setContentPane(contentPane);
 	    JPanel hasieraPanela = new JPanel(); 
-	    matrizea = new MatrizeaV();         
+	    matrizea = new MatrizeV();         
 	    contentPane.add(hasieraPanela, "MENUA");
 	    contentPane.add(matrizea, "JOKOA");
-	    JokoKontrolatzailea kontrolatzailea = new JokoKontrolatzailea();
-	    this.addKeyListener(kontrolatzailea);
-	    this.btnJolastu = new JButton("Jolastu");
-	    hasieraPanela.add(btnJolastu);
-		btnJolastu.addActionListener(kontrolatzailea);
 	    pack();
 	    setLocationRelativeTo(null);
 	}

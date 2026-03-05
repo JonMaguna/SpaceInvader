@@ -6,4 +6,11 @@ listener batekin jokoa hasi (bistan)
 
 timerra matrizean 
 
-jLabel
+
+pertsonai non dagoen HitBOx batekin, int[][]
+pertsonaiZerrenda <<Singleton>> --> hashMap id eta jokalari
+gelaxkaM id baten bidez jakin zer daukan gainean
+mota borratu(oraingoz)
+bala pertsonaiZerrenda azpian
+mugitzeko:
+matrizeM.mugituJokalari() --> mugituDaitekeJokalari() -[true]-> mugitu()
