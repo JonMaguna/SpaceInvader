@@ -1,0 +1,16 @@
+Etsaiak indizeekin egin behar dira hurrengo sprintarekin (estaiak beraien artean ez ikutzeko), array bat egin etsaiekin
+
+jokokudeatzailea bakarrik hasi eta amaitu, txekeatu ea etsaiak amaierara eldu, jokalariaren gainean ipini den eta etsaiak hiltzen diren bakoitzean
+
+listener batekin jokoa hasi (bistan)
+
+timerra matrizean 
+
+
+pertsonai non dagoen HitBOx batekin, int[][]
+pertsonaiZerrenda <<Singleton>> --> hashMap id eta jokalari
+gelaxkaM id baten bidez jakin zer daukan gainean
+mota borratu(oraingoz)
+bala pertsonaiZerrenda azpian
+mugitzeko:
+matrizeM.mugituJokalari() --> mugituDaitekeJokalari() -[true]-> mugitu()
