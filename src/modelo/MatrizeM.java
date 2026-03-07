@@ -1,6 +1,7 @@
 package modelo;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Arrays;
 import java.util.Observable;
 import java.util.Random;
@@ -9,69 +10,116 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class MatrizeM extends Observable{
-	private MatrizeM nMatrizeM;
+	private static MatrizeM nMatrizeM;
 	private GelaxkaM[][] matrizea;
+	private List<Integer> etsaiID;
 	
 	private MatrizeM() {
-	
+		this.matrizea = new GelaxkaM[100][60];
 	}
-	public MatrizeM getnMatrizeM() {
+	
+	public static MatrizeM getnMatrizeM() {
+		if (nMatrizeM == null) {
+			nMatrizeM = new MatrizeM();
+		}
 		return nMatrizeM;
 	}
+	
 	public void SortuMatrizea() {
-		matrizea = new GelaxkaM[100][60];
-		ArrayList<GelaxkaM> etsaiak = new ArrayList<>();
-		Random random = new Random();
-		for (int i = 0; i < 100; i++) {
-			for (int j = 0; j < 60; j++) {
-				matrizea[i][j] = new GelaxkaM(i, j, EntitateMota.HUTSA);
+		for (int i = 0; i < 60; i++) {
+			for (int j = 0; j < 100; j++) {
+				matrizea[j][i] = new GelaxkaM(j,i);
 				setChanged();
-				notifyObservers();
-				
-				if (i % 5 == 4 && i != 99) {
-					etsaiak.add(matrizea[i][j]);
-				}
+				notifyObservers(matrizea[j][i]);		
 			}
 		}
-		int numEtsaiak = random.nextInt(5) + 4;
-		Collections.shuffle(etsaiak);
-		for (int k = 0; k < numEtsaiak; k++) {
-			GelaxkaM gelaxka = etsaiak.get(k);
-			gelaxka.setEntitate(EntitateMota.ETSAIA); 
-			setChanged();
-			notifyObservers(gelaxka);
-			
-		}
-		GelaxkaM gelaxka = matrizea[50][55];
-		gelaxka.setEntitate(EntitateMota.ESPAZIONTZI); 
-		setChanged();
-		notifyObservers(gelaxka);
 	}
-	public void mugituOntzia (String Mugimendua) {
+	
+	public void mugituOntzia (Mugimendua mugimendua) {	
+		EntitateKolekzio e = EntitateKolekzio.getnPertsonaiZerrenda();
+		int[][] hitBox = e.getHitBox(1, EntitateMota.ESPAZIONTZI);
+		int[][] hitBoxBerria = new int[hitBox.length][2];
+		boolean mugitu = true;
+		int i = 0;
+		EntitateMota entitatea = null;
 		
-		Pertsonai Espaziontzi = PertsonaiZerrenda.getnPertsonaiZerrenda().getEspaziontzi();
-		if (Mugimendua.equals("w")) {
-			Espaziontzi.mugituGora();
-			setChanged();
-			notifyObservers();
-		}else if(Mugimendua.equals("a")) {
-			Espaziontzi.mugituBehera();
-			setChanged();
-			notifyObservers();
-		}else if(Mugimendua.equals("s")) {
-			Espaziontzi.mugituEzkerrera();
-			setChanged();
-			notifyObservers();
-		}else if(Mugimendua.equals("d")) {
-			Espaziontzi.mugituEskumara();
-			setChanged();
-			notifyObservers();
+		while (mugitu && i < hitBox.length) {
+			switch (mugimendua) {
+			case GORA:
+				if(hitBox[i][1] == 0) {mugitu = false;} 
+				else {
+					entitatea = matrizea[hitBox[i][0]][hitBox[i][1] - 1].zerDago();
+				}
+				break;
+			case BEHERA:
+				if(hitBox[i][1] == 59) {mugitu = false;} 
+				else {
+					entitatea = matrizea[hitBox[i][0]][hitBox[i][1] + 1].zerDago();
+				}
+				break;
+			case EZKERRA:
+				if(hitBox[i][0] == 0) {mugitu = false;} 
+				else {
+					entitatea = matrizea[hitBox[i][0] - 1][hitBox[i][1]].zerDago();
+				}
+				break;
+			case ESKUMA:
+				if(hitBox[i][0] == 99) {mugitu = false;} 
+				else {
+					entitatea = matrizea[hitBox[i][0] + 1][hitBox[i][1]].zerDago();
+				}
+				break;
+			default:
+				break;
+			}
+			if(mugitu) { 
+				switch (entitatea) {
+				case BALA:
+					e.setBizirik(EntitateMota.ESPAZIONTZI, 1, false);
+					mugitu = false;
+					break;
+				case ETSAIA:
+					e.setBizirik(EntitateMota.ESPAZIONTZI, 1, false);
+					mugitu = false;
+					break;
+				default:
+					mugitu = true;					
+					break;
+				}
+			}
+			i++;
 		}
-			
+		
+		if (!mugitu) { return; }
+		
+		for (int j = 0; j < hitBox.length; j++) {
+			switch (mugimendua) {
+			case GORA:
+				hitBoxBerria[j][0] = hitBox[j][0];
+				hitBoxBerria[j][1] = hitBox[j][1] - 1;
+				break;
+			case BEHERA:
+				hitBoxBerria[j][0] = hitBox[j][0];
+				hitBoxBerria[j][1] = hitBox[j][1] + 1;
+				break;
+			case EZKERRA:
+				hitBoxBerria[j][0] = hitBox[j][0] - 1;
+				hitBoxBerria[j][1] = hitBox[j][1];
+				break;
+			case ESKUMA:
+				hitBoxBerria[j][0] = hitBox[j][0] + 1;
+				hitBoxBerria[j][1] = hitBox[j][1];
+				break;
+			default:
+				break;
+			}
+		}
+		gelaxkakAktualizatu(hitBox, 0, EntitateMota.HUTSA);
+		gelaxkakAktualizatu(hitBoxBerria, 1, EntitateMota.ESPAZIONTZI);
+		e.setHitBox(hitBoxBerria, 1, EntitateMota.ESPAZIONTZI);
 	}
-	public GelaxkaM getGelaxka(int i, int j) {
-		return matrizea[i][j];
-	}
+	
+	
 	public void EtsaiakMugitu() {
         Timer timer = new Timer();
         TimerTask ataza = new TimerTask() {
@@ -82,35 +130,60 @@ public class MatrizeM extends Observable{
 
         timer.schedule(ataza, 0, 200);
     }
+	
 	private void EtsaiaMugitu() {
-		PertsonaiZerrenda zerrenda = PertsonaiZerrenda.getnPertsonaiZerrenda(); 
-		ArrayList<Pertsonai> Etsaiak = zerrenda.getEtsaiak();
-		while (Etsaiak.hasnext()) {
+		
+		
+		EntitateKolekzio.getnPertsonaiZerrenda(); 
+		/*ArrayList<Entitate> Etsaiak = zerrenda.getEtsaiak();
+		while (Etsaiak.hasNext()) {
 			int Random = random.nextInt(4);
-			Pertsonai Etsaia = Etsaiak.get(0);
+			Entitate Etsaia = Etsaiak.get(0);
 			switch (Random) {
             case 0:
-            	Etsaia.mugituGora;
+            	Etsaia.mugituGora();
             	setChanged();
 				notifyObservers();
                 break;
             case 1:
-            	Etsaia.mugituBehera;
+            	Etsaia.mugituBehera();
             	setChanged();
 				notifyObservers();
             	break;
             case 2:
-            	Etsaia.mugituEzkerrera;
+            	Etsaia.mugituEzkerrera();
             	setChanged();
 				notifyObservers();
             	break;
             case 3:
-            	Etsaia.mugituEskumara;
+            	Etsaia.mugituEskumara();
             	setChanged();
 				notifyObservers();
             	break;
-		}
+			}
+		}*/
 	}
+	
 	public void AldatuGelaxka () {
+		
 	}
+
+	public void balaMugitu() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void gelaxkakAktualizatu(int[][] hitBox, int id, EntitateMota entitate) {
+		for (int i = 0; i < hitBox.length; i++) {
+			matrizea[hitBox[i][0]][hitBox[i][1]].setEntitate(entitate, id);
+		}
+		
+	}
+
+
+	public void setEtsaiak(List<Integer> etsaiID) {
+		this.etsaiID = etsaiID;
+		
+	}
+	
 }

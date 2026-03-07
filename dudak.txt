@@ -3,6 +3,7 @@ zer da obeagoa, matrize osoa bidaltzea MatrizeV edo MatrizeV-k eskatzea gelaxka 
 ondo dago sortzea private matrizeV gelaxkaV[][] 
 PertsonaiZerrenda sortu daiteke??
 batera mugitu gutzia?
-
-
-
+presionatuta ondo hor ipinita?
+nola egin switch case ak murrizteko mugimendua dala eta?
+if !mugitu return;?
+gellaxkaV observer izan behar da?

@@ -3,5 +3,6 @@ package modelo;
 public enum EntitateMota {
 	BALA,
 	ESPAZIONTZI,
-	ETSAIA
+	ETSAIA,
+	HUTSA
 }

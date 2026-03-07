@@ -3,28 +3,29 @@ package modelo;
 import java.util.Observable;
 
 public class GelaxkaM extends Observable {
-	private int koordenatuaX;
-	private int koordenatuaY;
+	private int kordenatuaX;
+	private int kordenatuaY;
 	private EntitateMota entitate;
+	private int id;
 	
-	public GelaxkaM(int koordenatuaX, int koordenatuaY){
-		this.koordenatuaX = koordenatuaX;
-		this.koordenatuaY = koordenatuaY;
-		if(koordenatuaX== 50 && koordenatuaY== 55) {
-			this.entitate = EntitateMota.ESPAZIONTZI;
-		}else {
-			this.entitate = null;
-		}
+	public GelaxkaM(int kordenatuaX, int kordenatuaY){
+		this.kordenatuaX = kordenatuaX;
+		this.kordenatuaY = kordenatuaY;
+		this.id = 0;
+		this.entitate = EntitateMota.HUTSA;	
 	}
 	
-	public int getKordenatuaX() { return koordenatuaX; }
+	public int getKordenatuaX() { return kordenatuaX; }
 	
-	public int getKoordenatuaY() { return koordenatuaY; }
+	public int getKordenatuaY() { return kordenatuaY; }
 	
 	public EntitateMota zerDago() { return this.entitate; }
 	
-	public void setEntitate(EntitateMota entitate){ 
+	public int zeinDago() { return this.id; }
+	
+	public void setEntitate(EntitateMota entitate, int id){ 
 		this.entitate = entitate;
+		this.id = id;
 		setChanged();	
 		notifyObservers();
 	}

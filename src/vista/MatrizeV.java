@@ -2,13 +2,12 @@ package vista;
 import java.util.Observable;
 import java.util.Observer;
 
-import java.awt.Color;
-import java.awt.EventQueue;
-//<<<<<<< HEAD
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import java.awt.Color;
+import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -16,17 +15,11 @@ import java.awt.event.KeyListener;
 import modelo.EntitateMota;
 import modelo.GelaxkaM;
 import modelo.MatrizeM;
-/*
-import java.awt.GridLayout;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import modelo.Mugimendua;
+import modelo.JokoKudeatzailea;
 
-import javax.swing.BorderFactory;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-*/
 
-public class MatrizeV extends JFrame implements KeyListener {
+public class MatrizeV extends JFrame implements Observer, KeyListener {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -53,10 +46,12 @@ public class MatrizeV extends JFrame implements KeyListener {
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(1, 1, 1, 1));
-		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(60, 100, 0, 0));
-		setBackground(Color.BLACK);
+		contentPane.setBackground(Color.BLACK);
+		setContentPane(contentPane);
+		this.matrizeV = new GelaxkaV[100][60];
 		
+		MatrizeM.getnMatrizeM().addObserver(this);
         this.addKeyListener(this); 
         this.setFocusable(true);
     }
@@ -73,17 +68,17 @@ public class MatrizeV extends JFrame implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 	    MatrizeM matrizeM = MatrizeM.getnMatrizeM();
 		int tekla = e.getKeyCode();
-	    if(tekla == KeyEvent.VK_LEFT || tekla == KeyEvent.VK_A) {matrizeM.mugituOntzia("EZKERRA");} 
-	    else if(tekla == KeyEvent.VK_RIGHT || tekla == KeyEvent.VK_D) {matrizeM.mugituOntzia("ESKUMA");} 
-	    else if(tekla == KeyEvent.VK_UP || tekla == KeyEvent.VK_W) {matrizeM.mugituOntzia("GORA");} 
-	    else if(tekla == KeyEvent.VK_DOWN || tekla == KeyEvent.VK_S) {matrizeM.mugituOntzia("BEHERA");}
+	    if(tekla == KeyEvent.VK_LEFT || tekla == KeyEvent.VK_A) {matrizeM.mugituOntzia(Mugimendua.EZKERRA);} 
+	    else if(tekla == KeyEvent.VK_RIGHT || tekla == KeyEvent.VK_D) {matrizeM.mugituOntzia(Mugimendua.ESKUMA);} 
+	    else if(tekla == KeyEvent.VK_UP || tekla == KeyEvent.VK_W) {matrizeM.mugituOntzia(Mugimendua.GORA);} 
+	    else if(tekla == KeyEvent.VK_DOWN || tekla == KeyEvent.VK_S) {matrizeM.mugituOntzia(Mugimendua.BEHERA);}
 	    
 	    else if(tekla == KeyEvent.VK_SPACE && !presionatuta) {
 	    	presionatuta = true;
-	    	matrizeM.tiroEgin();
+	    //	matrizeM.tiroEgin();
 	    }
 	    
-	    else if(tekla == KeyEvent.VK_ENTER) {JokoKudeatzailea.getnJokoKudeatzailea().hasieratuJokoa();}
+	    else if(tekla == KeyEvent.VK_ENTER) {JokoKudeatzailea.getnJokoKudeatzailea().jokoaHasieratu();}
 	
     }
 	
@@ -97,16 +92,16 @@ public class MatrizeV extends JFrame implements KeyListener {
 
 	public void update(Observable o, Object arg) {
 		if (o instanceof MatrizeM) {
-		////baliteke if hau borratu ahal izatea
 			if (arg instanceof GelaxkaM) { 
 				GelaxkaM gelaxka = (GelaxkaM) arg;
-				gelaxkaBerria(gelaxka.getKordenatuaX(), gelaxka.getKoordenatuaY(), gelaxka.zerDago());	
+				gelaxka.addObserver(this);
+				gelaxkaBerria(gelaxka.getKordenatuaX(), gelaxka.getKordenatuaY(), gelaxka.zerDago());	
 			}
 		}
 		else if (o instanceof GelaxkaM) {
 			GelaxkaM gelaxka = (GelaxkaM) o;
 			EntitateMota mota = gelaxka.zerDago();
-			matrizeV[gelaxka.getKordenatuaX()][gelaxka.getKoordenatuaY()].koloreaEzarri(mota);
-		}
+			matrizeV[gelaxka.getKordenatuaX()][gelaxka.getKordenatuaY()].koloreaEzarri(mota);
+			}
 	}
 }

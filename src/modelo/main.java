@@ -1,7 +1,9 @@
 package modelo;
 
+import vista.MatrizeV;
+
 public class main {
 	public static void main(String[] args) {
-		JokoKudeatzailea.getInstantzia().jokoaHasieratu(0);
+		MatrizeV matrizeV = new MatrizeV();
 	}
 }

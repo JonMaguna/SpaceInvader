@@ -1,29 +1,28 @@
 package modelo;
 
-public class Espaziontzi extends Pertsonai {
+public class Espaziontzi extends Entitate {
 	
-	public Espaziontzi(int x, int y, boolean bizirik) {
-		super(x, y, bizirik);
+	public Espaziontzi(int gelaxkak, int id,  boolean bizirik) {
+		super(gelaxkak, id, bizirik);
 	}
 	
-	@Override
-	public Integer[] lortuEgoera() {
-		return new Integer[] {1,0,0,0};
+	public int[][] getHitBox() {
+		return this.hitBox;
 	}
 	
-	@Override
-	public void mugitu(Mugimendua m) {
-	    switch(m) {
-	        case GORA:    super.mugituGora(); break;
-	        case BEHERA:  super.mugituBehera(); break;
-	        case EZKERRA: super.mugituEzkerrera(); break;
-	        case ESKUMA:  super.mugituEskumara(); break;
-	    }
+	public boolean bizirik() {
+		return this.bizirik;
 	}
-	public int getXposizioa() {return x;}
-    public int getYposizioa() {return y;}
-    
-    public Bala disparatu() {
-        return new Bala(this.x, this.y - 1);
-    }
+	
+	public int getID() {
+		return this.id;
+	}
+	
+	public void setHitBox(int[][] hitBox) {
+		this.hitBox = hitBox;
+	}
+	
+	public void setBizirik(boolean bizirik) {
+		this.bizirik = bizirik;
+	}
 }

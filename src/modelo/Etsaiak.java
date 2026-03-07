@@ -1,31 +1,28 @@
 package modelo;
 
-public class Etsaiak extends Pertsonai {
+public class Etsaiak extends Entitate {
 	
-	public Etsaiak(int x, int y, boolean bizirik) {
-		super(x, y, bizirik);
+	public Etsaiak(int gelaxka, int id, boolean bizirik) {
+		super(gelaxka, id, bizirik);
 	}
 	
-	@Override
-	public Integer[] lortuEgoera() {
-		return new Integer[] {0,1,0,0};
+	public int[][] getHitBox() {
+		return this.hitBox;
 	}
 	
-	public void mugitu(Mugimendua m) {
-		switch(m) {
-		case GORA:
-			break;
-		case BEHERA:
-			mugituBehera();
-			break;
-		case EZKERRA:
-			mugituEzkerrera();
-			break;
-		case ESKUMA:
-			mugituEskumara();
-			break;
-		default:
-			break;
-		}
+	public boolean bizirik() {
+		return this.bizirik;
+	}
+	
+	public int getID() {
+		return this.id;
+	}
+	
+	public void setHitBox(int[][] hitBox) {
+		this.hitBox = hitBox;
+	}
+	
+	public void setBizirik(boolean bizirik) {
+		this.bizirik = bizirik;
 	}
 }

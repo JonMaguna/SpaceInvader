@@ -1,44 +1,35 @@
 package modelo;
-public class Bala extends Pertsonai implements Runnable{
+public class Bala extends Entitate implements Runnable{
 	private boolean balaOK;
 	private Thread ThreadBala;
 	
-	public Bala(int x, int y) {
-		super(x, y, true);
-		this.balaOK= true;
+	public Bala(int gelaxkak, int id) {
+		super(gelaxkak, id, true);
 		
+		this.balaOK = true;
 		this.ThreadBala= new Thread(this);
 		this.ThreadBala.start();
 	}
 	
-	@Override
+	public int[][] getHitBox() {
+		return this.hitBox;
+	}
+	
+	public void setHitBox(int[][] hitBox) {
+		this.hitBox = hitBox;
+	}
+	
     public void run() {
         while (balaOK) { 
             try {
                 Thread.sleep(50);
-                this.y --; 
-                if (this.y<= 0) {
-                	this.balaOK = false;             
-                }
+                MatrizeM.getnMatrizeM().balaMugitu();
             } catch (InterruptedException e) {
                 this.balaOK = false; 
             }
         }
     }
 	
-	
-	public int getX() {return x;}
-	public int getY() {return y;}
 	public boolean isActive() {return balaOK;}
-	public void setActive(boolean active) {this.balaOK= active;}
-
-	@Override
-	public Integer[] lortuEgoera() {
-		return new Integer[] {0,0,1,0};
-	}
-
-	@Override
-	public void mugitu(Mugimendua m) {
- 		
-	}
+	public void setActive(boolean active) {this.balaOK = active;}
 }
