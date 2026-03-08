@@ -23,7 +23,7 @@ public class Bala extends Entitate implements Runnable{
         while (balaOK) { 
             try {
                 Thread.sleep(50);
-                MatrizeM.getnMatrizeM().balaMugitu();
+                MatrizeM.getnMatrizeM().mugituBalaBakarra(this);
             } catch (InterruptedException e) {
                 this.balaOK = false; 
             }

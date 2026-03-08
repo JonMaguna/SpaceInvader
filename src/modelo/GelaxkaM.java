@@ -29,4 +29,7 @@ public class GelaxkaM extends Observable {
 		setChanged();	
 		notifyObservers();
 	}
+	public int getEntitateID(EntitateMota entitate, int i) {
+		return this.id;
+	}
 }

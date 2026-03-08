@@ -59,6 +59,21 @@ public class EntitateKolekzio {
 		this.mapa.get(entitate).get(i-1).setHitBox(hitBoxBerria);
 	}
 	
+	public ArrayList<Entitate> getBalak() {
+		return this.mapa.get(EntitateMota.BALA);
+	}
+	
+	public void kenduEtsaia(int pId) {
+		ArrayList<Entitate> etsaiak = this.mapa.get(EntitateMota.ETSAIA);
+		for(int i=0; i<etsaiak.size(); i++) {
+			if(etsaiak.get(i).getId() == pId) {
+				etsaiak.remove(i);
+				break;
+			}
+		}
+	}
+	
+	
 	
 	//Bala mugitu eta balak pantailatik kanpo badaude kendu
 	/*public void mugituBalak() {
