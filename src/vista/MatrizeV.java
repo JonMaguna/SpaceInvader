@@ -75,7 +75,7 @@ public class MatrizeV extends JFrame implements Observer, KeyListener {
 	    
 	    else if(tekla == KeyEvent.VK_SPACE && !presionatuta) {
 	    	presionatuta = true;
-	    //	matrizeM.tiroEgin();
+	    	matrizeM.tiroEgin();
 	    }
 	    
 	    else if(tekla == KeyEvent.VK_ENTER) {JokoKudeatzailea.getnJokoKudeatzailea().jokoaHasieratu();}
