@@ -185,8 +185,59 @@ public class MatrizeM extends Observable{
 }
 	public void AldatuGelaxka () {
 	}
+
 	public void balaMugitu() {
+		
+	}
 		// TODO Auto-generated method stub
+
+	public synchronized void mugituBalaBakarra(Bala pBala) {
+		int [][] hitBoxZaharra = pBala.getHitBox();
+		int x = hitBoxZaharra[0][0];
+		int y = hitBoxZaharra[0][1];
+		gelaxkakAktualizatu(hitBoxZaharra, 0, EntitateMota.HUTSA);
+		int yBerria = y - 1;
+		if (yBerria >= 0) {
+			EntitateMota zerDago = matrizea[x][yBerria].zerDago();
+			if (zerDago == EntitateMota.ETSAIA) {
+				int idEtsai = matrizea[x][yBerria].getEntitateID( EntitateMota.ETSAIA, 0);
+				matrizea[x][yBerria].setEntitate(EntitateMota.HUTSA, 0);
+				EntitateKolekzio.getnPertsonaiZerrenda().kenduEtsaia(idEtsai);
+				pBala.setActive(false);
+				if(EntitateKolekzio.getnPertsonaiZerrenda().getEtsaiak().isEmpty()) {
+					JokoKudeatzailea.getnJokoKudeatzailea().etsaiakBuk();
+				}
+			}else {
+				int[][] hitBoxBerria = new int[1][2];
+				hitBoxBerria[0][0] = x;
+				hitBoxBerria[0][1] = yBerria;
+				gelaxkakAktualizatu(hitBoxBerria, pBala.getId(), EntitateMota.BALA);
+				pBala.setHitBox(hitBoxBerria);
+			}
+		}else {
+			pBala.setActive(false);
+		}
+	
+	}
+	public void tiroEgin() {
+		EntitateKolekzio e = EntitateKolekzio.getnPertsonaiZerrenda();
+		int [][] hitBox = e.getHitBox(1, EntitateMota.ESPAZIONTZI);
+		if(hitBox != null) {
+			int x = hitBox[0][0];
+			int y = hitBox[0][1] - 1;
+			if (y >= 0) {
+				int balaID = new Random().nextInt(1000);
+				Bala bala = new Bala(1, balaID);
+				int[][] hitBoxBala = new int[1][2];
+				hitBoxBala[0][0] = x;
+				hitBoxBala[0][1] = y;
+				bala.setHitBox(hitBoxBala);
+				e.getBalak().add(bala);
+				gelaxkakAktualizatu(hitBoxBala, balaID, EntitateMota.BALA);
+				setChanged();
+				notifyObservers();
+			}
+		}
 	}
 	public void gelaxkakAktualizatu(int[][] hitBox, int id, EntitateMota entitate) {
 		for (int i = 0; i < hitBox.length; i++) {
