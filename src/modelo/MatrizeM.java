@@ -181,6 +181,9 @@ public class MatrizeM extends Observable{
 				matrizea[x][yBerria].setEntitate(EntitateMota.HUTSA, 0);
 				EntitateKolekzio.getnPertsonaiZerrenda().kenduEtsaia(idEtsai);
 				pBala.setActive(false);
+				if(EntitateKolekzio.getnPertsonaiZerrenda().getEtsaiak().isEmpty()) {
+					JokoKudeatzailea.getnJokoKudeatzailea().etsaiakBuk();
+				}
 			}else {
 				int[][] hitBoxBerria = new int[1][2];
 				hitBoxBerria[0][0] = x;

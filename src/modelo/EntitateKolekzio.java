@@ -63,6 +63,10 @@ public class EntitateKolekzio {
 		return this.mapa.get(EntitateMota.BALA);
 	}
 	
+	public ArrayList<Entitate> getEtsaiak(){
+		return this.mapa.get(EntitateMota.ETSAIA);
+	}
+	
 	public void kenduEtsaia(int pId) {
 		ArrayList<Entitate> etsaiak = this.mapa.get(EntitateMota.ETSAIA);
 		for(int i=0; i<etsaiak.size(); i++) {

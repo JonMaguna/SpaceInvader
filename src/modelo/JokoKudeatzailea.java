@@ -2,6 +2,8 @@ package modelo;
 
 import java.util.Scanner;
 
+import vista.MatrizeV;
+
 public class JokoKudeatzailea {
 	private boolean jokoanDa = false;
 	private static JokoKudeatzailea instantzia= null;
@@ -20,11 +22,10 @@ public class JokoKudeatzailea {
 			m.SortuMatrizea();
 			e.sortuEntitateak();
 			jokoanDa = true;
-			//jokatzen();
 		}
 	}
-
-	private void jokatzen() {
-		
+	
+	public void etsaiakBuk() {
+		System.exit(0);
 	}
 }
