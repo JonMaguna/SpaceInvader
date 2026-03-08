@@ -24,5 +24,8 @@ public class Espaziontzi extends Entitate {
 	
 	public void setBizirik(boolean bizirik) {
 		this.bizirik = bizirik;
+		if (!bizirik) {
+			JokoKudeatzailea.getnJokoKudeatzailea().jokoaGaldu();
+		}
 	}
 }

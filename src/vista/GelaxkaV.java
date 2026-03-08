@@ -2,23 +2,22 @@ package vista;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import java.awt.Color;
-import java.util.Observer;
 
 import modelo.EntitateMota;
 
 
 
-public class GelaxkaV extends JLabel /*implements Observer */{
+public class GelaxkaV extends JLabel{
 	
 	private static final long serialVersionUID = 1L;
-	private int koordenatuX;
-	private int koordenatuY;
+/*	private int koordenatuX;
+	private int koordenatuY;*/
 	private EntitateMota mota;
 	
 	
 	public GelaxkaV(int korX, int korY, EntitateMota mota) {
-		this.koordenatuY = korY;
-		this.koordenatuX = korX;
+		/*this.koordenatuY = korY;
+		this.koordenatuX = korX;*/
 		this.mota = mota;
 		setOpaque(true);
 		koloreaEzarri(this.mota);
@@ -48,14 +47,4 @@ public class GelaxkaV extends JLabel /*implements Observer */{
 				break;
 		}
 	}
-	
-	/*public void update(java.util.Observable o, Object arg) {
-		if (o instanceof modelo.GelaxkaM) {
-			modelo.GelaxkaM gelaxkaM = (modelo.GelaxkaM) o;
-			if (gelaxkaM.getKordenatuaX() == this.koordenatuX && gelaxkaM.getKoordenatuaY() == this.koordenatuY) {
-				koloreaEzarri(gelaxkaM.zerDago());
-			}
-		}
-	}*/
-	
 }

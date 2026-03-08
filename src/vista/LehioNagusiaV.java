@@ -1,6 +1,5 @@
 package vista;
 
-import java.awt.BorderLayout;
 import java.util.Observable;
 import java.util.Observer;
 import java.awt.EventQueue;
@@ -8,15 +7,9 @@ import java.awt.EventQueue;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
-import modelo.JokoKudeatzailea;
 import modelo.MatrizeM;
 
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.awt.CardLayout;
 
 public class LehioNagusiaV extends JFrame implements Observer{

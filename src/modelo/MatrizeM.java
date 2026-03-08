@@ -1,11 +1,8 @@
 package modelo;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Arrays;
 import java.util.Observable;
 import java.util.Random;
-import modelo.EntitateMota;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -35,7 +32,7 @@ public class MatrizeM extends Observable{
 		}
 	}
 	
-	public void mugituOntzia (Mugimendua mugimendua) {	
+	public void mugituOntzia (Mugimendua mugimendua) {
 		EntitateKolekzio e = EntitateKolekzio.getnPertsonaiZerrenda();
 		int[][] hitBox = e.getHitBox(1, EntitateMota.ESPAZIONTZI);
 		int[][] hitBoxBerria = new int[hitBox.length][2];
@@ -75,10 +72,12 @@ public class MatrizeM extends Observable{
 			if(mugitu) { 
 				switch (entitatea) {
 				case BALA:
+					gelaxkakAktualizatu(hitBox, 0, EntitateMota.HUTSA);
 					e.setBizirik(EntitateMota.ESPAZIONTZI, 1, false);
 					mugitu = false;
 					break;
 				case ETSAIA:
+					gelaxkakAktualizatu(hitBox, 0, EntitateMota.HUTSA);
 					e.setBizirik(EntitateMota.ESPAZIONTZI, 1, false);
 					mugitu = false;
 					break;
@@ -124,88 +123,116 @@ public class MatrizeM extends Observable{
         Timer timer = new Timer();
         TimerTask ataza = new TimerTask() {
             public void run() {
-                EtsaiakMugitu();
+                EtsaiakMugitu(etsaiID);
             }
         };
 
         timer.schedule(ataza, 0, 200);
     }
 	
-	private void EtsaiakMugitu() {
-		EntitateKolekzio e = EntitateKolekzio.getnPertsonaiZerrenda();
-	    int[][] hitbox = new int[1][2];
-	    for(int i = 1;;i++){
-	    	int nora = new Random().nextInt(3);
-	    	hitbox = e.getHitBox(i, EntitateMota.ETSAIA);
-	    	int[][] hitboxberria = new int[hitbox.length][2];
-	    	etsaiaMugitu(hitbox,nora);
-			gelaxkakAktualizatu(hitbox, 0, EntitateMota.HUTSA);
-			gelaxkakAktualizatu(hitboxberria, i, EntitateMota.ETSAIA);
-			e.setHitBox(hitboxberria, i, EntitateMota.ETSAIA);
+	private void EtsaiakMugitu(List<Integer> etsaiID) {
+		List<Integer> mugituGabe = new ArrayList<Integer>();
+	    for(int i = 0; i < etsaiID.size(); i++){
+	    	Integer idEtsai = etsaiID.get(i);
+	    	int[][] hitBox = EntitateKolekzio.getnPertsonaiZerrenda().getHitBox(idEtsai, EntitateMota.ETSAIA);
+	    	boolean mugitu = true;
+			EntitateMota entitatea = null;
+			int mugimendua = new Random().nextInt(3);
+			int j = 0;
+			while (j  < hitBox.length && mugitu) {
+				switch(mugimendua) {
+				case 0: 
+					if (hitBox[j][1] == 59) { mugitu = false; JokoKudeatzailea.getnJokoKudeatzailea().jokoaGaldu(); } 
+					else {
+						entitatea = matrizea[hitBox[j][0]][hitBox[j][1] + 1].zerDago();
+					}
+					break;
+				case 1: 
+					if (hitBox[j][0] == 0) { mugitu = false; }
+					else {
+						entitatea = matrizea[hitBox[j][0] - 1][hitBox[j][1]].zerDago();
+					}
+					break;
+				case 2: 
+					if (hitBox[j][0] == 99) { mugitu = false; }
+					else {
+						entitatea = matrizea[hitBox[j][0] + 1][hitBox[j][1]].zerDago();
+					}
+					break;
+				}
+				if (mugitu) {
+					switch (entitatea) {
+					case ESPAZIONTZI:
+						EntitateKolekzio.getnPertsonaiZerrenda().setBizirik(EntitateMota.ESPAZIONTZI, 1, false);
+						mugitu = false;
+						break;
+					case ETSAIA:
+						mugitu = false;
+						break;
+					case BALA:
+						EntitateKolekzio.getnPertsonaiZerrenda().setBizirik(EntitateMota.ETSAIA, idEtsai, false);
+						gelaxkakAktualizatu(EntitateKolekzio.getnPertsonaiZerrenda().getHitBox(idEtsai, EntitateMota.ETSAIA), 0, EntitateMota.HUTSA);
+						etsaiID.remove(idEtsai);
+						 if(etsaiID.isEmpty()) {
+							 JokoKudeatzailea.getnJokoKudeatzailea().jokoaIrabazi();
+						 }
+						mugitu = false;
+						break;
+					default:
+						mugitu = true;
+						break;
+					}
+				}
+				j++;
+			}
+			if (!mugitu && EntitateKolekzio.getnPertsonaiZerrenda().getBizirik(EntitateMota.ETSAIA, idEtsai)) {
+				mugituGabe.add(idEtsai);
+				break;
+			} else {
+				int[][] hitboxberria = new int[hitBox.length][2];
+				for (int k = 0; k < hitBox.length; k++) {
+					switch(mugimendua) {
+					case 0: 
+						hitboxberria[k][0] = hitBox[k][0];
+						hitboxberria[k][1] = hitBox[k][1] + 1;
+						break;
+					case 1: 
+						hitboxberria[k][0] = hitBox[k][0] - 1;
+						hitboxberria[k][1] = hitBox[k][1];
+						break;
+					case 2: 
+						hitboxberria[k][0] = hitBox[k][0] + 1;
+						hitboxberria[k][1] = hitBox[k][1];
+						break;
+					}
+				}
+				gelaxkakAktualizatu(hitBox, 0, EntitateMota.HUTSA);
+				gelaxkakAktualizatu(hitboxberria, idEtsai, EntitateMota.ETSAIA);
+				EntitateKolekzio.getnPertsonaiZerrenda().setHitBox(hitboxberria, idEtsai, EntitateMota.ETSAIA);
+			}
+	    }
+	    if (!mugituGabe.isEmpty()) {
+	    	EtsaiakMugitu(mugituGabe);
 	    }
 	}	
-	public void etsaiaMugitu(int[][] hitbox, int mugimendua) {
-		int[][] hitboxberria = new int[hitbox.length][2];
-		int i = 0;
-		while (i < hitbox.length) {
-		switch(mugimendua) {
-		case 0: 
-	        if (hitbox[i][1] == 59 || matrizea[hitbox[i][0]][hitbox[i][1] + 1].zerDago() == EntitateMota.ETSAIA) {
-	        	hitboxberria[i][0] = hitbox[i][0] - 1;
-				hitboxberria[i][1] = hitbox[i][1];
-	        }
-	        else {
-	        	hitboxberria[i][0] = hitbox[i][0];
-				hitboxberria[i][1] = hitbox[i][1] + 1;
-	        }
-	        i++;
-	        break;
-	    case 1: 
-	        if (hitbox[i][0] == 0 || matrizea[hitbox[i][0] - 1][hitbox[i][1]].zerDago() == EntitateMota.ETSAIA) {
-	        	hitboxberria[i][0] = hitbox[i][0];
-				hitboxberria[i][1] = hitbox[i][1] + 1;
-	        } else {
-	        	hitboxberria[i][0] = hitbox[i][0] - 1;
-				hitboxberria[i][1] = hitbox[i][1];
-	        }
-	        i++;
-	        break;
-	    case 2: 
-	        if (hitbox[i][0] == 99 || matrizea[hitbox[i][0] + 1][hitbox[i][1]].zerDago() == EntitateMota.ETSAIA) {
-	        	hitboxberria[i][0] = hitbox[i][0];
-				hitboxberria[i][1] = hitbox[i][1] + 1;
-	        } else {
-	        	hitboxberria[i][0] = hitbox[i][0] + 1;
-				hitboxberria[i][1] = hitbox[i][1];
-	        }
-	        i++;
-	        break;
-		}
-	}
-}
-	public void AldatuGelaxka () {
-	}
+	
 
-	public void balaMugitu() {
-		
-	}
-
-		// TODO Auto-generated method st
 	public synchronized void mugituBalaBakarra(Bala pBala) {
 		int [][] hitBoxZaharra = pBala.getHitBox();
 		int x = hitBoxZaharra[0][0];
 		int y = hitBoxZaharra[0][1];
 		gelaxkakAktualizatu(hitBoxZaharra, 0, EntitateMota.HUTSA);
-		int yBerria = y - 1;
+		int yBerria = y - 1; 
 		if (yBerria >= 0) {
 			EntitateMota zerDago = matrizea[x][yBerria].zerDago();
 			if (zerDago == EntitateMota.ETSAIA) {
-				int idEtsai = matrizea[x][yBerria].getEntitateID( EntitateMota.ETSAIA, 0);
-				matrizea[x][yBerria].setEntitate(EntitateMota.HUTSA, 0);
-				EntitateKolekzio.getnPertsonaiZerrenda().kenduEtsaia(idEtsai);
+				Integer idEtsai = matrizea[x][yBerria].zeinDago();
+				EntitateKolekzio.getnPertsonaiZerrenda().setBizirik(EntitateMota.ETSAIA, idEtsai, false);
+				gelaxkakAktualizatu(EntitateKolekzio.getnPertsonaiZerrenda().getHitBox(idEtsai, EntitateMota.ETSAIA), 0, EntitateMota.HUTSA);
 				pBala.setActive(false);
-				if(EntitateKolekzio.getnPertsonaiZerrenda().getEtsaiak().isEmpty()) {
-					JokoKudeatzailea.getnJokoKudeatzailea().etsaiakBuk();
+				etsaiID.remove(idEtsai);
+				if(etsaiID.isEmpty()) {
+					JokoKudeatzailea.getnJokoKudeatzailea().jokoaIrabazi();
 				}
 			}else {
 				int[][] hitBoxBerria = new int[1][2];

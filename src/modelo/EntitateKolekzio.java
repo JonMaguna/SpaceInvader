@@ -82,17 +82,7 @@ public class EntitateKolekzio {
 		}
 	}
 	
-	
-	//Bala mugitu eta balak pantailatik kanpo badaude kendu
-	/*public void mugituBalak() {
-		ArrayList<Entitate> balak = getBalak();
-		for(int i=0; i<balak.size(); i++) {
-			Entitate bala = balak.get(i);
-			bala.mugitu(Mugimendua.GORA);
-			if(bala.getYposizioa() < 0) {
-				kenduPertsonai(EntitateMota.ETSAIA, bala);
-				i--;
-			}
-		}
-	}*/
+	public boolean getBizirik(EntitateMota entitate, int i) {
+		return this.mapa.get(entitate).get(i-1).bizirik();
+	}
 }

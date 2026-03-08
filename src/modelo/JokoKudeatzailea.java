@@ -1,9 +1,5 @@
 package modelo;
 
-import java.util.Scanner;
-
-import vista.MatrizeV;
-
 public class JokoKudeatzailea {
 	private boolean jokoanDa = false;
 	private static JokoKudeatzailea instantzia= null;
@@ -19,13 +15,28 @@ public class JokoKudeatzailea {
 		MatrizeM m = MatrizeM.getnMatrizeM();
 		EntitateKolekzio e = EntitateKolekzio.getnPertsonaiZerrenda();
 		if(!jokoanDa){
+			jokoanDa = true;
 			m.SortuMatrizea();
 			e.sortuEntitateak();
-			jokoanDa = true;
+			m.EtsaienMugimendua();
 		}
 	}
 	
-	public void etsaiakBuk() {
+	public void jokoaGaldu() {
+		try {
+	        Thread.sleep(2000); 
+	    } catch (InterruptedException e) {
+	        Thread.currentThread().interrupt();
+	    }
+		System.exit(0);
+	}
+	
+	public void jokoaIrabazi() {
+		try {
+	        Thread.sleep(2000); 
+	    } catch (InterruptedException e) {
+	        Thread.currentThread().interrupt();
+	    }
 		System.exit(0);
 	}
 }
