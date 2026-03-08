@@ -58,7 +58,9 @@ public class EntitateKolekzio {
 	public void setHitBox(int[][] hitBoxBerria, int i, EntitateMota entitate) {
 		this.mapa.get(entitate).get(i-1).setHitBox(hitBoxBerria);
 	}
-	
+	public int getEtsaiKopurua() {
+	    return this.mapa.get(EntitateMota.ETSAIA).size();
+	}
 	
 	//Bala mugitu eta balak pantailatik kanpo badaude kendu
 	/*public void mugituBalak() {

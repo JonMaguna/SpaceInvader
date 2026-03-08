@@ -120,59 +120,74 @@ public class MatrizeM extends Observable{
 	}
 	
 	
-	public void EtsaiakMugitu() {
+	public void EtsaienMugimendua() {
         Timer timer = new Timer();
         TimerTask ataza = new TimerTask() {
             public void run() {
-                EtsaiaMugitu();
+                EtsaiakMugitu();
             }
         };
 
         timer.schedule(ataza, 0, 200);
     }
 	
-	private void EtsaiaMugitu() {
-		
-		
-		EntitateKolekzio.getnPertsonaiZerrenda(); 
-		/*ArrayList<Entitate> Etsaiak = zerrenda.getEtsaiak();
-		while (Etsaiak.hasNext()) {
-			int Random = random.nextInt(4);
-			Entitate Etsaia = Etsaiak.get(0);
-			switch (Random) {
-            case 0:
-            	Etsaia.mugituGora();
-            	setChanged();
-				notifyObservers();
-                break;
-            case 1:
-            	Etsaia.mugituBehera();
-            	setChanged();
-				notifyObservers();
-            	break;
-            case 2:
-            	Etsaia.mugituEzkerrera();
-            	setChanged();
-				notifyObservers();
-            	break;
-            case 3:
-            	Etsaia.mugituEskumara();
-            	setChanged();
-				notifyObservers();
-            	break;
-			}
-		}*/
+	private void EtsaiakMugitu() {
+		EntitateKolekzio e = EntitateKolekzio.getnPertsonaiZerrenda();
+	    int[][] hitbox = new int[1][2];
+	    for(int i = 1;;i++){
+	    	int nora = new Random().nextInt(3);
+	    	hitbox = e.getHitBox(i, EntitateMota.ETSAIA);
+	    	int[][] hitboxberria = new int[hitbox.length][2];
+	    	etsaiaMugitu(hitbox,nora);
+			gelaxkakAktualizatu(hitbox, 0, EntitateMota.HUTSA);
+			gelaxkakAktualizatu(hitboxberria, i, EntitateMota.ETSAIA);
+			e.setHitBox(hitboxberria, i, EntitateMota.ETSAIA);
+	    }
+	}	
+	public void etsaiaMugitu(int[][] hitbox, int mugimendua) {
+		int[][] hitboxberria = new int[hitbox.length][2];
+		int i = 0;
+		while (i < hitbox.length) {
+		switch(mugimendua) {
+		case 0: 
+	        if (hitbox[i][1] == 59 || matrizea[hitbox[i][0]][hitbox[i][1] + 1].zerDago() == EntitateMota.ETSAIA) {
+	        	hitboxberria[i][0] = hitbox[i][0] - 1;
+				hitboxberria[i][1] = hitbox[i][1];
+	        }
+	        else {
+	        	hitboxberria[i][0] = hitbox[i][0];
+				hitboxberria[i][1] = hitbox[i][1] + 1;
+	        }
+	        i++;
+	        break;
+	    case 1: 
+	        if (hitbox[i][0] == 0 || matrizea[hitbox[i][0] - 1][hitbox[i][1]].zerDago() == EntitateMota.ETSAIA) {
+	        	hitboxberria[i][0] = hitbox[i][0];
+				hitboxberria[i][1] = hitbox[i][1] + 1;
+	        } else {
+	        	hitboxberria[i][0] = hitbox[i][0] - 1;
+				hitboxberria[i][1] = hitbox[i][1];
+	        }
+	        i++;
+	        break;
+	    case 2: 
+	        if (hitbox[i][0] == 99 || matrizea[hitbox[i][0] + 1][hitbox[i][1]].zerDago() == EntitateMota.ETSAIA) {
+	        	hitboxberria[i][0] = hitbox[i][0];
+				hitboxberria[i][1] = hitbox[i][1] + 1;
+	        } else {
+	        	hitboxberria[i][0] = hitbox[i][0] + 1;
+				hitboxberria[i][1] = hitbox[i][1];
+	        }
+	        i++;
+	        break;
+		}
 	}
-	
+}
 	public void AldatuGelaxka () {
-		
 	}
-
 	public void balaMugitu() {
 		// TODO Auto-generated method stub
-		
 	}
-
 	public void gelaxkakAktualizatu(int[][] hitBox, int id, EntitateMota entitate) {
 		for (int i = 0; i < hitBox.length; i++) {
 			matrizea[hitBox[i][0]][hitBox[i][1]].setEntitate(entitate, id);
