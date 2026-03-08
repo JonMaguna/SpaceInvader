@@ -189,8 +189,8 @@ public class MatrizeM extends Observable{
 	public void balaMugitu() {
 		
 	}
-		// TODO Auto-generated method stub
 
+		// TODO Auto-generated method st
 	public synchronized void mugituBalaBakarra(Bala pBala) {
 		int [][] hitBoxZaharra = pBala.getHitBox();
 		int x = hitBoxZaharra[0][0];
