@@ -43,17 +43,17 @@ public class MatrizeV extends JFrame implements Observer, KeyListener {
 	
 	public MatrizeV() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 1150, 1000);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(1, 1, 1, 1));
 		contentPane.setLayout(new GridLayout(60, 100, 0, 0));
 		contentPane.setBackground(Color.BLACK);
 		setContentPane(contentPane);
 		this.matrizeV = new GelaxkaV[100][60];
-		
 		MatrizeM.getnMatrizeM().addObserver(this);
         this.addKeyListener(this); 
         this.setFocusable(true);
+        JokoKudeatzailea.getnJokoKudeatzailea().jokoaHasieratu();
     }
 
 	
@@ -76,7 +76,6 @@ public class MatrizeV extends JFrame implements Observer, KeyListener {
 	    	presionatuta = true;
 	    	matrizeM.tiroEgin();
 	    }
-	    else if(tekla == KeyEvent.VK_ENTER) {JokoKudeatzailea.getnJokoKudeatzailea().jokoaHasieratu();}
     }
 	
 	public void keyTyped(KeyEvent e) {}
