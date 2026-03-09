@@ -14,29 +14,29 @@ public class JokoKudeatzailea {
 	public void jokoaHasieratu() {
 		MatrizeM m = MatrizeM.getnMatrizeM();
 		EntitateKolekzio e = EntitateKolekzio.getnPertsonaiZerrenda();
-		if(!jokoanDa){
+		if(jokoanDa){
+			jokoaGelditu();
+		} else {
 			jokoanDa = true;
 			m.SortuMatrizea();
 			e.sortuEntitateak();
 			m.EtsaienMugimendua();
 		}
 	}
+		
+	public boolean getJokoanDa() {
+		return this.jokoanDa;
+	}
 	
 	public void jokoaGaldu() {
-		try {
-	        Thread.sleep(2000); 
-	    } catch (InterruptedException e) {
-	        Thread.currentThread().interrupt();
-	    }
-		System.exit(0);
+		this.jokoanDa = false;
 	}
 	
 	public void jokoaIrabazi() {
-		try {
-	        Thread.sleep(2000); 
-	    } catch (InterruptedException e) {
-	        Thread.currentThread().interrupt();
-	    }
-		System.exit(0);
+		this.jokoanDa = false;
+	}
+	
+	public void jokoaGelditu() {
+		this.jokoanDa = false;
 	}
 }
