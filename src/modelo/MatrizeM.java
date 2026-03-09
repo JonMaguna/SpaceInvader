@@ -145,7 +145,9 @@ public class MatrizeM extends Observable{
 			while (j  < hitBox.length && mugitu) {
 				switch(mugimendua) {
 				case 0: 
-					if (hitBox[j][1] == 59) { mugitu = false; JokoKudeatzailea.getnJokoKudeatzailea().jokoaGaldu(); } 
+					if (hitBox[j][1] == 59) { mugitu = false; JokoKudeatzailea.getnJokoKudeatzailea().jokoaGaldu(); 
+					setChanged();
+					notifyObservers("GALDU");} 
 					else {
 						entitatea = matrizea[hitBox[j][0]][hitBox[j][1] + 1].zerDago();
 					}
@@ -168,6 +170,9 @@ public class MatrizeM extends Observable{
 					case ESPAZIONTZI:
 						EntitateKolekzio.getnPertsonaiZerrenda().setBizirik(EntitateMota.ESPAZIONTZI, 1, false);
 						mugitu = false;
+						 JokoKudeatzailea.getnJokoKudeatzailea().jokoaGaldu(); 
+						 setChanged();
+						 notifyObservers("GALDU");
 						break;
 					case ETSAIA:
 						mugitu = false;

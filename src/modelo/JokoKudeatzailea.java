@@ -1,5 +1,7 @@
 package modelo;
 
+import javax.swing.JOptionPane;
+
 public class JokoKudeatzailea {
 	private boolean jokoanDa = false;
 	private static JokoKudeatzailea instantzia= null;
