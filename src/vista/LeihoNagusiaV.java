@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.KeyEvent;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -50,6 +51,11 @@ public class LeihoNagusiaV extends JFrame {
 		contentPane.setBackground(Color.BLACK);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
+		java.net.URL imgUrl = getClass().getResource("/img/alien2.png");
+		ImageIcon iconoOriginal = new ImageIcon(imgUrl);
+		java.awt.Image imagenEscalada = iconoOriginal.getImage().getScaledInstance(300, 300, java.awt.Image.SCALE_SMOOTH);
+		ImageIcon iconoAlien = new ImageIcon(imagenEscalada);
+		
 		JLabel goiL = new JLabel("Press <UP,DOWN,RIGHT,LEFT> or <W,S,D,A> to move");
 		goiL.setFont(new Font("Arial", Font.BOLD, 20));
 		goiL.setForeground(Color.WHITE);
@@ -60,6 +66,9 @@ public class LeihoNagusiaV extends JFrame {
 		titL.setFont(new Font("Arial", Font.BOLD, 100));
 		titL.setForeground(Color.YELLOW);
 		titL.setHorizontalAlignment(JLabel.CENTER);
+		titL.setIcon(iconoAlien);
+		titL.setHorizontalTextPosition(JLabel.CENTER);
+		titL.setVerticalTextPosition(JLabel.BOTTOM);
 		contentPane.add(titL, BorderLayout.CENTER);
 		
 		JLabel beheL = new JLabel("Press <ENTER> to start the game");
