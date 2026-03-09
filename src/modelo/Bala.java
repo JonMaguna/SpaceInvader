@@ -20,7 +20,7 @@ public class Bala extends Entitate implements Runnable{
 	}
 	
     public void run() {
-        while (balaOK) { 
+        while (balaOK && JokoKudeatzailea.getnJokoKudeatzailea().getJokoanDa()) { 
             try {
                 Thread.sleep(50);
                 MatrizeM.getnMatrizeM().mugituBalaBakarra(this);
@@ -28,6 +28,7 @@ public class Bala extends Entitate implements Runnable{
                 this.balaOK = false;
             }
         }
+        this.balaOK = false;
     }
 	
 	public boolean isActive() {return balaOK;}

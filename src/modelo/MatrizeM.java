@@ -131,6 +131,9 @@ public class MatrizeM extends Observable{
     }
 	
 	private void EtsaiakMugitu(List<Integer> etsaiID) {
+		if(!JokoKudeatzailea.getnJokoKudeatzailea().getJokoanDa()) {
+			return;
+		}
 		List<Integer> mugituGabe = new ArrayList<Integer>();
 	    for(int i = 0; i < etsaiID.size(); i++){
 	    	Integer idEtsai = etsaiID.get(i);
@@ -142,7 +145,9 @@ public class MatrizeM extends Observable{
 			while (j  < hitBox.length && mugitu) {
 				switch(mugimendua) {
 				case 0: 
-					if (hitBox[j][1] == 59) { mugitu = false; JokoKudeatzailea.getnJokoKudeatzailea().jokoaGaldu(); } 
+					if (hitBox[j][1] == 59) { mugitu = false; JokoKudeatzailea.getnJokoKudeatzailea().jokoaGaldu(); 
+					setChanged();
+					notifyObservers("GALDU");} 
 					else {
 						entitatea = matrizea[hitBox[j][0]][hitBox[j][1] + 1].zerDago();
 					}
@@ -165,6 +170,9 @@ public class MatrizeM extends Observable{
 					case ESPAZIONTZI:
 						EntitateKolekzio.getnPertsonaiZerrenda().setBizirik(EntitateMota.ESPAZIONTZI, 1, false);
 						mugitu = false;
+						 JokoKudeatzailea.getnJokoKudeatzailea().jokoaGaldu(); 
+						 setChanged();
+						 notifyObservers("GALDU");
 						break;
 					case ETSAIA:
 						mugitu = false;
@@ -211,13 +219,19 @@ public class MatrizeM extends Observable{
 				EntitateKolekzio.getnPertsonaiZerrenda().setHitBox(hitboxberria, idEtsai, EntitateMota.ETSAIA);
 			}
 	    }
-	    if (!mugituGabe.isEmpty()) {
+	   /* if (!mugituGabe.isEmpty()) {
 	    	EtsaiakMugitu(mugituGabe);
-	    }
+	    }*/
+	    setChanged();
+	    notifyObservers();
 	}	
 	
 
 	public synchronized void mugituBalaBakarra(Bala pBala) {
+		if(!JokoKudeatzailea.getnJokoKudeatzailea().getJokoanDa()) {
+			pBala.setActive(false);
+			return;
+		}
 		int [][] hitBoxZaharra = pBala.getHitBox();
 		int x = hitBoxZaharra[0][0];
 		int y = hitBoxZaharra[0][1];
@@ -247,6 +261,9 @@ public class MatrizeM extends Observable{
 	
 	}
 	public void tiroEgin() {
+		if(!JokoKudeatzailea.getnJokoKudeatzailea().getJokoanDa()) {
+			return;
+		}
 		EntitateKolekzio e = EntitateKolekzio.getnPertsonaiZerrenda();
 		int [][] hitBox = e.getHitBox(1, EntitateMota.ESPAZIONTZI);
 		if(hitBox != null) {

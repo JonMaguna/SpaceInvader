@@ -3,6 +3,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -87,6 +88,15 @@ public class MatrizeV extends JFrame implements Observer, KeyListener {
 	
 
 	public void update(Observable o, Object arg) {
+		if(arg instanceof String) {
+			String mezua = (String) arg;
+			if(mezua.equals("GALDU")) {
+				JOptionPane.showMessageDialog(this, "Jokoa galdu duzu, saiatu berriro!");
+			} else if(mezua.equals("IRABAZI")) {
+				JOptionPane.showMessageDialog(this, "Zorionak, irabazi duzu!");
+			}
+			return;
+		}
 		if (o instanceof MatrizeM) {
 			if (arg instanceof GelaxkaM) { 
 				GelaxkaM gelaxka = (GelaxkaM) arg;
@@ -100,4 +110,5 @@ public class MatrizeV extends JFrame implements Observer, KeyListener {
 			matrizeV[gelaxka.getKordenatuaX()][gelaxka.getKordenatuaY()].koloreaEzarri(mota);
 			}
 	}
+	
 }
