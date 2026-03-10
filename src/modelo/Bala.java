@@ -7,7 +7,7 @@ public class Bala extends Entitate implements Runnable{
 		super(gelaxkak, id, true);
 		
 		this.balaOK = true;
-		this.ThreadBala= new Thread(this);
+		this.ThreadBala = new Thread(this);
 		this.ThreadBala.start();
 	}
 	
@@ -30,7 +30,6 @@ public class Bala extends Entitate implements Runnable{
         }
         this.balaOK = false;
     }
-	
-	public boolean isActive() {return balaOK;}
+    
 	public void setActive(boolean active) {this.balaOK = active;}
 }

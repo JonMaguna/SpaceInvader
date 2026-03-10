@@ -1,5 +1,7 @@
 package vista;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.KeyEvent;
@@ -12,21 +14,15 @@ import javax.swing.border.EmptyBorder;
 
 import modelo.JokoKudeatzailea;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-
 public class LeihoNagusiaV extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JPanel panelgoi;
-	private JPanel panel;
-	private JPanel panelbehe;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void LVmain(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -84,9 +80,10 @@ public class LeihoNagusiaV extends JFrame {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode() == KeyEvent.VK_ENTER) {
-					dispose(); 
 					MatrizeV mV= new MatrizeV();
 					mV.setVisible(true);
+					dispose();
+					JokoKudeatzailea.getnJokoKudeatzailea().jokoaHasieratu();
 				}
 			}
 		});

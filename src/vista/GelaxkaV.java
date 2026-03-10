@@ -2,11 +2,14 @@ package vista;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import java.awt.Color;
+import java.util.Observable;
+import java.util.Observer;
+
 import modelo.EntitateMota;
 
 
 
-public class GelaxkaV extends JLabel{
+public class GelaxkaV extends JLabel implements Observer{
 	
 	private static final long serialVersionUID = 1L;
 	private EntitateMota mota;
@@ -15,11 +18,10 @@ public class GelaxkaV extends JLabel{
 		this.mota = EntitateMota.HUTSA;
 		setOpaque(true);
 		koloreaEzarri(this.mota);
-		
 	}
 	
 	
-	public void koloreaEzarri(EntitateMota mota) {
+	private void koloreaEzarri(EntitateMota mota) {
 		this.mota = mota;
 		switch (mota) {
 			case ESPAZIONTZI:
@@ -41,5 +43,12 @@ public class GelaxkaV extends JLabel{
 			default:
 				break;
 		}
+	}
+
+
+	@Override
+	public void update(Observable o, Object arg) {
+		this.mota = (EntitateMota) arg;
+		koloreaEzarri((EntitateMota) arg);
 	}
 }

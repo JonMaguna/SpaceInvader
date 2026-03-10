@@ -1,17 +1,19 @@
 package modelo;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 import java.util.Random;
-import java.util.TimerTask;
+
 import javax.swing.Timer;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class MatrizeM extends Observable{
 	private static MatrizeM nMatrizeM;
 	private GelaxkaM[][] matrizea;
 	private List<Integer> etsaiID;
+	private long azkenMugimendua;
+	private long azkenTiroa;
 	
 	private MatrizeM() {
 		this.matrizea = new GelaxkaM[100][60];
@@ -37,6 +39,9 @@ public class MatrizeM extends Observable{
         return this.matrizea[x][y];
     }
 	public void mugituOntzia (Mugimendua mugimendua) {
+		if(!JokoKudeatzailea.getnJokoKudeatzailea().getJokoanDa() || denboraPasaMugitu()) {
+			return;
+		}
 		EntitateKolekzio e = EntitateKolekzio.getnPertsonaiZerrenda();
 		int[][] hitBox = e.getHitBox(1, EntitateMota.ESPAZIONTZI);
 		int[][] hitBoxBerria = new int[hitBox.length][2];
@@ -84,7 +89,7 @@ public class MatrizeM extends Observable{
 					gelaxkakAktualizatu(hitBox, 0, EntitateMota.HUTSA);
 					e.setBizirik(EntitateMota.ESPAZIONTZI, 1, false);
 					mugitu = false;
-					 JokoKudeatzailea.getnJokoKudeatzailea().jokoaGaldu(); 
+					 JokoKudeatzailea.getnJokoKudeatzailea().jokoaGelditu(); 
 					 setChanged();
 					 notifyObservers("GALDU");
 					break;
@@ -125,6 +130,19 @@ public class MatrizeM extends Observable{
 		e.setHitBox(hitBoxBerria, 1, EntitateMota.ESPAZIONTZI);
 	}
 	
+	private boolean denboraPasaMugitu() {
+		 boolean pasaDa = false;
+		 long orain = System.currentTimeMillis();
+		 
+		 if (orain - this.azkenMugimendua < 125) {
+			 pasaDa = true;
+		 }
+		 else {
+			 this.azkenMugimendua = orain;
+		 }
+		 return pasaDa;
+	}
+	
 	
 	public void EtsaienMugimendua() {
 		Timer timer = new Timer(200, new ActionListener() {
@@ -150,7 +168,7 @@ public class MatrizeM extends Observable{
 			while (j  < hitBox.length && mugitu) {
 				switch(mugimendua) {
 				case 0: 
-					if (hitBox[j][1] == 59) { mugitu = false; JokoKudeatzailea.getnJokoKudeatzailea().jokoaGaldu(); 
+					if (hitBox[j][1] == 59) { mugitu = false; JokoKudeatzailea.getnJokoKudeatzailea().jokoaGelditu(); 
 					setChanged();
 					notifyObservers("GALDU");} 
 					else {
@@ -175,7 +193,7 @@ public class MatrizeM extends Observable{
 					case ESPAZIONTZI:
 						EntitateKolekzio.getnPertsonaiZerrenda().setBizirik(EntitateMota.ESPAZIONTZI, 1, false);
 						mugitu = false;
-						 JokoKudeatzailea.getnJokoKudeatzailea().jokoaGaldu(); 
+						 JokoKudeatzailea.getnJokoKudeatzailea().jokoaGelditu(); 
 						 setChanged();
 						 notifyObservers("GALDU");
 						break;
@@ -187,7 +205,7 @@ public class MatrizeM extends Observable{
 						gelaxkakAktualizatu(EntitateKolekzio.getnPertsonaiZerrenda().getHitBox(idEtsai, EntitateMota.ETSAIA), 0, EntitateMota.HUTSA);
 						etsaiID.remove(idEtsai);
 						 if(etsaiID.isEmpty()) {
-							 JokoKudeatzailea.getnJokoKudeatzailea().jokoaIrabazi();
+							 JokoKudeatzailea.getnJokoKudeatzailea().jokoaGelditu();
 							 setChanged();
 							 notifyObservers("IRABAZI");
 						 }
@@ -226,11 +244,9 @@ public class MatrizeM extends Observable{
 				EntitateKolekzio.getnPertsonaiZerrenda().setHitBox(hitboxberria, idEtsai, EntitateMota.ETSAIA);
 			}
 	    }
-	   /* if (!mugituGabe.isEmpty()) {
+	   if (!mugituGabe.isEmpty()) {
 	    	EtsaiakMugitu(mugituGabe);
-	    }*/
-	    setChanged();
-	    notifyObservers();
+	    }
 	}	
 	
 
@@ -253,7 +269,7 @@ public class MatrizeM extends Observable{
 				pBala.setActive(false);
 				etsaiID.remove(idEtsai);
 				if(etsaiID.isEmpty()) {
-					JokoKudeatzailea.getnJokoKudeatzailea().jokoaIrabazi();
+					JokoKudeatzailea.getnJokoKudeatzailea().jokoaGelditu();
 					setChanged();
 					notifyObservers("IRABAZI");
 				}
@@ -270,14 +286,14 @@ public class MatrizeM extends Observable{
 	
 	}
 	public void tiroEgin() {
-		if(!JokoKudeatzailea.getnJokoKudeatzailea().getJokoanDa()) {
+		if(!JokoKudeatzailea.getnJokoKudeatzailea().getJokoanDa() || denboraPasaBala()) {
 			return;
 		}
 		EntitateKolekzio e = EntitateKolekzio.getnPertsonaiZerrenda();
 		int [][] hitBox = e.getHitBox(1, EntitateMota.ESPAZIONTZI);
 		if(hitBox != null) {
 			int x = hitBox[0][0];
-			int y = hitBox[0][1] - 1;
+			int y = hitBox[0][1] - 2;
 			if (y >= 0) {
 				int balaID = new Random().nextInt(1000);
 				Bala bala = new Bala(1, balaID);
@@ -285,11 +301,25 @@ public class MatrizeM extends Observable{
 				hitBoxBala[0][0] = x;
 				hitBoxBala[0][1] = y;
 				bala.setHitBox(hitBoxBala);
-				e.getBalak().add(bala);
+				e.setBala(bala);
 				gelaxkakAktualizatu(hitBoxBala, balaID, EntitateMota.BALA);
 			}
 		}
 	}
+	
+	private boolean denboraPasaBala() {
+		 boolean pasaDa = false;
+		 long orain = System.currentTimeMillis();
+		 
+		 if (orain - this.azkenTiroa < 350) {
+			 pasaDa = true;
+		 }
+		 else {
+			 this.azkenTiroa = orain;
+		 }
+		 return pasaDa;
+	}
+	
 	public void gelaxkakAktualizatu(int[][] hitBox, int id, EntitateMota entitate) {
 		for (int i = 0; i < hitBox.length; i++) {
 			matrizea[hitBox[i][0]][hitBox[i][1]].setEntitate(entitate, id);

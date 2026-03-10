@@ -27,6 +27,6 @@ public class GelaxkaM extends Observable {
 		this.entitate = entitate;
 		this.id = id;
 		setChanged();	
-		notifyObservers();
+		notifyObservers(entitate);
 	}
 }

@@ -1,24 +1,20 @@
 package modelo;
 
-import javax.swing.JOptionPane;
-
 public class JokoKudeatzailea {
 	private boolean jokoanDa = false;
-	private static JokoKudeatzailea instantzia= null;
+	private static JokoKudeatzailea jokonKudeatzailea = null;
 	
 	private JokoKudeatzailea() {}
 	
 	public static JokoKudeatzailea getnJokoKudeatzailea() {
-		if(instantzia==null) {instantzia= new JokoKudeatzailea();}
-		return instantzia;
+		if(jokonKudeatzailea == null) {jokonKudeatzailea = new JokoKudeatzailea();}
+		return jokonKudeatzailea;
 	}
 	
 	public void jokoaHasieratu() {
 		MatrizeM m = MatrizeM.getnMatrizeM();
 		EntitateKolekzio e = EntitateKolekzio.getnPertsonaiZerrenda();
-		if(jokoanDa){
-			jokoaGelditu();
-		} else {
+		if(!jokoanDa){
 			jokoanDa = true;
 			m.SortuMatrizea();
 			e.sortuEntitateak();
@@ -28,14 +24,6 @@ public class JokoKudeatzailea {
 		
 	public boolean getJokoanDa() {
 		return this.jokoanDa;
-	}
-	
-	public void jokoaGaldu() {
-		this.jokoanDa = false;
-	}
-	
-	public void jokoaIrabazi() {
-		this.jokoanDa = false;
 	}
 	
 	public void jokoaGelditu() {
