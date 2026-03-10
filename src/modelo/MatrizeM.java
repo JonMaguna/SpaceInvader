@@ -80,6 +80,9 @@ public class MatrizeM extends Observable{
 					gelaxkakAktualizatu(hitBox, 0, EntitateMota.HUTSA);
 					e.setBizirik(EntitateMota.ESPAZIONTZI, 1, false);
 					mugitu = false;
+					 JokoKudeatzailea.getnJokoKudeatzailea().jokoaGaldu(); 
+					 setChanged();
+					 notifyObservers("GALDU");
 					break;
 				default:
 					mugitu = true;					
@@ -183,6 +186,8 @@ public class MatrizeM extends Observable{
 						etsaiID.remove(idEtsai);
 						 if(etsaiID.isEmpty()) {
 							 JokoKudeatzailea.getnJokoKudeatzailea().jokoaIrabazi();
+							 setChanged();
+							 notifyObservers("IRABAZI");
 						 }
 						mugitu = false;
 						break;
@@ -247,6 +252,8 @@ public class MatrizeM extends Observable{
 				etsaiID.remove(idEtsai);
 				if(etsaiID.isEmpty()) {
 					JokoKudeatzailea.getnJokoKudeatzailea().jokoaIrabazi();
+					setChanged();
+					notifyObservers("IRABAZI");
 				}
 			}else {
 				int[][] hitBoxBerria = new int[1][2];

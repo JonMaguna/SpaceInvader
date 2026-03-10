@@ -69,15 +69,19 @@ public class MatrizeV extends JFrame implements Observer, KeyListener {
 	public void keyPressed(KeyEvent e) {
 	    MatrizeM matrizeM = MatrizeM.getnMatrizeM();
 		int tekla = e.getKeyCode();
-	    if(tekla == KeyEvent.VK_LEFT || tekla == KeyEvent.VK_A) {matrizeM.mugituOntzia(Mugimendua.EZKERRA);} 
-	    else if(tekla == KeyEvent.VK_RIGHT || tekla == KeyEvent.VK_D) {matrizeM.mugituOntzia(Mugimendua.ESKUMA);} 
-	    else if(tekla == KeyEvent.VK_UP || tekla == KeyEvent.VK_W) {matrizeM.mugituOntzia(Mugimendua.GORA);} 
-	    else if(tekla == KeyEvent.VK_DOWN || tekla == KeyEvent.VK_S) {matrizeM.mugituOntzia(Mugimendua.BEHERA);}
-	    else if(tekla == KeyEvent.VK_SPACE && !presionatuta) {
-	    	presionatuta = true;
-	    	matrizeM.tiroEgin();
-	    }
-	    else if(tekla == KeyEvent.VK_ENTER) {JokoKudeatzailea.getnJokoKudeatzailea().jokoaHasieratu();}
+		if(tekla == KeyEvent.VK_ENTER) {JokoKudeatzailea.getnJokoKudeatzailea().jokoaHasieratu();}
+		if(JokoKudeatzailea.getnJokoKudeatzailea().getJokoanDa()) {
+		    if(tekla == KeyEvent.VK_LEFT || tekla == KeyEvent.VK_A) {matrizeM.mugituOntzia(Mugimendua.EZKERRA);} 
+		    else if(tekla == KeyEvent.VK_RIGHT || tekla == KeyEvent.VK_D) {matrizeM.mugituOntzia(Mugimendua.ESKUMA);} 
+		    else if(tekla == KeyEvent.VK_UP || tekla == KeyEvent.VK_W) {matrizeM.mugituOntzia(Mugimendua.GORA);} 
+		    else if(tekla == KeyEvent.VK_DOWN || tekla == KeyEvent.VK_S) {matrizeM.mugituOntzia(Mugimendua.BEHERA);}
+		    else if(tekla == KeyEvent.VK_SPACE && !presionatuta) {
+		    	presionatuta = true;
+		    	matrizeM.tiroEgin();
+		    }
+		}
+		
+		
     }
 	
 	public void keyTyped(KeyEvent e) {}
