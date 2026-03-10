@@ -58,8 +58,8 @@ public class MatrizeV extends JFrame implements Observer, KeyListener {
     }
 
 	
-	private void gelaxkaBerria(int korX, int korY, EntitateMota mota) {
-		GelaxkaV gelaxka = new GelaxkaV(korX, korY, mota);
+	private void gelaxkaBerria(int korX, int korY) {
+		GelaxkaV gelaxka = new GelaxkaV(korX, korY);
 		matrizeV[korX][korY] = gelaxka;
 		contentPane.add(gelaxka);
 	}
@@ -110,11 +110,18 @@ public class MatrizeV extends JFrame implements Observer, KeyListener {
 			return;
 		}
 		if (o instanceof MatrizeM) {
-			if (arg instanceof GelaxkaM) { 
-				GelaxkaM gelaxka = (GelaxkaM) arg;
-				gelaxka.addObserver(this);
-				gelaxkaBerria(gelaxka.getKordenatuaX(), gelaxka.getKordenatuaY(), gelaxka.zerDago());	
-			}
+			MatrizeM modelo = (MatrizeM) o;
+			contentPane.removeAll();
+            for (int i = 0; i < 60; i++) {
+                for (int j = 0; j < 100; j++) {
+                    gelaxkaBerria(j, i);
+                    GelaxkaM gelaxka = modelo.getGelaxka(j, i);
+                    gelaxka.deleteObserver(this);
+                    gelaxka.addObserver(this);
+                }
+            }         
+            contentPane.revalidate();
+            contentPane.repaint();
 		}
 		else if (o instanceof GelaxkaM) {
 			GelaxkaM gelaxka = (GelaxkaM) o;

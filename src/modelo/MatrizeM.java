@@ -25,13 +25,15 @@ public class MatrizeM extends Observable{
 	public void SortuMatrizea() {
 		for (int i = 0; i < 60; i++) {
 			for (int j = 0; j < 100; j++) {
-				matrizea[j][i] = new GelaxkaM(j,i);
-				setChanged();
-				notifyObservers(matrizea[j][i]);		
+				matrizea[j][i] = new GelaxkaM(j,i);	
 			}
 		}
+		setChanged();
+		notifyObservers();
 	}
-	
+	public GelaxkaM getGelaxka(int x, int y) {
+        return this.matrizea[x][y];
+    }
 	public void mugituOntzia (Mugimendua mugimendua) {
 		EntitateKolekzio e = EntitateKolekzio.getnPertsonaiZerrenda();
 		int[][] hitBox = e.getHitBox(1, EntitateMota.ESPAZIONTZI);
@@ -285,8 +287,6 @@ public class MatrizeM extends Observable{
 				bala.setHitBox(hitBoxBala);
 				e.getBalak().add(bala);
 				gelaxkakAktualizatu(hitBoxBala, balaID, EntitateMota.BALA);
-				setChanged();
-				notifyObservers();
 			}
 		}
 	}

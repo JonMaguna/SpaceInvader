@@ -2,7 +2,6 @@ package vista;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import java.awt.Color;
-
 import modelo.EntitateMota;
 
 
@@ -10,17 +9,13 @@ import modelo.EntitateMota;
 public class GelaxkaV extends JLabel{
 	
 	private static final long serialVersionUID = 1L;
-/*	private int koordenatuX;
-	private int koordenatuY;*/
 	private EntitateMota mota;
 	
-	
-	public GelaxkaV(int korX, int korY, EntitateMota mota) {
-		/*this.koordenatuY = korY;
-		this.koordenatuX = korX;*/
-		this.mota = mota;
+	public GelaxkaV(int korX, int korY) {
+		this.mota = EntitateMota.HUTSA;
 		setOpaque(true);
 		koloreaEzarri(this.mota);
+		
 	}
 	
 	
