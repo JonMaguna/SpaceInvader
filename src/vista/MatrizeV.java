@@ -69,7 +69,6 @@ public class MatrizeV extends JFrame implements Observer, KeyListener {
 	public void keyPressed(KeyEvent e) {
 	    MatrizeM matrizeM = MatrizeM.getnMatrizeM();
 		int tekla = e.getKeyCode();
-<<<<<<< HEAD
 		if(tekla == KeyEvent.VK_ENTER) {JokoKudeatzailea.getnJokoKudeatzailea().jokoaHasieratu();}
 		if(JokoKudeatzailea.getnJokoKudeatzailea().getJokoanDa()) {
 		    if(tekla == KeyEvent.VK_LEFT || tekla == KeyEvent.VK_A) {matrizeM.mugituOntzia(Mugimendua.EZKERRA);} 
@@ -82,8 +81,6 @@ public class MatrizeV extends JFrame implements Observer, KeyListener {
 		    }
 		}
 		
-		
-=======
 	    if(tekla == KeyEvent.VK_LEFT || tekla == KeyEvent.VK_A) {matrizeM.mugituOntzia(Mugimendua.EZKERRA);} 
 	    else if(tekla == KeyEvent.VK_RIGHT || tekla == KeyEvent.VK_D) {matrizeM.mugituOntzia(Mugimendua.ESKUMA);} 
 	    else if(tekla == KeyEvent.VK_UP || tekla == KeyEvent.VK_W) {matrizeM.mugituOntzia(Mugimendua.GORA);} 
@@ -92,7 +89,6 @@ public class MatrizeV extends JFrame implements Observer, KeyListener {
 	    	presionatuta = true;
 	    	matrizeM.tiroEgin();
 	    }
->>>>>>> 75d6672c6794bb3c83a9713fc6bd0c3c3742d4ea
     }
 	
 	public void keyTyped(KeyEvent e) {}
