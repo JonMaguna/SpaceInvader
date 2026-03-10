@@ -3,8 +3,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 import java.util.Random;
-import java.util.Timer;
 import java.util.TimerTask;
+import javax.swing.Timer;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class MatrizeM extends Observable{
 	private static MatrizeM nMatrizeM;
@@ -125,15 +127,13 @@ public class MatrizeM extends Observable{
 	
 	
 	public void EtsaienMugimendua() {
-        Timer timer = new Timer();
-        TimerTask ataza = new TimerTask() {
-            public void run() {
-                EtsaiakMugitu(etsaiID);
-            }
-        };
-
-        timer.schedule(ataza, 0, 200);
-    }
+		Timer timer = new Timer(200, new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            EtsaiakMugitu(etsaiID);
+	        }
+	    });
+	    timer.start();
+	}
 	
 	private void EtsaiakMugitu(List<Integer> etsaiID) {
 		if(!JokoKudeatzailea.getnJokoKudeatzailea().getJokoanDa()) {

@@ -111,15 +111,22 @@ public class MatrizeV extends JFrame implements Observer, KeyListener {
 		}
 		if (o instanceof MatrizeM) {
 			MatrizeM modelo = (MatrizeM) o;
-			contentPane.removeAll();
-            for (int i = 0; i < 60; i++) {
-                for (int j = 0; j < 100; j++) {
-                    gelaxkaBerria(j, i);
-                    GelaxkaM gelaxka = modelo.getGelaxka(j, i);
-                    gelaxka.deleteObserver(this);
-                    gelaxka.addObserver(this);
-                }
-            }         
+			if (contentPane.getComponentCount() == 0) {
+	            for (int i = 0; i < 60; i++) {
+	                for (int j = 0; j < 100; j++) {
+	                    gelaxkaBerria(j, i);
+	                    GelaxkaM gelaxka = modelo.getGelaxka(j, i);
+	                    gelaxka.addObserver(this);
+	                }
+	            }
+	        }
+	        for (int i = 0; i < 60; i++) {
+	            for (int j = 0; j < 100; j++) {
+	                GelaxkaM gelaxka = modelo.getGelaxka(j, i);
+	                EntitateMota mota = gelaxka.zerDago();
+	                matrizeV[j][i].koloreaEzarri(mota); 
+	            }
+	        }
             contentPane.revalidate();
             contentPane.repaint();
 		}
