@@ -10,15 +10,6 @@ public class Bala extends Entitate implements Runnable{
 		this.ThreadBala = new Thread(this);
 		this.ThreadBala.start();
 	}
-	
-	/*public int[][] getHitBox() {
-		return this.hitBox;
-	}
-	
-	public void setHitBox(int[][] hitBox) {
-		this.hitBox = hitBox;
-	}
-	*/
     public void run() {
         while (balaOK && JokoKudeatzailea.getnJokoKudeatzailea().getJokoanDa()) { 
             try {

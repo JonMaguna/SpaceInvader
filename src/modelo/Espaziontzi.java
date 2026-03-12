@@ -6,22 +6,6 @@ public class Espaziontzi extends Entitate {
 		super(gelaxkak, id, bizirik);
 	}
 	
-	/*public int[][] getHitBox() {
-		return this.hitBox;
-	}
-	
-	public boolean bizirik() {
-		return this.bizirik;
-	}
-	
-	public int getID() {
-		return this.id;
-	}
-	
-	public void setHitBox(int[][] hitBox) {
-		this.hitBox = hitBox;
-	}
-	*/
 	public void setBizirik(boolean bizirik) {
 		this.bizirik = bizirik;
 		if (!bizirik) {
