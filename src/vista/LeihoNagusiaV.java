@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.KeyEvent;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -14,7 +16,7 @@ import javax.swing.border.EmptyBorder;
 
 import modelo.JokoKudeatzailea;
 
-public class LeihoNagusiaV extends JFrame {
+public class LeihoNagusiaV extends JFrame implements Observer{
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -46,13 +48,14 @@ public class LeihoNagusiaV extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setBackground(Color.BLACK);
 		contentPane.setLayout(new BorderLayout(0, 0));
+		JokoKudeatzailea.getnJokoKudeatzailea().addObserver(this);
 		
 		java.net.URL imgUrl = getClass().getResource("/img/alien2.png");
 		ImageIcon iconoOriginal = new ImageIcon(imgUrl);
 		java.awt.Image imagenEscalada = iconoOriginal.getImage().getScaledInstance(300, 300, java.awt.Image.SCALE_SMOOTH);
 		ImageIcon iconoAlien = new ImageIcon(imagenEscalada);
 		
-		JLabel goiL = new JLabel("Press <UP,DOWN,RIGHT,LEFT> or <W,S,D,A> to move");
+		JLabel goiL = new JLabel("Press <UP,LEFT,DOWN,RIGHT> or <W,A,S,D> to move");
 		goiL.setFont(new Font("Arial", Font.BOLD, 20));
 		goiL.setForeground(Color.WHITE);
 		goiL.setHorizontalAlignment(JLabel.CENTER);
@@ -77,15 +80,19 @@ public class LeihoNagusiaV extends JFrame {
 		this.requestFocusInWindow();
 		
 		this.addKeyListener(new java.awt.event.KeyAdapter() {
-			@Override
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode() == KeyEvent.VK_ENTER) {
-					MatrizeV mV= new MatrizeV();
-					mV.setVisible(true);
-					dispose();
 					JokoKudeatzailea.getnJokoKudeatzailea().jokoaHasieratu();
 				}
 			}
 		});
+	}
+
+	public void update(Observable o, Object arg) {
+		if(arg == null) {
+			MatrizeV m = new MatrizeV();
+			m.setVisible(true);
+			dispose();
+		}
 	}
 }
