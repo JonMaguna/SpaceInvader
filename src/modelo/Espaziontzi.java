@@ -6,7 +6,7 @@ public class Espaziontzi extends Entitate {
 		super(gelaxkak, id, bizirik);
 	}
 	
-	public int[][] getHitBox() {
+	/*public int[][] getHitBox() {
 		return this.hitBox;
 	}
 	
@@ -21,11 +21,11 @@ public class Espaziontzi extends Entitate {
 	public void setHitBox(int[][] hitBox) {
 		this.hitBox = hitBox;
 	}
-	
+	*/
 	public void setBizirik(boolean bizirik) {
 		this.bizirik = bizirik;
 		if (!bizirik) {
-			JokoKudeatzailea.getnJokoKudeatzailea().jokoaGelditu();
+			JokoKudeatzailea.getnJokoKudeatzailea().jokoaGelditu(1);
 		}
 	}
 }

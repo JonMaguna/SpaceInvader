@@ -1,6 +1,9 @@
 package modelo;
 
-public class JokoKudeatzailea {
+import java.util.Observable;
+
+
+public class JokoKudeatzailea extends Observable{
 	private boolean jokoanDa = false;
 	private static JokoKudeatzailea jokonKudeatzailea = null;
 	
@@ -12,13 +15,15 @@ public class JokoKudeatzailea {
 	}
 	
 	public void jokoaHasieratu() {
-		MatrizeM m = MatrizeM.getnMatrizeM();
-		EntitateKolekzio e = EntitateKolekzio.getnPertsonaiZerrenda();
 		if(!jokoanDa){
 			jokoanDa = true;
-			m.SortuMatrizea();
-			e.sortuEntitateak();
-			m.EtsaienMugimendua();
+			setChanged();
+			notifyObservers();
+			MatrizeM.getnMatrizeM().SortuMatrizea();
+			setChanged();
+			notifyObservers(0);
+			EntitateKolekzio.getnPertsonaiZerrenda().sortuEntitateak();
+			MatrizeM.getnMatrizeM().EtsaienMugimendua();
 		}
 	}
 		
@@ -26,7 +31,9 @@ public class JokoKudeatzailea {
 		return this.jokoanDa;
 	}
 	
-	public void jokoaGelditu() {
+	public void jokoaGelditu(int mezua) {
 		this.jokoanDa = false;
+		setChanged();
+		notifyObservers(mezua);
 	}
 }

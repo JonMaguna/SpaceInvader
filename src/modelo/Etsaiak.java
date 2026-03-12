@@ -6,7 +6,7 @@ public class Etsaiak extends Entitate {
 		super(gelaxka, id, bizirik);
 	}
 	
-	public int[][] getHitBox() {
+/*	public int[][] getHitBox() {
 		return this.hitBox;
 	}
 	
@@ -24,5 +24,5 @@ public class Etsaiak extends Entitate {
 	
 	public void setBizirik(boolean bizirik) {
 		this.bizirik = bizirik;
-	}
+	}*/
 }

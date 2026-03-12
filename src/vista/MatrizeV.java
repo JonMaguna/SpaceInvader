@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import modelo.JokoKudeatzailea;
 import modelo.MatrizeM;
 import modelo.Mugimendua;
 
@@ -51,7 +52,7 @@ public class MatrizeV extends JFrame implements Observer, KeyListener {
 		contentPane.setLayout(new GridLayout(60, 100, 0, 0));
 		setContentPane(contentPane);
 		this.matrizeV = new GelaxkaV[100][60];
-		MatrizeM.getnMatrizeM().addObserver(this);
+		JokoKudeatzailea.getnJokoKudeatzailea().addObserver(this);
         this.addKeyListener(this); 
         this.setFocusable(true);
         Timer timer = new Timer(16, new ActionListener() {
@@ -121,25 +122,27 @@ public class MatrizeV extends JFrame implements Observer, KeyListener {
 	
 
 	public void update(Observable o, Object arg) {
-		if(arg instanceof String) {
-			String mezua = (String) arg;
-			if(mezua.equals("GALDU")) {
+		int argInt = (int) arg;
+		switch (argInt) {
+			case 0:
+				for (int i = 0; i < 60; i++) {
+		          	for (int j = 0; j < 100; j++) {
+		           	GelaxkaV gelaxka = new GelaxkaV(j, i);
+		           	matrizeV[j][i] = gelaxka;
+		          	contentPane.add(gelaxka);
+		            MatrizeM.getnMatrizeM().getGelaxka(j, i).addObserver(gelaxka);
+		           	}
+				}
+				break;
+			case 1:
 				JOptionPane.showMessageDialog(this, "Jokoa galdu duzu, saiatu berriro!");
-			} else if(mezua.equals("IRABAZI")) {
+				break;
+			case 2:
 				JOptionPane.showMessageDialog(this, "Zorionak, irabazi duzu!");
-			}
-			return;
-		}
-		if (o instanceof MatrizeM) {
-			MatrizeM modelo = (MatrizeM) o;
-	            for (int i = 0; i < 60; i++) {
-	            	for (int j = 0; j < 100; j++) {
-	               	GelaxkaV gelaxka = new GelaxkaV(j, i);
-	            	matrizeV[j][i] = gelaxka;
-	            	contentPane.add(gelaxka);
-	                modelo.getGelaxka(j, i).addObserver(gelaxka);
-	            }
-	        }
+				break;
+			default:
+				System.out.println("Ezer ez eginda");
+				break;
 		}
 	}
 	
