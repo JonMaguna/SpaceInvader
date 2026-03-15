@@ -24,11 +24,10 @@ public class EntitateKolekzio {
 	}
 	
 	public void sortuEntitateak() {
-		MatrizeM m = MatrizeM.getnMatrizeM();
 		Espaziontzi espaziontzi = new Espaziontzi(1, 1, true);
 		espaziontzi.setHitBox(new int[][] {{50, 55}});
 		this.mapa.get(EntitateMota.ESPAZIONTZI).add(espaziontzi);
-		m.gelaxkakAktualizatu(espaziontzi.getHitBox(), espaziontzi.getId(), EntitateMota.ESPAZIONTZI);
+		MatrizeM.getnMatrizeM().gelaxkakAktualizatu(espaziontzi.getHitBox(), espaziontzi.getId(), EntitateMota.ESPAZIONTZI);
 		int numEtsaiak = new Random().nextInt(5) + 4;
 		List<Integer> posizio = new ArrayList<>();
 		for (int i = 1; i < 19 + 1; i++) {
@@ -40,10 +39,10 @@ public class EntitateKolekzio {
 			etsaiID.add(i+1);
 			Etsaiak etsai = new Etsaiak(1, i+1, true);
 			etsai.setHitBox(new int[][] {{posizio.get(i), 5}});
-			m.gelaxkakAktualizatu(etsai.getHitBox(), etsai.getId(), EntitateMota.ETSAIA);
+			MatrizeM.getnMatrizeM().gelaxkakAktualizatu(etsai.getHitBox(), etsai.getId(), EntitateMota.ETSAIA);
 			this.mapa.get(EntitateMota.ETSAIA).add(etsai);
 		}
-		m.setEtsaiak(etsaiID);
+		MatrizeM.getnMatrizeM().setEtsaiak(etsaiID);
 	}
 
 	public int[][] getHitBox(int i, EntitateMota entitate) {

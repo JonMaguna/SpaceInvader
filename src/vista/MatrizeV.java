@@ -86,13 +86,12 @@ public class MatrizeV extends JFrame implements Observer, KeyListener {
     }
 	
     private void mugimenduakAktualizatu() {
-		MatrizeM matrizeM = MatrizeM.getnMatrizeM();
-		if (ezkerra) {matrizeM.mugituOntzia(Mugimendua.EZKERRA);} 
-	    else if (eskuma) {matrizeM.mugituOntzia(Mugimendua.ESKUMA);} 
-	    if (gora) {matrizeM.mugituOntzia(Mugimendua.GORA);} 
-	    else if (behera) {matrizeM.mugituOntzia(Mugimendua.BEHERA);}
+		if (ezkerra) {MatrizeM.getnMatrizeM().mugituOntzia(Mugimendua.EZKERRA);} 
+	    else if (eskuma) {MatrizeM.getnMatrizeM().mugituOntzia(Mugimendua.ESKUMA);} 
+	    if (gora) {MatrizeM.getnMatrizeM().mugituOntzia(Mugimendua.GORA);} 
+	    else if (behera) {MatrizeM.getnMatrizeM().mugituOntzia(Mugimendua.BEHERA);}
 	    if (tiroEgin && !presionatuta) {
-	    	matrizeM.tiroEgin();
+	    	MatrizeM.getnMatrizeM().tiroEgin();
 	    	presionatuta = true;
 	    }
 	}
@@ -141,7 +140,6 @@ public class MatrizeV extends JFrame implements Observer, KeyListener {
 				JOptionPane.showMessageDialog(this, "Zorionak, irabazi duzu!");
 				break;
 			default:
-				System.out.println("Ezer ez eginda");
 				break;
 		}
 	}
