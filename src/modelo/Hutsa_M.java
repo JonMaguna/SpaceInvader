@@ -2,11 +2,14 @@ package modelo;
 
 public class Hutsa_M implements Egoera_G{
 	
-	public void gelaxkaEguneratu(GelaxkaM pGelaxka) {
-		EntitateMota entitatea = pGelaxka.zerDago();
-		if(entitatea== EntitateMota.HUTSA) {}
-		else {
-			pGelaxka.setEntitate(EntitateMota.HUTSA, 0);
-		}
-	}
+	@Override
+    public void gelaxkaEguneratu(GelaxkaM pGelaxka, int id) {
+        pGelaxka.setId(0);
+        pGelaxka.aldaketaNotifikatu(getEntitateMota());
+    }
+
+    @Override
+    public EntitateMota getEntitateMota() {
+        return EntitateMota.HUTSA;
+    }
 }

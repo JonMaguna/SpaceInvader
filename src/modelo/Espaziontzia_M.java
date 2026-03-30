@@ -2,11 +2,14 @@ package modelo;
 
 public class Espaziontzia_M implements Egoera_G{
 
-	public void gelaxkaEguneratu(GelaxkaM pGelaxka) {
-		EntitateMota entitatea = pGelaxka.zerDago();
-		if(entitatea== EntitateMota.ESPAZIONTZI) {}
-		else {
-			pGelaxka.setEntitate(EntitateMota.ESPAZIONTZI, 0);
-		}
-	}
+	@Override
+    public void gelaxkaEguneratu(GelaxkaM pGelaxka, int id) {
+        pGelaxka.setId(id);
+        pGelaxka.aldaketaNotifikatu(getEntitateMota());
+    }
+
+    @Override
+    public EntitateMota getEntitateMota() {
+        return EntitateMota.ESPAZIONTZI;
+    }
 }
