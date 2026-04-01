@@ -14,12 +14,13 @@ public class JokoKudeatzailea extends Observable{
 		return jokonKudeatzailea;
 	}
 	
-	public void jokoaHasieratu() {
+	public void jokoaHasieratu(int pMota) {
 		if(!jokoanDa){
 			jokoanDa = true;
 			setChanged();
 			notifyObservers();
 			MatrizeM.getnMatrizeM().SortuMatrizea();
+			Espaziontzi nireOntzia=EspaziontziFactory.getNireEspaziontziFactory().sortuEspaziontzia(pMota);
 			setChanged();
 			notifyObservers(0);
 			EntitateKolekzio.getnPertsonaiZerrenda().sortuEntitateak();
