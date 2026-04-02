@@ -1,18 +1,20 @@
 package modelo;
 
 public abstract class Entitate {
-	protected int[][] hitBox;
+	protected int[][] koordenatu;
 	protected boolean bizirik;
 	protected int id;
 	
-	public Entitate(int gelaxkak, int id, boolean bizirik) {
-		this.hitBox = new int[gelaxkak][2];
+	public Entitate(int x, int y, int id, boolean bizirik) {
+		this.koordenatu = new int[][] {{x, y}};
 		this.id = id;
 		this.bizirik = true;
 	}
 	
-	public int[][] getHitBox() {
-		return this.hitBox;
+	public void mugitu(Mugimendua mugimendu) {	}
+	
+	public int[][] getKoordenatu() {
+		return this.koordenatu;
 	}
 	
 	public int getId() {
@@ -23,8 +25,8 @@ public abstract class Entitate {
 		return this.bizirik;
 	}
 	
-	public void setHitBox(int[][] hitBox) {
-		this.hitBox = hitBox;
+	public void setKoordenatu(int[][] koordenatu) {
+		this.koordenatu = koordenatu;
 	}
 	
 	public void setBizirik(boolean bizirik) {

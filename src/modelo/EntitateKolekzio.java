@@ -44,6 +44,11 @@ public class EntitateKolekzio {
 		}
 		MatrizeM.getnMatrizeM().setEtsaiak(etsaiID);
 	}
+	
+	public void mugituEntitatea(Mugimendua mugimendua, EntitateMota entitate, int i) {
+		this.mapa.get(entitate).get(i-1).mugitu(mugimendua);
+		
+	}
 
 	public int[][] getHitBox(int i, EntitateMota entitate) {
 		return this.mapa.get(entitate).get(i-1).getHitBox();	
