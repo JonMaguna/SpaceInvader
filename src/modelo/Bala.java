@@ -1,27 +1,42 @@
 package modelo;
-public class Bala extends Entitate implements Runnable{
-	private boolean balaOK;
-	private Thread ThreadBala;
+public class Bala extends Entitate{
 	
-	public Bala(int gelaxkak, int id) {
-		super(gelaxkak, id, true);
-		
-		this.balaOK = true;
-		this.ThreadBala = new Thread(this);
-		this.ThreadBala.start();
+	public Bala(int x, int y, int id) {
+		super(x, y, id, true);
 	}
 	
-    public void run() {
-        while (balaOK && JokoKudeatzailea.getnJokoKudeatzailea().getJokoanDa()) { 
-            try {
-                Thread.sleep(50);
-                MatrizeM.getnMatrizeM().mugituBalaBakarra(this);
-            } catch (InterruptedException e) {
-                this.balaOK = false;
-            }
-        }
-        this.balaOK = false;
+    public boolean mugituDaiteke(Mugimendua mugimendua) {
+    	boolean mugitu = true;
+    	EntitateMota entitatea = null;
+    	int id = 0;
+
+    	if(this.koordenatu[0][1] == 0) { mugitu = false;}
+    	else {
+    		entitatea = MatrizeM.getnMatrizeM().zerDago(this.koordenatu);
+    		id = MatrizeM.getnMatrizeM().zeinIDDago(this.koordenatu);
+    	}
+    	if(mugitu) { 
+			switch (entitatea) {
+			case ETSAIA:
+				mugitu = false;
+				setBizirik(false);
+				break;
+			case BALA:
+				mugitu = false;
+				if(id == this.id) {
+					mugitu = true;
+				}
+				break;
+			default:			
+				break;
+			}
+		}
+    	return mugitu;
     }
     
-	public void setActive(boolean active) {this.balaOK = active;}
+    public void mugitu(Mugimendua mugimendua) {
+    	MatrizeM.getnMatrizeM().gelaxkakAktualizatu(this.koordenatu, 0, EntitateMota.HUTSA);
+    	this.koordenatu[0][1] -= 1;
+    	MatrizeM.getnMatrizeM().gelaxkakAktualizatu(this.koordenatu, this.id, EntitateMota.BALA);
+    }
 }

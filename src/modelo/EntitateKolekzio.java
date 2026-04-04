@@ -44,20 +44,14 @@ public class EntitateKolekzio {
 		}
 		MatrizeM.getnMatrizeM().setEtsaiak(etsaiID);
 	}
-
-	public int[][] getHitBox(int i, EntitateMota entitate) {
-		return this.mapa.get(entitate).get(i-1).getHitBox();	
+	
+	public void mugituEntitatea(Mugimendua mugimendua, EntitateMota entitate, int i) {
+		this.mapa.get(entitate).get(i-1).mugitu(mugimendua);
 	}
 
 	public void setBizirik(EntitateMota entitate, int i, boolean b) {
 		this.mapa.get(entitate).get(i-1).setBizirik(b);
-		
 	}
-
-	public void setHitBox(int[][] hitBoxBerria, int i, EntitateMota entitate) {
-		this.mapa.get(entitate).get(i-1).setHitBox(hitBoxBerria);
-	}
-
 	
 	public void setBala(Entitate bala) {
 		this.mapa.get(EntitateMota.BALA).add(bala);
