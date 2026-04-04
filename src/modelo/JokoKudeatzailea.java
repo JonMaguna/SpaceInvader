@@ -20,10 +20,9 @@ public class JokoKudeatzailea extends Observable{
 			setChanged();
 			notifyObservers();
 			MatrizeM.getnMatrizeM().SortuMatrizea();
-			Espaziontzi nireOntzia=EspaziontziFactory.getNireEspaziontziFactory().sortuEspaziontzia(pMota);
 			setChanged();
 			notifyObservers(0);
-			EntitateKolekzio.getnPertsonaiZerrenda().sortuEntitateak();
+			EntitateKolekzio.getnPertsonaiZerrenda().sortuEntitateak(pMota);
 			MatrizeM.getnMatrizeM().EtsaienMugimendua();
 		}
 	}

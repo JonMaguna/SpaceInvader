@@ -29,7 +29,7 @@ public class GelaxkaM extends Observable {
 		this.id = id;
 		//egoeraAldatu();
 		setChanged();	
-		notifyObservers(entitate);
+		notifyObservers(id);
 	}
 	
 	public void egoeraAldatu(Egoera_G pEgoera) {
