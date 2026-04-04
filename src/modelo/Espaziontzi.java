@@ -47,13 +47,9 @@ public class Espaziontzi extends Entitate {
 		}
 		if(mugitu) { 
 			switch (entitatea) {
-			case BALA:
-				mugitu = false;
-				this.bizirik = false;
-				break;
 			case ETSAIA:
 				mugitu = false;
-				this.bizirik = false;
+				setBizirik(false);
 				break;
 			default:			
 				break;
@@ -66,22 +62,22 @@ public class Espaziontzi extends Entitate {
 		switch (mugimendu) {
 		case GORA:
 			MatrizeM.getnMatrizeM().gelaxkakAktualizatu(koordenatu, 0, EntitateMota.HUTSA);
-			koordenatu[0][1] = koordenatu[0][1] - 1;
+			this.koordenatu[0][1] -= 1;
 			MatrizeM.getnMatrizeM().gelaxkakAktualizatu(koordenatu, 1, EntitateMota.ESPAZIONTZI);
 			break;
 		case BEHERA:
 			MatrizeM.getnMatrizeM().gelaxkakAktualizatu(koordenatu, 0, EntitateMota.HUTSA);
-			koordenatu[0][1] = koordenatu[0][1] + 1;
+			this.koordenatu[0][1] += 1;
 			MatrizeM.getnMatrizeM().gelaxkakAktualizatu(koordenatu, 1, EntitateMota.ESPAZIONTZI);
 			break;
 		case EZKERRA:
 			MatrizeM.getnMatrizeM().gelaxkakAktualizatu(koordenatu, 0, EntitateMota.HUTSA);
-			koordenatu[0][1] = koordenatu[0][1] - 1;
+			this.koordenatu[0][1] -= 1;
 			MatrizeM.getnMatrizeM().gelaxkakAktualizatu(koordenatu, 1, EntitateMota.ESPAZIONTZI);
 			break;
 		case ESKUMA:
 			MatrizeM.getnMatrizeM().gelaxkakAktualizatu(koordenatu, 0, EntitateMota.HUTSA);
-			koordenatu[0][1] = koordenatu[0][1] + 1;
+			this.koordenatu[0][1] += 1;
 			MatrizeM.getnMatrizeM().gelaxkakAktualizatu(koordenatu, 1, EntitateMota.ESPAZIONTZI);
 			break;
 		default:

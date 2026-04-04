@@ -45,4 +45,8 @@ public class GelaxkaM extends Observable {
         setChanged();	
         notifyObservers(e);
     }
+
+	public int getID() {
+		return this.id;
+	}
 }

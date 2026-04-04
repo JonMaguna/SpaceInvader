@@ -13,6 +13,10 @@ public abstract class Entitate {
 	
 	public void mugitu(Mugimendua mugimendu) {	}
 	
+	public boolean mugituDaiteke(Mugimendua mugimendu) {
+		return true;
+	}
+	
 	public int[][] getKoordenatu() {
 		return this.koordenatu;
 	}

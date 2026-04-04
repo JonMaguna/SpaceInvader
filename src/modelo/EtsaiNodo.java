@@ -22,6 +22,9 @@ public class EtsaiNodo extends Entitate{
 		int i = 0;
 		while(i < this.gelaxkak.size() && mugituDaiteke){
 			mugituDaiteke = this.gelaxkak.get(i).mugituDaiteke(mugimendu);
+			if(!this.gelaxkak.get(i).bizirik()) {
+				this.bizirik = false;
+			}
 			i++;
 		}
 		if(mugituDaiteke) {

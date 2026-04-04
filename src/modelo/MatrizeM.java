@@ -85,99 +85,16 @@ public class MatrizeM{
 				EntitateKolekzio.getnPertsonaiZerrenda().mugituEntitatea(Mugimendua.ESKUMA, EntitateMota.ETSAIA, etsaiID.get(i));
 				break;
 			}
+			if(!EntitateKolekzio.getnPertsonaiZerrenda().getBizirik(EntitateMota.ETSAIA, etsaiID.get(i))) {
+				this.etsaiID.remove(etsaiID.get(i));
+				 if(etsaiID.isEmpty()) {
+					 JokoKudeatzailea.getnJokoKudeatzailea().jokoaGelditu(2);
+				 }
+			}
 		}
 	}
-	
-	
-	
-		/*List<Integer> mugituGabe = new ArrayList<Integer>();
-	    for(int i = 0; i < etsaiID.size(); i++){
-	    	Integer idEtsai = etsaiID.get(i);
-	    	int[][] hitBox = EntitateKolekzio.getnPertsonaiZerrenda().getHitBox(idEtsai, EntitateMota.ETSAIA);
-	    	boolean mugitu = true;
-			EntitateMota entitatea = null;
-			int mugimendua = new Random().nextInt(3);
-			int j = 0;
-			while (j  < hitBox.length && mugitu) {
-				switch(mugimendua) {
-				case 0: 
-					if (hitBox[j][1] == 59) { mugitu = false; JokoKudeatzailea.getnJokoKudeatzailea().jokoaGelditu(1); } 
-					else {
-						entitatea = matrizea[hitBox[j][0]][hitBox[j][1] + 1].zerDago();
-					}
-					break;
-				case 1: 
-					if (hitBox[j][0] == 0) { mugitu = false; }
-					else {
-						entitatea = matrizea[hitBox[j][0] - 1][hitBox[j][1]].zerDago();
-					}
-					break;
-				case 2: 
-					if (hitBox[j][0] == 99) { mugitu = false; }
-					else {
-						entitatea = matrizea[hitBox[j][0] + 1][hitBox[j][1]].zerDago();
-					}
-					break;
-				}
-				if (mugitu) {
-					switch (entitatea) {
-					case ESPAZIONTZI:
-						EntitateKolekzio.getnPertsonaiZerrenda().setBizirik(EntitateMota.ESPAZIONTZI, 1, false);
-						mugitu = false;
-						JokoKudeatzailea.getnJokoKudeatzailea().jokoaGelditu(1);
-						break;
-					case ETSAIA:
-						mugitu = false;
-						break;
-					case BALA:
-						EntitateKolekzio.getnPertsonaiZerrenda().setBizirik(EntitateMota.ETSAIA, idEtsai, false);
-						gelaxkakAktualizatu(EntitateKolekzio.getnPertsonaiZerrenda().getHitBox(idEtsai, EntitateMota.ETSAIA), 0, EntitateMota.HUTSA);
-						etsaiID.remove(idEtsai);
-						 if(etsaiID.isEmpty()) {
-							 JokoKudeatzailea.getnJokoKudeatzailea().jokoaGelditu(2);
-						 }
-						mugitu = false;
-						break;
-					default:
-						mugitu = true;
-						break;
-					}
-				}
-				j++;
-			}
-			if (!mugitu && EntitateKolekzio.getnPertsonaiZerrenda().getBizirik(EntitateMota.ETSAIA, idEtsai)) {
-				mugituGabe.add(idEtsai);
-				break;
-			} else {
-				int[][] hitboxberria = new int[hitBox.length][2];
-				for (int k = 0; k < hitBox.length; k++) {
-					switch(mugimendua) {
-					case 0: 
-						hitboxberria[k][0] = hitBox[k][0];
-						hitboxberria[k][1] = hitBox[k][1] + 1;
-						break;
-					case 1: 
-						hitboxberria[k][0] = hitBox[k][0] - 1;
-						hitboxberria[k][1] = hitBox[k][1];
-						break;
-					case 2: 
-						hitboxberria[k][0] = hitBox[k][0] + 1;
-						hitboxberria[k][1] = hitBox[k][1];
-						break;
-					}
-				}
-				gelaxkakAktualizatu(hitBox, 0, EntitateMota.HUTSA);
-				gelaxkakAktualizatu(hitboxberria, idEtsai, EntitateMota.ETSAIA);
-				EntitateKolekzio.getnPertsonaiZerrenda().setHitBox(hitboxberria, idEtsai, EntitateMota.ETSAIA);
-			}
-	    }
-	   if (!mugituGabe.isEmpty()) {
-	    	EtsaiakMugitu(mugituGabe);
-	    }
-	}	*/
-	
 
-	public synchronized void mugituBalaBakarra(Bala pBala) {
+	/*public synchronized void mugituBalaBakarra(Bala pBala) {
 		if(!JokoKudeatzailea.getnJokoKudeatzailea().getJokoanDa()) {
 			pBala.setActive(false);
 			return;
@@ -209,25 +126,10 @@ public class MatrizeM{
 			pBala.setActive(false);
 		}
 	
-	}
+	}*/
 	public void tiroEgin() {
 		if(!JokoKudeatzailea.getnJokoKudeatzailea().getJokoanDa() || denboraPasaBala()) {
 			return;
-		}
-		int [][] hitBox = EntitateKolekzio.getnPertsonaiZerrenda().getHitBox(1, EntitateMota.ESPAZIONTZI);
-		if(hitBox != null) {
-			int x = hitBox[0][0];
-			int y = hitBox[0][1] - 2;
-			if (y >= 0) {
-				int balaID = new Random().nextInt(1000);
-				Bala bala = new Bala(1, balaID);
-				int[][] hitBoxBala = new int[1][2];
-				hitBoxBala[0][0] = x;
-				hitBoxBala[0][1] = y;
-				bala.setHitBox(hitBoxBala);
-				EntitateKolekzio.getnPertsonaiZerrenda().setBala(bala);
-				gelaxkakAktualizatu(hitBoxBala, balaID, EntitateMota.BALA);
-			}
 		}
 	}
 	
@@ -256,6 +158,10 @@ public class MatrizeM{
 
 	public EntitateMota zerDago(int[][] koordenatu) {
 		return matrizea[koordenatu[0][0]][koordenatu[0][1]].zerDago();
+	}
+
+	public int zeinIDDago(int[][] koordenatu) {
+		return matrizea[koordenatu[0][0]][koordenatu[0][1]].getID();
 	}
 	
 }

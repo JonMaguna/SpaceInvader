@@ -3,8 +3,9 @@ package modelo;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BalaNodo extends Entitate{
+public class BalaNodo extends Entitate implements Runnable{
 	
+	private Thread ThreadBala;
 	private List<Bala> gelaxkak = new ArrayList<>();
 	private Bala nagusi;
 
@@ -16,11 +17,29 @@ public class BalaNodo extends Entitate{
 				this.nagusi = this.gelaxkak.get(i);
 			}
 		}
-		
-		
-		
-		
-		
+		this.ThreadBala = new Thread(this);
+		this.ThreadBala.start();
 	}
 
+	public void run() {
+		while (bizirik && JokoKudeatzailea.getnJokoKudeatzailea().getJokoanDa()) { 
+            try {
+                Thread.sleep(50);
+                boolean mugituDaiteke = true;
+        		int i = 0;
+        		while(i < this.gelaxkak.size() && mugituDaiteke){
+        			mugituDaiteke = this.gelaxkak.get(i).mugituDaiteke(Mugimendua.GORA);
+        			i++;
+        		}
+        		if(mugituDaiteke) {
+        			for (Bala pixel : this.gelaxkak) {
+        				pixel.mugitu(Mugimendua.GORA);
+        			}
+        		}
+            } catch (InterruptedException e) {
+                this.bizirik = false;
+            }
+        }
+        this.bizirik = false;
+    }
 }

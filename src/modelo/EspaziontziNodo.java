@@ -22,15 +22,11 @@ public class EspaziontziNodo extends Entitate{
 		int i = 0;
 		while(i < this.gelaxkak.size() && mugituDaiteke){
 			mugituDaiteke = this.gelaxkak.get(i).mugituDaiteke(mugimendu);
-			if(!this.gelaxkak.get(i).bizirik()) {
-				this.bizirik = false;
-				JokoKudeatzailea.getnJokoKudeatzailea().jokoaGelditu(1);
-			}
 			i++;
 		}
 		if(mugituDaiteke) {
-			for (Espaziontzi gelaxka : this.gelaxkak) {
-				gelaxka.mugitu(mugimendu);
+			for (Espaziontzi pixel : this.gelaxkak) {
+				pixel.mugitu(mugimendu);
 			}
 		}
 	}
