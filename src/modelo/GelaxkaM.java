@@ -3,7 +3,7 @@ package modelo;
 import java.util.Observable;
 
 public class GelaxkaM extends Observable {
-<<<<<<< HEAD
+///<<<<<<< HEAD
     private int kordenatuaX;
     private int kordenatuaY;
     private int id;
@@ -49,7 +49,8 @@ public class GelaxkaM extends Observable {
 
 	public int getID() {
 		return this.id;
-=======
+	}
+/*=======
 	private int kordenatuaX;
 	private int kordenatuaY;
 	private EntitateMota entitate;
@@ -85,5 +86,5 @@ public class GelaxkaM extends Observable {
 		setChanged();
 		notifyObservers(pEgoera);
 >>>>>>> JonM
-	}
+	}*/
 }
