@@ -4,6 +4,7 @@ public class Etsaiak extends Entitate {
 	
 	public Etsaiak(int x, int y, int id) {
 		super(x, y, id, true);
+		MatrizeM.getnMatrizeM().gelaxkakAktualizatu(this.koordenatu, 1, EntitateMota.ETSAIA);
 	}
 
 	public boolean mugituDaiteke(Mugimendua mugimendu) {

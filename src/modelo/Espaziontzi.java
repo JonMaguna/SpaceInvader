@@ -7,7 +7,7 @@ public class Espaziontzi extends Entitate {
 	public Espaziontzi(int x, int y, int id, Color pKolorea) {
 		super(x, y, id, true);
 		this.kolorea=pKolorea;
-		
+		MatrizeM.getnMatrizeM().gelaxkakAktualizatu(this.koordenatu, id, EntitateMota.ESPAZIONTZI);
 	}
 	public Color getKolorea() {
 		return this.kolorea;

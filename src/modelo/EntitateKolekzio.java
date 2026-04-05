@@ -53,7 +53,8 @@ public class EntitateKolekzio {
 		this.mapa.get(entitate).get(i-1).setBizirik(b);
 	}
 	
-	public void setBala(Entitate bala) {
+	public void tiroEgin(BalaMota mota) {
+		BalaNodo bala = this.mapa.get(EntitateMota.ESPAZIONTZI).get(0).tiroEgin(mota, balaKopurua() + 1);
 		this.mapa.get(EntitateMota.BALA).add(bala);
 	}
 	

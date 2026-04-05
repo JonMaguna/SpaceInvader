@@ -1,4 +1,4 @@
-package modelo;
+/*package modelo;
 
 public class EtsaiakA extends Etsaiak{
 
@@ -6,4 +6,4 @@ public class EtsaiakA extends Etsaiak{
 		super(gelaxkak, id, bizirik);
 	}
 
-}
+}*/
