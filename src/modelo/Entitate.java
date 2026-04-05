@@ -4,11 +4,16 @@ public abstract class Entitate {
 	protected int[][] koordenatu;
 	protected boolean bizirik;
 	protected int id;
+	protected int x;
+	protected int y;
+	
 	
 	public Entitate(int x, int y, int id, boolean bizirik) {
 		this.koordenatu = new int[][] {{x, y}};
 		this.id = id;
 		this.bizirik = true;
+		this.x = x;
+		this.y = y;
 	}
 	
 	public void mugitu(Mugimendua mugimendu) {	}

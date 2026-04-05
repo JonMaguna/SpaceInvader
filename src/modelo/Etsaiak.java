@@ -82,4 +82,10 @@ public class Etsaiak extends Entitate {
 			break;
 		}
 	}
+	public int getX() {
+		return this.koordenatu[0][0];
+	}
+	public int getY() {
+		return this.koordenatu[0][1];
+	}
 }

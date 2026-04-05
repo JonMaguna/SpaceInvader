@@ -3,7 +3,6 @@ import java.awt.Color;
 
 public class EspaziontziFactory {
 	public static EspaziontziFactory nireEspaziontziFactory;
-	private int azkenMota = 1;
 	private EspaziontziFactory() {
 		
 	}
@@ -13,30 +12,20 @@ public class EspaziontziFactory {
 		}
 		return nireEspaziontziFactory;
 	}
-	public Espaziontzi sortuEspaziontzia(int pMota) {
-		this.azkenMota = pMota;
+	public EspaziontziNodo sortuEspaziontzia(int pMota) {	
+		int xHasiera = 50;
+		int yHasiera = 55;
+		int id = 1;
 		switch(pMota) {
 		case 1:
-			return new Espaziontzi(1, 1, true, Color.CYAN);
-		case 2:
-			return new Espaziontzi(1, 2, true, Color.MAGENTA);
-		case 3:
-			return new Espaziontzi(1, 3, true, Color.ORANGE);
-		default:
-			return new Espaziontzi(1, 1, true, Color.CYAN);
+			return new EspaziontziCyan(xHasiera, yHasiera, id);
+        case 2:
+        	return new EspaziontziMagenta(xHasiera, yHasiera, id);
+        case 3:
+        	return new EspaziontziOrange(xHasiera, yHasiera, id);
+        default:
+        	return new EspaziontziCyan(xHasiera, yHasiera, id);
 		}
-	}
-	public Color getAzkenKolorea() {
-		switch(this.azkenMota) {
-		case 1:
-			return Color.CYAN;
-		case 2:
-			return Color.MAGENTA;
-		case 3:
-			return Color.ORANGE;
-		default:
-			return Color.CYAN;
-		}
-	}
+	}	
+
 }
-//

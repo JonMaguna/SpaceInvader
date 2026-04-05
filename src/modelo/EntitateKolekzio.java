@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
+import modelo.EspaziontziNodo;
 
 public class EntitateKolekzio {
 	private static EntitateKolekzio nPertsonaiZerrenda;
@@ -24,10 +25,11 @@ public class EntitateKolekzio {
 	}
 	
 	public void sortuEntitateak(int pMota) {
-		Espaziontzi espaziontzi = EspaziontziFactory.getNireEspaziontziFactory().sortuEspaziontzia(pMota);
-		espaziontzi.setHitBox(new int[][] {{50, 55}});
+		EspaziontziNodo espaziontzi = EspaziontziFactory.getNireEspaziontziFactory().sortuEspaziontzia(pMota);
 		this.mapa.get(EntitateMota.ESPAZIONTZI).add(espaziontzi);
-		MatrizeM.getnMatrizeM().gelaxkakAktualizatu(espaziontzi.getHitBox(), espaziontzi.getId(), EntitateMota.ESPAZIONTZI);
+		for(Espaziontzi pixel : espaziontzi.getGelaxkak()) {
+			MatrizeM.getnMatrizeM().getGelaxka(pixel.getX(),pixel.getY()).setEntitate(EntitateMota.ESPAZIONTZI, espaziontzi.getId());
+		}
 		int numEtsaiak = new Random().nextInt(5) + 4;
 		List<Integer> posizio = new ArrayList<>();
 		for (int i = 1; i < 19 + 1; i++) {
@@ -36,11 +38,15 @@ public class EntitateKolekzio {
 		Collections.shuffle(posizio);
 		List<Integer> etsaiID = new ArrayList<>();
 		for (int i = 0; i < numEtsaiak; i++) {
-			etsaiID.add(i+1);
-			Etsaiak etsai = new Etsaiak(1, i+1, true);
-			etsai.setHitBox(new int[][] {{posizio.get(i), 5}});
-			MatrizeM.getnMatrizeM().gelaxkakAktualizatu(etsai.getHitBox(), etsai.getId(), EntitateMota.ETSAIA);
+			int idBerria = i+1;
+			etsaiID.add(idBerria);
+			int x = posizio.get(i);
+			int y = 5;
+			EtsaiNodo etsai = EtsaiFactory.getEtsaiFactory().SortuEtsaiak(x, y, idBerria);
 			this.mapa.get(EntitateMota.ETSAIA).add(etsai);
+			 for(Etsaiak pixel : etsai.getGelaxkak()) {
+				 MatrizeM.getnMatrizeM().getGelaxka(pixel.getX(),pixel.getY()).setEntitate(EntitateMota.ETSAIA, idBerria);
+			 }
 		}
 		MatrizeM.getnMatrizeM().setEtsaiak(etsaiID);
 	}
@@ -63,5 +69,8 @@ public class EntitateKolekzio {
 	
 	public boolean getBizirik(EntitateMota entitate, int i) {
 		return this.mapa.get(entitate).get(i-1).bizirik();
+	}
+	public HashMap<EntitateMota, ArrayList<Entitate>> getMapa() {
+		return this.mapa;
 	}
 }

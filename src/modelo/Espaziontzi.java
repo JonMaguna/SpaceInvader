@@ -12,6 +12,12 @@ public class Espaziontzi extends Entitate {
 	public Color getKolorea() {
 		return this.kolorea;
 	}
+	public int getX() {
+		return this.koordenatu[0][0];
+	}
+	public int getY() {
+		return this.koordenatu[0][1];
+	}
 	
 	public void setBizirik(boolean bizirik) {
 		this.bizirik = bizirik;

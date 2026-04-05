@@ -9,15 +9,9 @@ public class EtsaiFactory {
 		}
 		return nEtsaiFactory;
 	}
-	public Etsaiak SortuEtsaiak(EtsaiMota mota, int gelaxkak, int id, boolean bizirik) {
-		switch(mota) {
-		case MOTA_A:
-			return new EtsaiakA(gelaxkak, id, bizirik);
-		case MOTA_B:
-			return new EtsaiakB(gelaxkak, id, bizirik);
-		case MOTA_C:
-			return new EtsaiakC(gelaxkak, id, bizirik);
-		}
-		return null;
+	public EtsaiNodo SortuEtsaiak(int id, int x, int y ) {
+		int forma[][] = {{0,0},{1,0},{2,0},{1,1}};
+		return new EtsaiNodo(x, y, forma, id);
 	}
+		
 }

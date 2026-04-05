@@ -1,20 +1,19 @@
 package modelo;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EspaziontziNodo extends Entitate{
+public abstract class EspaziontziNodo extends Entitate{
 	private List<Espaziontzi> gelaxkak = new ArrayList<>();
 	private Espaziontzi nagusi;
 
-	public EspaziontziNodo(int x, int y, int[][] koordenatuak, int id) {
-		super(x, y, id, true);
-		for (int i = 0; i < koordenatuak.length; i++) {
-			this.gelaxkak.add(new Espaziontzi(koordenatuak[i][0], koordenatuak[i][1], id));
-			if (koordenatuak[i][0] == x && koordenatuak[i][1] == y) {
-				this.nagusi = this.gelaxkak.get(i);
-			}
-		}
+	public EspaziontziNodo(int x, int y, int id) {
+		super(x,y,id,true);
+		
+	}	
+	public List<Espaziontzi> getGelaxkak() {
+		return this.gelaxkak;
 	}
 	
 	public void mugitu(Mugimendua mugimendu) {
@@ -30,4 +29,12 @@ public class EspaziontziNodo extends Entitate{
 			}
 		}
 	}
+	private void eguneratuPosizioNagusia(Mugimendua m) {
+        switch(m) {
+            case EZKERRA: this.x--; break;
+            case ESKUMA:  this.x++; break;
+            case GORA:    this.y--; break;
+            case BEHERA:  this.y++; break;
+        }
+    }
 }
