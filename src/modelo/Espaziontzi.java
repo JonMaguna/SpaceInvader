@@ -1,9 +1,16 @@
 package modelo;
+import java.awt.Color;
 
 public class Espaziontzi extends Entitate {
+	private Color kolorea;
 	
-	public Espaziontzi(int x, int y, int id) {
+	public Espaziontzi(int x, int y, int id, Color pKolorea) {
 		super(x, y, id, true);
+		this.kolorea=pKolorea;
+		
+	}
+	public Color getKolorea() {
+		return this.kolorea;
 	}
 	
 	public void setBizirik(boolean bizirik) {

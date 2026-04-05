@@ -6,6 +6,8 @@ import java.util.Observable;
 import java.util.Observer;
 
 import modelo.EntitateMota;
+import modelo.GelaxkaM;
+import modelo.EspaziontziFactory;
 
 
 
@@ -25,7 +27,8 @@ public class GelaxkaV extends JLabel implements Observer{
 		this.mota = mota;
 		switch (mota) {
 			case ESPAZIONTZI:
-				setBackground(Color.MAGENTA);
+				setBackground(EspaziontziFactory.getNireEspaziontziFactory().getAzkenKolorea());
+				 setBorder(BorderFactory.createLineBorder(Color.GRAY, 2));
 				setBorder(BorderFactory.createLineBorder(Color.GRAY, 2));
 				break;
 			case ETSAIA:
@@ -48,7 +51,9 @@ public class GelaxkaV extends JLabel implements Observer{
 
 	@Override
 	public void update(Observable o, Object arg) {
-		this.mota = (EntitateMota) arg;
-		koloreaEzarri((EntitateMota) arg);
+		if(o instanceof GelaxkaM) {
+			GelaxkaM gelaxkaM = (GelaxkaM) o;
+			koloreaEzarri(gelaxkaM.zerDago());
+		}
 	}
 }

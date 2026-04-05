@@ -14,7 +14,7 @@ public class JokoKudeatzailea extends Observable{
 		return jokonKudeatzailea;
 	}
 	
-	public void jokoaHasieratu() {
+	public void jokoaHasieratu(int pMota) {
 		if(!jokoanDa){
 			jokoanDa = true;
 			setChanged();
@@ -22,7 +22,7 @@ public class JokoKudeatzailea extends Observable{
 			MatrizeM.getnMatrizeM().SortuMatrizea();
 			setChanged();
 			notifyObservers(0);
-			EntitateKolekzio.getnPertsonaiZerrenda().sortuEntitateak();
+			EntitateKolekzio.getnPertsonaiZerrenda().sortuEntitateak(pMota);
 			MatrizeM.getnMatrizeM().EtsaienMugimendua();
 		}
 	}

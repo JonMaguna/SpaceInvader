@@ -23,8 +23,8 @@ public class EntitateKolekzio {
 		return nPertsonaiZerrenda;
 	}
 	
-	public void sortuEntitateak() {
-		Espaziontzi espaziontzi = new Espaziontzi(1, 1, true);
+	public void sortuEntitateak(int pMota) {
+		Espaziontzi espaziontzi = EspaziontziFactory.getNireEspaziontziFactory().sortuEspaziontzia(pMota);
 		espaziontzi.setHitBox(new int[][] {{50, 55}});
 		this.mapa.get(EntitateMota.ESPAZIONTZI).add(espaziontzi);
 		MatrizeM.getnMatrizeM().gelaxkakAktualizatu(espaziontzi.getHitBox(), espaziontzi.getId(), EntitateMota.ESPAZIONTZI);
