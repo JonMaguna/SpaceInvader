@@ -7,6 +7,7 @@ import java.util.List;
 public abstract class EspaziontziNodo extends Entitate{
 	private List<Espaziontzi> gelaxkak = new ArrayList<>();
 	private Espaziontzi nagusi;
+	private long azkenTiroa;
 
 	public EspaziontziNodo(int x, int y, int id) {
 		super(x,y,id,true);
@@ -14,6 +15,19 @@ public abstract class EspaziontziNodo extends Entitate{
 	}	
 	public List<Espaziontzi> getGelaxkak() {
 		return this.gelaxkak;
+	}
+	
+	private boolean denboraPasaBala() {
+		 boolean pasaDa = false;
+		 long orain = System.currentTimeMillis();
+		 
+		 if (orain - this.azkenTiroa < 350) {
+			 pasaDa = true;
+		 }
+		 else {
+			 this.azkenTiroa = orain;
+		 }
+		 return pasaDa;
 	}
 	
 	public void mugitu(Mugimendua mugimendu) {

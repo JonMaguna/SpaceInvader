@@ -3,11 +3,30 @@ package modelo;
 import java.awt.Color;
 
 public class EspaziontziOrange  extends EspaziontziNodo{
+	private int bala = 1;
+
 	public EspaziontziOrange(int x, int y, int id) {
 		super(x,y,id);
 		int[][] forma = {{2,0},{1,1},{2,1},{3,1},{0,2},{1,2},{2,2},{3,2},{4,2}};
+		this.bala = 1;
 		for (int[] p: forma) {
 			this.getGelaxkak().add(new Espaziontzi(x+p[0], y+p[1], id, Color.ORANGE));
+		}
+	}
+	
+	public void nextBala() {
+		if(this.bala == 2) {
+			this.bala = 1;
+		} else {
+			this.bala = 2;
+		}
+	}
+	
+	public BalaNodo tiroEgin(int id) {
+		if(this.bala == 1) {
+			return BalaFactory.getnBalaFactory().sortuBala(this.x, this.y - 2, id, BalaMota.BALA_NORMALA);
+		} else {
+			return BalaFactory.getnBalaFactory().sortuBala(this.x, this.y - 2, id, BalaMota.BALA_NORMALA);
 		}
 	}
 

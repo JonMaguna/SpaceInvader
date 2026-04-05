@@ -12,7 +12,6 @@ public class MatrizeM{
 	private GelaxkaM[][] matrizea;
 	private List<Integer> etsaiID;
 	private long azkenMugimendua;
-	private long azkenTiroa;
 	
 	private MatrizeM() {
 		this.matrizea = new GelaxkaM[100][60];
@@ -93,35 +92,16 @@ public class MatrizeM{
 			}
 		}
 	}
-
-	public void tiroEgin(BalaMota mota) {
-		if(!JokoKudeatzailea.getnJokoKudeatzailea().getJokoanDa() || denboraPasaBala()) {
-			return;
-		}
-		EntitateKolekzio.getnPertsonaiZerrenda().tiroEgin(mota);
-	}
-	
-	private boolean denboraPasaBala() {
-		 boolean pasaDa = false;
-		 long orain = System.currentTimeMillis();
-		 
-		 if (orain - this.azkenTiroa < 350) {
-			 pasaDa = true;
-		 }
-		 else {
-			 this.azkenTiroa = orain;
-		 }
-		 return pasaDa;
-	}
 	
 	public void gelaxkakAktualizatu(int[][] koordenatu, int id, EntitateMota entitate) {
-		matrizea[koordenatu[0][0]][koordenatu[0][1]].setEntitate(entitate, id);
+		for(int i = 0; i < koordenatu.length; i++) {
+			matrizea[koordenatu[i][0]][koordenatu[i][1]].setEntitate(entitate, id);
+		}
 	}
 
 
 	public void setEtsaiak(List<Integer> etsaiID) {
-		this.etsaiID = etsaiID;
-		
+		this.etsaiID = etsaiID;	
 	}
 
 	public EntitateMota zerDago(int[][] koordenatu) {
@@ -131,5 +111,4 @@ public class MatrizeM{
 	public int zeinIDDago(int[][] koordenatu) {
 		return matrizea[koordenatu[0][0]][koordenatu[0][1]].getID();
 	}
-	
 }

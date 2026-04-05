@@ -59,8 +59,8 @@ public class EntitateKolekzio {
 		this.mapa.get(entitate).get(i-1).setBizirik(b);
 	}
 	
-	public void tiroEgin(BalaMota mota) {
-		BalaNodo bala = this.mapa.get(EntitateMota.ESPAZIONTZI).get(0).tiroEgin(mota, balaKopurua() + 1);
+	public void tiroEgin() {
+		BalaNodo bala = this.mapa.get(EntitateMota.ESPAZIONTZI).get(0).tiroEgin(balaKopurua() + 1);
 		this.mapa.get(EntitateMota.BALA).add(bala);
 	}
 	
@@ -73,5 +73,9 @@ public class EntitateKolekzio {
 	}
 	public HashMap<EntitateMota, ArrayList<Entitate>> getMapa() {
 		return this.mapa;
+	}
+
+	public void nextBala() {
+		this.mapa.get(EntitateMota.ESPAZIONTZI).get(0).nextBala();
 	}
 }
