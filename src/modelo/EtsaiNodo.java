@@ -3,8 +3,8 @@ package modelo;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EtsaiNodo extends Entitate{
-	private List<Etsaiak> gelaxkak = new ArrayList<>();
+public abstract class EtsaiNodo extends Entitate{
+	protected List<Etsaiak> gelaxkak = new ArrayList<>();
 	private Etsaiak nagusi;
 
 	public EtsaiNodo(int x, int y, int[][] koordenatuak, int id) {

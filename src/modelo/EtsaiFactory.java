@@ -9,9 +9,10 @@ public class EtsaiFactory {
 		}
 		return nEtsaiFactory;
 	}
-	public EtsaiNodo SortuEtsaiak(int id, int x, int y ) {
-		int forma[][] = {{0,0},{1,0},{2,0},{1,1}};
-		return new EtsaiNodo(x, y, forma, id);
+	public EtsaiNodo SortuEtsaiak(int id, int x, int y, int mota) {
+		switch(mota) {
+		case 1: return new EtsaiakB(x,y,id);
+		}
 	}
 		
 }

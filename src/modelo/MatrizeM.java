@@ -149,8 +149,13 @@ public class MatrizeM{
 		 return pasaDa;
 	}
 	
-	public void gelaxkakAktualizatu(int[][] koordenatu, int id, EntitateMota entitate) {
-		matrizea[koordenatu[0][0]][koordenatu[0][1]].setEntitate(entitate, id);
+	public void gelaxkakAktualizatu(List<Entitate> entitaLista, int id, EntitateMota entitate) {
+		for (Entitate ent : entitaLista) {
+			int [][] kordenatu = ent.getKoordenatu();
+			int x = kordenatu[0][0];
+			int y = kordenatu[0][1];
+			this.matrizea[x][y].setEntitate(entitate, id);
+		}
 	}
 
 
