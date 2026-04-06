@@ -1,10 +1,9 @@
 package modelo;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public abstract class EtsaiNodo extends Entitate{
-	protected List<Etsaiak> gelaxkak = new ArrayList<>();
+	protected ArrayList<Entitate> gelaxkak = new ArrayList<>();
 
 	public EtsaiNodo(int x, int y, int[][] koordenatuak, int id) {
 		super(x, y, id, true);
@@ -27,12 +26,25 @@ public abstract class EtsaiNodo extends Entitate{
 			i++;
 		}
 		if(mugituDaiteke) {
-			for (Etsaiak pixel : this.gelaxkak) {
+			MatrizeM.getnMatrizeM().gelaxkakAktualizatu(gelaxkak, 0, EntitateMota.HUTSA);
+			for (Entitate pixel : this.gelaxkak) {
 				pixel.mugitu(mugimendu);
 			}
+			MatrizeM.getnMatrizeM().gelaxkakAktualizatu(gelaxkak, id, EntitateMota.ETSAIA);
+			eguneratuPosizioNagusia(mugimendu);
 		}
 	}
-	public List<Etsaiak> getGelaxkak() {
+	
+	private void eguneratuPosizioNagusia(Mugimendua m) {
+		switch(m) {
+            case EZKERRA: this.x--; break;
+            case ESKUMA:  this.x++; break;
+            case BEHERA:  this.y++; break;
+            default: break;
+        }
+    }
+	
+	public ArrayList<Entitate> getGelaxkak() {
 		return this.gelaxkak;
 	}
 }

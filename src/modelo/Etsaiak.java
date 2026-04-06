@@ -4,7 +4,6 @@ public class Etsaiak extends Entitate {
 	
 	public Etsaiak(int x, int y, int id) {
 		super(x, y, id, true);
-		MatrizeM.getnMatrizeM().gelaxkakAktualizatu(this.koordenatu, 1, EntitateMota.ETSAIA);
 	}
 
 	public boolean mugituDaiteke(Mugimendua mugimendu) {
@@ -51,7 +50,6 @@ public class Etsaiak extends Entitate {
 				break;
 			case BALA:
 				EntitateKolekzio.getnPertsonaiZerrenda().setBizirik(EntitateMota.ETSAIA, id, false);
-				MatrizeM.getnMatrizeM().gelaxkakAktualizatu(koordenatu, 0, EntitateMota.HUTSA);
 				mugitu = false;
 				break;
 			default:
@@ -65,28 +63,16 @@ public class Etsaiak extends Entitate {
 	public void mugitu(Mugimendua mugimendu) {
 		switch(mugimendu) {
 		case BEHERA:
-			MatrizeM.getnMatrizeM().gelaxkakAktualizatu(koordenatu, 0, EntitateMota.HUTSA);
 			this.koordenatu[0][1] += 1;
-			MatrizeM.getnMatrizeM().gelaxkakAktualizatu(koordenatu, 1, EntitateMota.ETSAIA);
 			break;
 		case EZKERRA:
-			MatrizeM.getnMatrizeM().gelaxkakAktualizatu(koordenatu, 0, EntitateMota.HUTSA);
 			this.koordenatu[0][0] -= 1;
-			MatrizeM.getnMatrizeM().gelaxkakAktualizatu(koordenatu, 1, EntitateMota.ETSAIA);
 			break;
 		case ESKUMA:
-			MatrizeM.getnMatrizeM().gelaxkakAktualizatu(koordenatu, 0, EntitateMota.HUTSA);
 			this.koordenatu[0][0] += 1;
-			MatrizeM.getnMatrizeM().gelaxkakAktualizatu(koordenatu, 1, EntitateMota.ETSAIA);
 			break;
 		default:
 			break;
 		}
-	}
-	public int getX() {
-		return this.koordenatu[0][0];
-	}
-	public int getY() {
-		return this.koordenatu[0][1];
 	}
 }

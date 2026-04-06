@@ -1,5 +1,7 @@
 package modelo;
 
+import java.util.ArrayList;
+
 public class MatrizeM{
 	private static MatrizeM nMatrizeM;
 	private GelaxkaM[][] matrizea;
@@ -27,7 +29,7 @@ public class MatrizeM{
         return this.matrizea[x][y];
     }
 
-	public void gelaxkakAktualizatu(List<Entitate> entitaLista, int id, EntitateMota entitate) {
+	public void gelaxkakAktualizatu(ArrayList<Entitate> entitaLista, int id, EntitateMota entitate) {
 		for (Entitate ent : entitaLista) {
 			int [][] kordenatu = ent.getKoordenatu();
 			int x = kordenatu[0][0];

@@ -1,12 +1,11 @@
 package modelo;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class BalaNodo extends Entitate implements Runnable{
 	
 	private Thread ThreadBala;
-	private List<Bala> gelaxkak = new ArrayList<>();
+	private ArrayList<Entitate> gelaxkak = new ArrayList<>();
 
 	public BalaNodo(int x, int y, int[][] koordenatuak, int id) {
 		super(x, y, id, true);
@@ -29,9 +28,12 @@ public class BalaNodo extends Entitate implements Runnable{
         			i++;
         		}
         		if(mugituDaiteke) {
-        			for (Bala pixel : this.gelaxkak) {
+        			MatrizeM.getnMatrizeM().gelaxkakAktualizatu(this.gelaxkak, 0, EntitateMota.HUTSA);
+        			for (Entitate pixel : this.gelaxkak) {
         				pixel.mugitu(Mugimendua.GORA);
         			}
+        			MatrizeM.getnMatrizeM().gelaxkakAktualizatu(this.gelaxkak, this.id, EntitateMota.BALA);
+        			this.y--;
         		}
             } catch (InterruptedException e) {
                 this.bizirik = false;

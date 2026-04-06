@@ -7,7 +7,6 @@ public class Espaziontzi extends Entitate {
 	public Espaziontzi(int x, int y, int id, Color pKolorea) {
 		super(x, y, id, true);
 		this.kolorea=pKolorea;
-		MatrizeM.getnMatrizeM().gelaxkakAktualizatu(this.koordenatu, id, EntitateMota.ESPAZIONTZI);
 	}
 	public Color getKolorea() {
 		return this.kolorea;
@@ -74,24 +73,16 @@ public class Espaziontzi extends Entitate {
 	public void mugitu(Mugimendua mugimendu) {
 		switch (mugimendu) {
 		case GORA:
-			MatrizeM.getnMatrizeM().gelaxkakAktualizatu(koordenatu, 0, EntitateMota.HUTSA);
 			this.koordenatu[0][1] -= 1;
-			MatrizeM.getnMatrizeM().gelaxkakAktualizatu(koordenatu, 1, EntitateMota.ESPAZIONTZI);
 			break;
 		case BEHERA:
-			MatrizeM.getnMatrizeM().gelaxkakAktualizatu(koordenatu, 0, EntitateMota.HUTSA);
 			this.koordenatu[0][1] += 1;
-			MatrizeM.getnMatrizeM().gelaxkakAktualizatu(koordenatu, 1, EntitateMota.ESPAZIONTZI);
 			break;
 		case EZKERRA:
-			MatrizeM.getnMatrizeM().gelaxkakAktualizatu(koordenatu, 0, EntitateMota.HUTSA);
 			this.koordenatu[0][1] -= 1;
-			MatrizeM.getnMatrizeM().gelaxkakAktualizatu(koordenatu, 1, EntitateMota.ESPAZIONTZI);
 			break;
 		case ESKUMA:
-			MatrizeM.getnMatrizeM().gelaxkakAktualizatu(koordenatu, 0, EntitateMota.HUTSA);
 			this.koordenatu[0][1] += 1;
-			MatrizeM.getnMatrizeM().gelaxkakAktualizatu(koordenatu, 1, EntitateMota.ESPAZIONTZI);
 			break;
 		default:
 			break;

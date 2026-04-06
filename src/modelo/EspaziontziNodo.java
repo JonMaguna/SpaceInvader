@@ -1,15 +1,14 @@
 package modelo;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public abstract class EspaziontziNodo extends Entitate{
-	protected List<Espaziontzi> gelaxkak = new ArrayList<>();
+	protected ArrayList<Entitate> gelaxkak = new ArrayList<>();
 
 	public EspaziontziNodo(int x, int y, int id) {
 		super(x,y,id,true);
 	}	
-	public List<Espaziontzi> getGelaxkak() {
+	public ArrayList<Entitate> getGelaxkak() {
 		return this.gelaxkak;
 	}
 	
@@ -21,14 +20,15 @@ public abstract class EspaziontziNodo extends Entitate{
 			i++;
 		}
 		if(mugituDaiteke) {
-			for (Espaziontzi pixel : this.gelaxkak) {
+			MatrizeM.getnMatrizeM().gelaxkakAktualizatu(gelaxkak, 0, EntitateMota.HUTSA);
+			for (Entitate pixel : this.gelaxkak) {
 				pixel.mugitu(mugimendu);
 			}
+			MatrizeM.getnMatrizeM().gelaxkakAktualizatu(gelaxkak, id, EntitateMota.ESPAZIONTZI);
+			eguneratuPosizioNagusia(mugimendu);
 		}
 	}
-	protected void eguneratuPosizioNagusia(Mugimendua m) { 
-		///no se le llama en ningun momento a este metodo
-		/// hay que crear uno igual en etsaiNodo
+	protected void eguneratuPosizioNagusia(Mugimendua m) {
 		switch(m) {
             case EZKERRA: this.x--; break;
             case ESKUMA:  this.x++; break;

@@ -3,7 +3,6 @@ public class Bala extends Entitate{
 	
 	public Bala(int x, int y, int id) {
 		super(x, y, id, true);
-		MatrizeM.getnMatrizeM().gelaxkakAktualizatu(this.koordenatu, id, EntitateMota.BALA);
 	}
 	
     public boolean mugituDaiteke(Mugimendua mugimendua) {
@@ -36,8 +35,6 @@ public class Bala extends Entitate{
     }
     
     public void mugitu(Mugimendua mugimendua) {
-    	MatrizeM.getnMatrizeM().gelaxkakAktualizatu(this.koordenatu, 0, EntitateMota.HUTSA);
     	this.koordenatu[0][1] -= 1;
-    	MatrizeM.getnMatrizeM().gelaxkakAktualizatu(this.koordenatu, this.id, EntitateMota.BALA);
     }
 }
