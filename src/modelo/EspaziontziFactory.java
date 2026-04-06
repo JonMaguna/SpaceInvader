@@ -1,5 +1,4 @@
 package modelo;
-import java.awt.Color;
 
 public class EspaziontziFactory {
 	public static EspaziontziFactory nireEspaziontziFactory;

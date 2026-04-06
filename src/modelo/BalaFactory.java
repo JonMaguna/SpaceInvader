@@ -12,7 +12,7 @@ public class BalaFactory {
 		return nBalaFactory;
 	}
 	
-	public BalaNodo SortuBala(int x, int y, int id, BalaMota mota) {
+	public BalaNodo sortuBala(int x, int y, int id, BalaMota mota) {
 		switch(mota) {
 		case BALA_NORMALA:
 			return new BalaNodo(x, y, new int[][]{{x, y}}, id);
@@ -24,6 +24,5 @@ public class BalaFactory {
 		default:
 			return null;
 		}
-		
 	}
 }
