@@ -15,6 +15,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import modelo.BalaMota;
+import modelo.EntitateKolekzio;
 import modelo.JokoKudeatzailea;
 import modelo.MatrizeM;
 import modelo.Mugimendua;
@@ -26,7 +28,7 @@ public class MatrizeV extends JFrame implements Observer, KeyListener {
 	private JPanel contentPane;
 	private GelaxkaV[][] matrizeV;
 	private boolean presionatuta = false;
-	private boolean ezkerra, eskuma, gora, behera, tiroEgin;
+	private boolean ezkerra, eskuma, gora, behera, tiroEgin, nextBala;
 	
 	
 	public static void main(String[] args) {
@@ -82,6 +84,9 @@ public class MatrizeV extends JFrame implements Observer, KeyListener {
         case KeyEvent.VK_SPACE:
         	tiroEgin = true; 
         	break;
+        case KeyEvent.VK_SHIFT:
+        	nextBala = true;
+			break;
 		}
     }
 	
@@ -91,8 +96,12 @@ public class MatrizeV extends JFrame implements Observer, KeyListener {
 	    if (gora) {MatrizeM.getnMatrizeM().mugituOntzia(Mugimendua.GORA);} 
 	    else if (behera) {MatrizeM.getnMatrizeM().mugituOntzia(Mugimendua.BEHERA);}
 	    if (tiroEgin && !presionatuta) {
-	    	MatrizeM.getnMatrizeM().tiroEgin();
+	    	EntitateKolekzio.getnPertsonaiZerrenda().tiroEgin();
 	    	presionatuta = true;
+	    }
+	    if(nextBala){
+	    	EntitateKolekzio.getnPertsonaiZerrenda().nextBala();
+	    	nextBala = false;
 	    }
 	}
 	

@@ -32,10 +32,7 @@ public class MatrizeM{
 			}
 		}
 	}
-	public void hasieratuOntzia(int pMota) {
-		EspaziontziNodo nireEspaziontzi = EspaziontziFactory.getNireEspaziontziFactory().sortuEspaziontzia(pMota);
-		EntitateKolekzio.getnPertsonaiZerrenda().getMapa().get(EntitateMota.ESPAZIONTZI).add(nireEspaziontzi);
-	}
+	
 	public GelaxkaM getGelaxka(int x, int y) {
         return this.matrizea[x][y];
     }
@@ -97,43 +94,11 @@ public class MatrizeM{
 		}
 	}
 
-	/*public synchronized void mugituBalaBakarra(Bala pBala) {
-		if(!JokoKudeatzailea.getnJokoKudeatzailea().getJokoanDa()) {
-			pBala.setActive(false);
-			return;
-		}
-		int [][] hitBoxZaharra = pBala.getHitBox();
-		int x = hitBoxZaharra[0][0];
-		int y = hitBoxZaharra[0][1];
-		gelaxkakAktualizatu(hitBoxZaharra, 0, EntitateMota.HUTSA);
-		int yBerria = y - 1; 
-		if (yBerria >= 0) {
-			EntitateMota zerDago = matrizea[x][yBerria].zerDago();
-			if (zerDago == EntitateMota.ETSAIA) {
-				Integer idEtsai = matrizea[x][yBerria].zeinDago();
-				EntitateKolekzio.getnPertsonaiZerrenda().setBizirik(EntitateMota.ETSAIA, idEtsai, false);
-				gelaxkakAktualizatu(EntitateKolekzio.getnPertsonaiZerrenda().getHitBox(idEtsai, EntitateMota.ETSAIA), 0, EntitateMota.HUTSA);
-				pBala.setActive(false);
-				etsaiID.remove(idEtsai);
-				if(etsaiID.isEmpty()) {
-					JokoKudeatzailea.getnJokoKudeatzailea().jokoaGelditu(2);
-				}
-			}else {
-				int[][] hitBoxBerria = new int[1][2];
-				hitBoxBerria[0][0] = x;
-				hitBoxBerria[0][1] = yBerria;
-				gelaxkakAktualizatu(hitBoxBerria, pBala.getId(), EntitateMota.BALA);
-				pBala.setHitBox(hitBoxBerria);
-			}
-		}else {
-			pBala.setActive(false);
-		}
-	
-	}*/
-	public void tiroEgin() {
+	public void tiroEgin(BalaMota mota) {
 		if(!JokoKudeatzailea.getnJokoKudeatzailea().getJokoanDa() || denboraPasaBala()) {
 			return;
 		}
+		EntitateKolekzio.getnPertsonaiZerrenda().tiroEgin(mota);
 	}
 	
 	private boolean denboraPasaBala() {
