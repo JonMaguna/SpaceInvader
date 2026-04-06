@@ -15,7 +15,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import modelo.BalaMota;
 import modelo.EntitateKolekzio;
 import modelo.JokoKudeatzailea;
 import modelo.MatrizeM;
@@ -91,10 +90,10 @@ public class MatrizeV extends JFrame implements Observer, KeyListener {
     }
 	
     private void mugimenduakAktualizatu() {
-		if (ezkerra) {MatrizeM.getnMatrizeM().mugituOntzia(Mugimendua.EZKERRA);} 
-	    else if (eskuma) {MatrizeM.getnMatrizeM().mugituOntzia(Mugimendua.ESKUMA);} 
-	    if (gora) {MatrizeM.getnMatrizeM().mugituOntzia(Mugimendua.GORA);} 
-	    else if (behera) {MatrizeM.getnMatrizeM().mugituOntzia(Mugimendua.BEHERA);}
+		if (ezkerra) {EntitateKolekzio.getnPertsonaiZerrenda().mugituOntzia(Mugimendua.EZKERRA);} 
+	    else if (eskuma) {EntitateKolekzio.getnPertsonaiZerrenda().mugituOntzia(Mugimendua.ESKUMA);} 
+	    if (gora) {EntitateKolekzio.getnPertsonaiZerrenda().mugituOntzia(Mugimendua.GORA);} 
+	    else if (behera) {EntitateKolekzio.getnPertsonaiZerrenda().mugituOntzia(Mugimendua.BEHERA);}
 	    if (tiroEgin && !presionatuta) {
 	    	EntitateKolekzio.getnPertsonaiZerrenda().tiroEgin();
 	    	presionatuta = true;

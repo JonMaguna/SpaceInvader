@@ -1,15 +1,20 @@
 package modelo;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
-import modelo.EspaziontziNodo;
+
+import javax.swing.Timer;
 
 public class EntitateKolekzio {
 	private static EntitateKolekzio nPertsonaiZerrenda;
 	private HashMap<EntitateMota, ArrayList<Entitate>> mapa;
+	private long azkenMugimendua;
+	private long azkenTiroa;
 	private EntitateKolekzio() {
 		this.mapa = new HashMap<EntitateMota, ArrayList<Entitate>>();
 		this.mapa.put(EntitateMota.ESPAZIONTZI, new ArrayList<Entitate>());
@@ -27,9 +32,6 @@ public class EntitateKolekzio {
 	public void sortuEntitateak(int pMota) {
 		EspaziontziNodo espaziontzi = EspaziontziFactory.getNireEspaziontziFactory().sortuEspaziontzia(pMota);
 		this.mapa.get(EntitateMota.ESPAZIONTZI).add(espaziontzi);
-		for(Espaziontzi pixel : espaziontzi.getGelaxkak()) {
-			MatrizeM.getnMatrizeM().getGelaxka(pixel.getX(),pixel.getY()).setEntitate(EntitateMota.ESPAZIONTZI, espaziontzi.getId());
-		}
 		int numEtsaiak = new Random().nextInt(5) + 4;
 		List<Integer> posizio = new ArrayList<>();
 		for (int i = 1; i < 19 + 1; i++) {
@@ -44,24 +46,90 @@ public class EntitateKolekzio {
 			int y = 5;
 			EtsaiNodo etsai = EtsaiFactory.getEtsaiFactory().SortuEtsaiak(x, y, idBerria);
 			this.mapa.get(EntitateMota.ETSAIA).add(etsai);
-			 for(Etsaiak pixel : etsai.getGelaxkak()) {
-				 MatrizeM.getnMatrizeM().getGelaxka(pixel.getX(),pixel.getY()).setEntitate(EntitateMota.ETSAIA, idBerria);
-			 }
 		}
-		MatrizeM.getnMatrizeM().setEtsaiak(etsaiID);
+		etsaienMugimendua();
 	}
 	
-	public void mugituEntitatea(Mugimendua mugimendua, EntitateMota entitate, int i) {
-		this.mapa.get(entitate).get(i-1).mugitu(mugimendua);
+	private void etsaienMugimendua() {
+		Timer timer = new Timer(200, new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            etsaiakMugitu();
+	        }
+	    });
+	    timer.start();
 	}
+
+	private void etsaiakMugitu() {
+		if(!JokoKudeatzailea.getnJokoKudeatzailea().getJokoanDa()) {
+			return;
+		}
+		for(int i = 0; i < this.mapa.get(EntitateMota.ETSAIA).size(); i++) {
+			int nora = new Random().nextInt(3);
+			Entitate etsai = this.mapa.get(EntitateMota.ETSAIA).get(i);
+			switch(nora) {
+			case 0: 
+				etsai.mugitu(Mugimendua.BEHERA);
+				break;
+			case 1:
+				etsai.mugitu(Mugimendua.EZKERRA);
+				break;
+			case 2:
+				etsai.mugitu(Mugimendua.ESKUMA);
+				break;
+			}
+			if(!etsai.bizirik) {
+				this.mapa.get(EntitateMota.ETSAIA).remove(etsai);
+				 if(this.mapa.get(EntitateMota.ETSAIA).size() == 0) {
+					 JokoKudeatzailea.getnJokoKudeatzailea().jokoaGelditu(2);
+				 }
+			}
+		}
+	}
+	
+	public void mugituOntzia (Mugimendua mugimendua) {
+		if(!JokoKudeatzailea.getnJokoKudeatzailea().getJokoanDa() || denboraPasaMugitu()) {
+			return;
+		}
+		this.mapa.get(EntitateMota.ESPAZIONTZI).get(0).mugitu(mugimendua);
+	}
+
+	private boolean denboraPasaMugitu() {
+		 boolean pasaDa = false;
+		 long orain = System.currentTimeMillis();
+		 
+		 if (orain - this.azkenMugimendua < 125) {
+			 pasaDa = true;
+		 }
+		 else {
+			 this.azkenMugimendua = orain;
+		 }
+		 return pasaDa;
+	}
+	
 
 	public void setBizirik(EntitateMota entitate, int i, boolean b) {
 		this.mapa.get(entitate).get(i-1).setBizirik(b);
 	}
 	
 	public void tiroEgin() {
+		if(!JokoKudeatzailea.getnJokoKudeatzailea().getJokoanDa() || denboraPasaBala()) {
+			return;
+		}
 		BalaNodo bala = this.mapa.get(EntitateMota.ESPAZIONTZI).get(0).tiroEgin(balaKopurua() + 1);
 		this.mapa.get(EntitateMota.BALA).add(bala);
+	}
+	
+	private boolean denboraPasaBala() {
+		 boolean pasaDa = false;
+		 long orain = System.currentTimeMillis();
+		 
+		 if (orain - this.azkenTiroa < 350) {
+			 pasaDa = true;
+		 }
+		 else {
+			 this.azkenTiroa = orain;
+		 }
+		 return pasaDa;
 	}
 	
 	public int balaKopurua() {

@@ -5,7 +5,6 @@ import java.util.List;
 
 public class EtsaiNodo extends Entitate{
 	private List<Etsaiak> gelaxkak = new ArrayList<>();
-	private Etsaiak nagusi;
 
 	public EtsaiNodo(int x, int y, int[][] koordenatuak, int id) {
 		super(x, y, id, true);
@@ -13,10 +12,8 @@ public class EtsaiNodo extends Entitate{
 		    int pX = x + koordenatuak[i][0];
 		    int pY = y + koordenatuak[i][1];
 		    this.gelaxkak.add(new Etsaiak(pX, pY, id));
-		    if (koordenatuak[i][0] == 0 && koordenatuak[i][1] == 0) {
-		        this.nagusi = this.gelaxkak.get(i);
-		    }
 		}
+		MatrizeM.getnMatrizeM().gelaxkakAktualizatu(gelaxkak, id, EntitateMota.ETSAIA);
 	}
 	
 	public void mugitu(Mugimendua mugimendu) {

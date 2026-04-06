@@ -10,8 +10,9 @@ public class EspaziontziOrange  extends EspaziontziNodo{
 		int[][] forma = {{2,0},{1,1},{2,1},{3,1},{0,2},{1,2},{2,2},{3,2},{4,2}};
 		this.bala = 1;
 		for (int[] p: forma) {
-			this.getGelaxkak().add(new Espaziontzi(x+p[0], y+p[1], id, Color.ORANGE));
+			this.gelaxkak.add(new Espaziontzi(x+p[0], y+p[1], id, Color.ORANGE));
 		}
+		MatrizeM.getnMatrizeM().gelaxkakAktualizatu(gelaxkak, id, EntitateMota.ESPAZIONTZI);
 	}
 	
 	public void nextBala() {
