@@ -47,4 +47,6 @@ public class GelaxkaM extends Observable {
     }
 
 	public int getID() { return this.id; }
+	
+	public Egoera_G getEgoera() { return this.gelaxka_mota; }
 }
