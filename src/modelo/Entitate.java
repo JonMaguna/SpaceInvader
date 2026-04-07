@@ -41,7 +41,6 @@ public abstract class Entitate {
 	public void setBizirik(boolean bizirik) {
 		this.bizirik = bizirik;
 	}
-	
 	public void nextBala() { }
 	public BalaNodo tiroEgin(int id) { return null; }
 }

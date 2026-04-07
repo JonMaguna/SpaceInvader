@@ -28,12 +28,13 @@ public class Espaziontzi extends Entitate {
 	public boolean mugituDaiteke(Mugimendua mugimendua) {
 		boolean mugitu = true;
 		EntitateMota entitatea = null;
-		
+		int hurrengoaX = this.koordenatu[0][0];
+		int hurrengoaY = this.koordenatu[0][1];
 		switch (mugimendua) {
 		case GORA:
 			if(this.koordenatu[0][1] == 0) {mugitu = false;} 
 			else {
-				entitatea = MatrizeM.getnMatrizeM().zerDago(this.koordenatu);
+				entitatea = MatrizeM.getnMatrizeM().zerDago({hurrengoaX, hurrengoaY - 1});
 			}
 			break;
 		case BEHERA:

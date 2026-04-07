@@ -18,7 +18,7 @@ public abstract class EspaziontziNodo extends Entitate{
 		while(i < this.gelaxkak.size() && mugituDaiteke){
 			mugituDaiteke = this.gelaxkak.get(i).mugituDaiteke(mugimendu);
 			i++;
-		}
+		} 
 		if(mugituDaiteke) {
 			MatrizeM.getnMatrizeM().gelaxkakAktualizatu(gelaxkak, 0, EntitateMota.HUTSA);
 			for (Entitate pixel : this.gelaxkak) {
@@ -26,6 +26,17 @@ public abstract class EspaziontziNodo extends Entitate{
 			}
 			MatrizeM.getnMatrizeM().gelaxkakAktualizatu(gelaxkak, id, EntitateMota.ESPAZIONTZI);
 			eguneratuPosizioNagusia(mugimendu);
+		}else {
+			if (!this.gelaxkak.get(i - 1).bizirik()) {
+	            
+	            this.setBizirik(false); 
+	      
+	            MatrizeM.getnMatrizeM().gelaxkakAktualizatu(gelaxkak, 0, EntitateMota.HUTSA);
+	            for (Entitate pixel : this.gelaxkak) {
+	                pixel.setBizirik(false);
+	            }	            
+	            MatrizeM.getnMatrizeM().gelaxkakAktualizatu(gelaxkak, id, EntitateMota.ESPAZIONTZI);
+	        }
 		}
 	}
 	protected void eguneratuPosizioNagusia(Mugimendua m) {
