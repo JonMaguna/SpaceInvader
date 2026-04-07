@@ -25,9 +25,9 @@ public class EspaziontziCyan extends EspaziontziNodo {
 	public BalaNodo tiroEgin(int id) {
 		switch(this.bala) {
 		case 1:
-			return BalaFactory.getnBalaFactory().sortuBala(this.x, this.y - 2, id, BalaMota.BALA_NORMALA);
+			return BalaFactory.getnBalaFactory().sortuBala(this.x+1, this.y - 2, id, BalaMota.BALA_NORMALA);
 		case 2:
-			return BalaFactory.getnBalaFactory().sortuBala(this.x, this.y - 2, id, BalaMota.BALA_HANDIA);
+			return BalaFactory.getnBalaFactory().sortuBala(this.x+1, this.y - 2, id, BalaMota.BALA_HANDIA);
 		default:
 			return null;
 		}
