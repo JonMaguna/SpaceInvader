@@ -29,8 +29,8 @@ public class MatrizeM{
         return this.matrizea[x][y];
     }
 
-	public void gelaxkakAktualizatu(ArrayList<Entitate> entitaLista, int id, EntitateMota entitate) {
-		for (Entitate ent : entitaLista) {
+	public void gelaxkakAktualizatu(ArrayList<Entitate> entitateLista, int id, EntitateMota entitate) {
+		for (Entitate ent : entitateLista) {
 			int [][] kordenatu = ent.getKoordenatu();
 			int x = kordenatu[0][0];
 			int y = kordenatu[0][1];
