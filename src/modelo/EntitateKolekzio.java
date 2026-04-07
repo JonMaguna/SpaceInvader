@@ -78,11 +78,15 @@ public class EntitateKolekzio {
 				etsai.mugitu(Mugimendua.ESKUMA);
 				break;
 			}
-			if(!etsai.bizirik) {
-				this.mapa.get(EntitateMota.ETSAIA).remove(etsai);
-				 if(this.mapa.get(EntitateMota.ETSAIA).size() == 0) {
-					 JokoKudeatzailea.getnJokoKudeatzailea().jokoaGelditu(2);
-				 }
+			if(!etsai.bizirik()) {
+				if(!etsai.bizirik) {
+				    ArrayList<Entitate> Etsaia = ((EtsaiNodo) etsai).getGelaxkak();
+				    MatrizeM.getnMatrizeM().gelaxkakAktualizatu(Etsaia, 0, EntitateMota.HUTSA);
+				    this.mapa.get(EntitateMota.ETSAIA).remove(i);
+				    if(this.mapa.get(EntitateMota.ETSAIA).size() == 0) {
+				        JokoKudeatzailea.getnJokoKudeatzailea().jokoaGelditu(2);
+				    }
+				}
 			}
 		}
 	}

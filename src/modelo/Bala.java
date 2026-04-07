@@ -27,9 +27,12 @@ public class Bala extends Entitate{
     	if(mugitu && entitatea != null) { 
 			switch (entitatea) {
 			case ETSAIA:
-				mugitu = false;
-				setBizirik(false);
-				break;
+			    mugitu = false;
+			    this.setBizirik(false);
+			    int[][] hitbox = {{this.koordenatu[0][0], this.koordenatu[0][1] - 1}};
+			    int etsaiId = MatrizeM.getnMatrizeM().zeinIDDago(hitbox);
+			    EntitateKolekzio.getnPertsonaiZerrenda().setBizirik(EntitateMota.ETSAIA, etsaiId, false);
+			    break;
 			case BALA:
 				if(id != this.id) {
 					mugitu = false;
