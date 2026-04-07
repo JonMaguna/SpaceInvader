@@ -34,7 +34,7 @@ public class Espaziontzi extends Entitate {
 		case GORA:
 			if(this.koordenatu[0][1] == 0) {mugitu = false;} 
 			else {
-				entitatea = MatrizeM.getnMatrizeM().zerDago({hurrengoaX, hurrengoaY - 1});
+				entitatea = MatrizeM.getnMatrizeM().zerDago(this.koordenatu);
 			}
 			break;
 		case BEHERA:
