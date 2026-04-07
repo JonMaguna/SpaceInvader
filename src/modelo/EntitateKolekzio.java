@@ -44,7 +44,8 @@ public class EntitateKolekzio {
 			etsaiID.add(idBerria);
 			int x = posizio.get(i);
 			int y = 5;
-			EtsaiNodo etsai = EtsaiFactory.getEtsaiFactory().SortuEtsaiak(x, y, idBerria);
+			int mota = new Random().nextInt(3) + 1;
+			EtsaiNodo etsai = EtsaiFactory.getEtsaiFactory().SortuEtsaiak(idBerria,x,y,mota);
 			this.mapa.get(EntitateMota.ETSAIA).add(etsai);
 		}
 		etsaienMugimendua();

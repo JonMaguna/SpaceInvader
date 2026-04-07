@@ -18,8 +18,6 @@ public class EspaziontziOrange  extends EspaziontziNodo{
 	public void nextBala() {
 		if(this.bala == 2) {
 			this.bala = 1;
-		} else {
-			this.bala = 2;
 		}
 	}
 	
