@@ -46,11 +46,7 @@ public class MatrizeV extends JFrame implements Observer, KeyListener {
 	
 	public MatrizeV() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-<<<<<<< HEAD
-		setBounds(100, 100, 2300, 1000);
-=======
 		setBounds(100, 100, 3000, 2000);
->>>>>>> sprint2
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.BLACK);
 		contentPane.setBorder(new EmptyBorder(1, 1, 1, 1));
