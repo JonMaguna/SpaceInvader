@@ -114,12 +114,31 @@ public class EntitateKolekzio {
 
 	public void setBizirik(EntitateMota entitate, int i, boolean b) {
 		ArrayList<Entitate> entitateak = this.mapa.get(entitate);
+		Entitate ezabatu = null;
 	    for (Entitate e : entitateak) {
 	        if (e.getId() == i) {
 	            e.setBizirik(b);
+	            if (!b) {
+	            	ezabatu = e;
+	            }
 	            break; 
 	        }
 	    }
+	    if(ezabatu != null && entitate == EntitateMota.ETSAIA) {
+	    	if(ezabatu instanceof EtsaiNodo) {
+	    		EtsaiNodo nodoa = (EtsaiNodo) ezabatu;
+	    		for(Entitate p: nodoa.getGelaxkak()) {
+	    			int [][] koordenatu = p.getKoordenatu();
+	    			int x = p.getX();
+	    			int y = p.getY();
+	    			MatrizeM.getnMatrizeM().getGelaxka(x, y).setEntitate(EntitateMota.HUTSA,0);
+	    		}
+	    	}
+	    	entitateak.remove(ezabatu);
+	    	if(entitateak.isEmpty()) {
+	    		JokoKudeatzailea.getnJokoKudeatzailea().jokoaGelditu(2);
+	    	}
+	  	}
 	}
 	
 	public void tiroEgin() {

@@ -39,6 +39,8 @@ public class GelaxkaM extends Observable {
     public void egoeraAldatu(Egoera_G pEgoera, int id) {
         this.gelaxka_mota = pEgoera;
         this.gelaxka_mota.gelaxkaEguneratu(this, id);
+        setChanged();
+        notifyObservers();
     }
 
     public void aldaketaNotifikatu(EntitateMota e) {

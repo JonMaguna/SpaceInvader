@@ -35,6 +35,7 @@ public abstract class EtsaiNodo extends Entitate{
 		}
 	}
 	
+	
 	private void eguneratuPosizioNagusia(Mugimendua m) {
 		switch(m) {
             case EZKERRA: this.x--; break;
