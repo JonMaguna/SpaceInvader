@@ -109,7 +109,13 @@ public class EntitateKolekzio {
 	
 
 	public void setBizirik(EntitateMota entitate, int i, boolean b) {
-		this.mapa.get(entitate).get(i-1).setBizirik(b);
+		ArrayList<Entitate> entitateak = this.mapa.get(entitate);
+	    for (Entitate e : entitateak) {
+	        if (e.getId() == i) {
+	            e.setBizirik(b);
+	            break; 
+	        }
+	    }
 	}
 	
 	public void tiroEgin() {

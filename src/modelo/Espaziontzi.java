@@ -45,19 +45,19 @@ public class Espaziontzi extends Entitate {
 		case EZKERRA:
 			if(this.koordenatu[0][0] == 0) {mugitu = false;} 
 			else {
-				MatrizeM.getnMatrizeM().zerDago(this.koordenatu);
+				entitatea = MatrizeM.getnMatrizeM().zerDago(this.koordenatu);
 			}
 			break;
 		case ESKUMA:
 			if(this.koordenatu[0][0] == 99) {mugitu = false;} 
 			else {
-				MatrizeM.getnMatrizeM().zerDago(this.koordenatu);
+				entitatea = MatrizeM.getnMatrizeM().zerDago(this.koordenatu);
 			}
 			break;
 		default:
 			break;
 		}
-		if(mugitu) { 
+		if(mugitu && entitatea != null) { 
 			switch (entitatea) {
 			case ETSAIA:
 				mugitu = false;
@@ -79,10 +79,10 @@ public class Espaziontzi extends Entitate {
 			this.koordenatu[0][1] += 1;
 			break;
 		case EZKERRA:
-			this.koordenatu[0][1] -= 1;
+			this.koordenatu[0][0] -= 1;
 			break;
 		case ESKUMA:
-			this.koordenatu[0][1] += 1;
+			this.koordenatu[0][0] += 1;
 			break;
 		default:
 			break;
