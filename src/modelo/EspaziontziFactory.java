@@ -1,7 +1,8 @@
 package modelo;
-
+import java.awt.Color;
 public class EspaziontziFactory {
-	public static EspaziontziFactory nireEspaziontziFactory;
+	private static EspaziontziFactory nireEspaziontziFactory;
+	private Color EspaziontziKolorea;
 	private EspaziontziFactory() {
 		
 	}
@@ -17,14 +18,20 @@ public class EspaziontziFactory {
 		int id = 1;
 		switch(pMota) {
 		case 1:
+			EspaziontziKolorea = Color.CYAN;
 			return new EspaziontziCyan(xHasiera, yHasiera, id);
         case 2:
+        	EspaziontziKolorea = Color.MAGENTA;
         	return new EspaziontziMagenta(xHasiera, yHasiera, id);
         case 3:
+        	EspaziontziKolorea = Color.ORANGE;
         	return new EspaziontziOrange(xHasiera, yHasiera, id);
         default:
+        	EspaziontziKolorea = Color.CYAN;
         	return new EspaziontziCyan(xHasiera, yHasiera, id);
 		}
 	}	
-
+	public Color getAzkenKolorea() {
+		return EspaziontziKolorea;
+	}
 }
