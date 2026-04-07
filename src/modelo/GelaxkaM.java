@@ -26,12 +26,12 @@ public class GelaxkaM extends Observable {
     public void setId(int id) { this.id = id; }
     
     public void setEntitate(EntitateMota entitate, int id){ 
-        Egoera_G egoeraBerria;
+        Egoera_G egoeraBerria= new Hutsa_M();
         switch(entitate) {
             case BALA: egoeraBerria = new Bala_M(); break;
             case ETSAIA: egoeraBerria = new Etsaia_M(); break;
             case ESPAZIONTZI: egoeraBerria = new Espaziontzia_M(); break;
-            default: egoeraBerria = new Hutsa_M(); break;
+            case HUTSA: egoeraBerria = new Hutsa_M(); break;
         }
         egoeraAldatu(egoeraBerria, id);
     }
