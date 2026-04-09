@@ -157,4 +157,16 @@ public class EntitateKolekzio {
 	public void nextBala() {
 		this.mapa.get(EntitateMota.ESPAZIONTZI).get(0).nextBala();
 	}
+	
+	public Entitate getEntitateById(EntitateMota mota, int pId) {
+	    ArrayList<Entitate> zerrenda = this.mapa.get(mota);
+	    if (zerrenda != null) {
+	        for (Entitate e : zerrenda) {
+	            if (e.getId() == pId) {
+	                return e;
+	            }
+	        }
+	    }
+	    return null; // Si no se encuentra
+	}
 }
