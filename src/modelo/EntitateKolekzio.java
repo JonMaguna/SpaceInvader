@@ -68,10 +68,10 @@ public class EntitateKolekzio {
 			int nora = new Random().nextInt(3);
 			Entitate etsai = this.mapa.get(EntitateMota.ETSAIA).get(i);
 			switch(nora) {
-			/*case 0: 
+			case 0: 
 				etsai.mugitu(Mugimendua.BEHERA);
 				break;
-			*/case 1:
+			case 1:
 				etsai.mugitu(Mugimendua.EZKERRA);
 				break;
 			case 2:
