@@ -19,13 +19,16 @@ public class EspaziontziOrange  extends EspaziontziNodo{
 		if(this.bala == 2) {
 			this.bala = 1;
 		}
+		else {
+			this.bala = 2;
+		}
 	}
 	
 	public BalaNodo tiroEgin(int id) {
 		if(this.bala == 1) {
 			return BalaFactory.getnBalaFactory().sortuBala(this.x, this.y - 2, id, BalaMota.BALA_NORMALA);
 		} else {
-			return BalaFactory.getnBalaFactory().sortuBala(this.x, this.y - 2, id, BalaMota.BALA_NORMALA);
+			return BalaFactory.getnBalaFactory().sortuBala(this.x, this.y - 2, id, BalaMota.BALA_AZKARRA);
 		}
 	}
 
