@@ -48,9 +48,17 @@ public abstract class EtsaiNodo extends Entitate{
 	public ArrayList<Entitate> getGelaxkak() {
 		return this.gelaxkak;
 	}
+<<<<<<< HEAD
 	
 	public void setBizirik(boolean bizirik) {
 		this.bizirik = bizirik;
 		MatrizeM.getnMatrizeM().gelaxkakAktualizatu(gelaxkak, 0, EntitateMota.HUTSA);
+=======
+	public void setBizirik(boolean bizirik) {
+		this.bizirik = bizirik;
+		if (!bizirik) {
+			MatrizeM.getnMatrizeM().gelaxkakAktualizatu(gelaxkak, 0, EntitateMota.HUTSA);
+		}
+>>>>>>> 9106b28c071fa07d26a508a01ba2c7a7b9de0942
 	}
 }

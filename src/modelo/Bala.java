@@ -9,8 +9,6 @@ public class Bala extends Entitate{
 	}
 	
 	public boolean mugituDaiteke(Mugimendua mugimendua) {
-    	EntitateKolekzio ek = EntitateKolekzio.getnPertsonaiZerrenda();
-    	MatrizeM m = MatrizeM.getnMatrizeM();
     	boolean mugitu = true;
     	EntitateMota entitatea = null;
     	EtsaiNodo miEne= null;
@@ -18,13 +16,10 @@ public class Bala extends Entitate{
 
     	if(this.koordenatu[0][1] <= 1) { 
             mugitu = false;
-            setBizirik(false);             
-            GelaxkaM gM = m.getGelaxka(this.koordenatu[0][0], this.koordenatu[0][1]);
-            gM.egoeraAldatu(new Hutsa_M(), 0);
-            
+            setBizirik(false); 
     	} else {
-    		entitatea = m.zerDago(this.koordenatu);
-    		id = m.zeinIDDago(this.koordenatu);
+    		entitatea = MatrizeM.getnMatrizeM().zerDago(this.koordenatu);
+    		id = MatrizeM.getnMatrizeM().zeinIDDago(this.koordenatu);
     	}
         
     	if(mugitu && entitatea != null) { 
