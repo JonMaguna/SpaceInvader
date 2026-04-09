@@ -9,53 +9,41 @@ public class Etsaiak extends Entitate {
 	public boolean mugituDaiteke(Mugimendua mugimendu) {
 		boolean mugitu = true;
 		EntitateMota entitatea = null;
-		int id = 0;
+		int xHurrengoa = this.koordenatu[0][0];
+		int yHurrengoa = this.koordenatu[0][1];
 		
 		switch(mugimendu) {
-		case BEHERA: 
-			if (koordenatu[0][1] == 59) { mugitu = false; JokoKudeatzailea.getnJokoKudeatzailea().jokoaGelditu(1); } 
-			else {
-				entitatea = MatrizeM.getnMatrizeM().zerDago(this.koordenatu);
-				id = MatrizeM.getnMatrizeM().zeinIDDago(this.koordenatu);
-			}
+	        case BEHERA:  yHurrengoa++; break;
+	        case EZKERRA: xHurrengoa--; break;
+	        case ESKUMA:  xHurrengoa++; break;
+		}
+		if (yHurrengoa > 59) {
+			JokoKudeatzailea.getnJokoKudeatzailea().jokoaGelditu(1);
+			return false;
+		}
+		if(xHurrengoa < 0 || xHurrengoa > 99) {
+			return false;
+		}
+		int[][] Hurrengoa = {{xHurrengoa, yHurrengoa}};
+		entitatea = MatrizeM.getnMatrizeM().zerDago(Hurrengoa);
+		int BesteId = MatrizeM.getnMatrizeM().zeinIDDago(Hurrengoa);
+		switch(entitatea) {
+		case ESPAZIONTZI:
+			EntitateKolekzio.getnPertsonaiZerrenda().setBizirik(EntitateMota.ESPAZIONTZI, 1, false);
+            mugitu = false;
+            break;
+		case BALA:
+			EntitateKolekzio.getnPertsonaiZerrenda().setBizirik(EntitateMota.ETSAIA, this.id, false);
+			this.setBizirik(false);
+			mugitu = false;
 			break;
-		case EZKERRA: 
-			if (koordenatu[0][0] == 0) { mugitu = false; }
-			else {
-				entitatea = MatrizeM.getnMatrizeM().zerDago(this.koordenatu);
-				id = MatrizeM.getnMatrizeM().zeinIDDago(this.koordenatu);
-			}
-			break;
-		case ESKUMA: 
-			if (koordenatu[0][0] == 99) { mugitu = false; }
-			else {
-				entitatea = MatrizeM.getnMatrizeM().zerDago(this.koordenatu);
-				id = MatrizeM.getnMatrizeM().zeinIDDago(this.koordenatu);
-			}
+		case ETSAIA:
+			if(BesteId != this.id) {
+                mugitu = false; 
+            }
 			break;
 		default:
 			break;
-		}
-		if (mugitu) {
-			switch (entitatea) {
-			case ESPAZIONTZI:
-				EntitateKolekzio.getnPertsonaiZerrenda().setBizirik(EntitateMota.ESPAZIONTZI, 1, false);
-				mugitu = false;
-				break;
-			case ETSAIA:
-				mugitu = false;
-				if(id == this.id) {
-					mugitu = true;
-				}
-				break;
-			case BALA:
-				EntitateKolekzio.getnPertsonaiZerrenda().setBizirik(EntitateMota.ETSAIA, id, false);
-				mugitu = false;
-				break;
-			default:
-				mugitu = true;
-				break;
-			}
 		}
 		return mugitu;
 	}
