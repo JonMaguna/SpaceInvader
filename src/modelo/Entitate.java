@@ -41,8 +41,6 @@ public abstract class Entitate {
 	public void setBizirik(boolean bizirik) {
 		this.bizirik = bizirik;
 	}
-<<<<<<< HEAD
-=======
 	public int getX() {
 		return this.koordenatu[0][0];
 	}
@@ -50,8 +48,6 @@ public abstract class Entitate {
 		return this.koordenatu[0][1];
 	}
 	
-	
->>>>>>> 574d879 (Fusio erroreak zuzentzen 2)
 	public void nextBala() { }
 	public BalaNodo tiroEgin(int id) { return null; }
 }
