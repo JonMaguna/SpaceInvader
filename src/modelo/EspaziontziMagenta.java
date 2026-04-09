@@ -7,7 +7,7 @@ public class EspaziontziMagenta extends EspaziontziNodo {
 	
 	public EspaziontziMagenta(int x, int y, int id) {
 		super(x,y,id);
-		int[][]forma ={/*1.*/{-1,0},{1,0},/*2.*/{-2,1},{-1,1},{0,1},{1,1},{2,1}/*3.*/,{-2,2},{-1,2},{0,2},{1,2},{2,2},/*4.*/{-1,3},{0,3},{1,3}};
+		int[][]forma ={{-1,0},{1,0},{-2,1},{-1,1},{0,1},{1,1},{2,1},{-2,2},{-1,2},{0,2},{1,2},{2,2},{-1,3},{0,3},{1,3}};
 		for (int[] p: forma) {
 			this.gelaxkak.add(new Espaziontzi(x+p[0], y+p[1], id, Color.MAGENTA));
 		}

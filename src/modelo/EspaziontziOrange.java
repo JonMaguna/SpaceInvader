@@ -28,6 +28,7 @@ public class EspaziontziOrange  extends EspaziontziNodo{
 		if(this.bala == 1) {
 			return BalaFactory.getnBalaFactory().sortuBala(this.x, this.y - 2, id, BalaMota.BALA_NORMALA);
 		} else {
+
 			return BalaFactory.getnBalaFactory().sortuBala(this.x, this.y - 2, id, BalaMota.BALA_AZKARRA);
 		}
 	}
