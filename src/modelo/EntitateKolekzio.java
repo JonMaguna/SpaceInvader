@@ -79,16 +79,15 @@ public class EntitateKolekzio {
 				break;
 			}
 			if(!etsai.bizirik()) {
-				if(!etsai.bizirik) {
 				    ArrayList<Entitate> Etsaia = ((EtsaiNodo) etsai).getGelaxkak();
 				    MatrizeM.getnMatrizeM().gelaxkakAktualizatu(Etsaia, 0, EntitateMota.HUTSA);
 				    this.mapa.get(EntitateMota.ETSAIA).remove(i);
+				    i--;
 				    if(this.mapa.get(EntitateMota.ETSAIA).size() == 0) {
 				        JokoKudeatzailea.getnJokoKudeatzailea().jokoaGelditu(2);
 				    }
 				}
 			}
-		}
 	}
 	
 	public void mugituOntzia (Mugimendua mugimendua) {
@@ -102,7 +101,7 @@ public class EntitateKolekzio {
 		 boolean pasaDa = false;
 		 long orain = System.currentTimeMillis();
 		 
-		 if (orain - this.azkenMugimendua < 125) {
+		 if (orain - this.azkenMugimendua < 130) {
 			 pasaDa = true;
 		 }
 		 else {
