@@ -21,7 +21,8 @@ public abstract class EtsaiNodo extends Entitate{
 		while(i < this.gelaxkak.size() && mugituDaiteke){
 			mugituDaiteke = this.gelaxkak.get(i).mugituDaiteke(mugimendu);
 			if(!this.gelaxkak.get(i).bizirik()) {
-				this.bizirik = false;
+				setBizirik(false);
+				MatrizeM.getnMatrizeM().gelaxkakAktualizatu(gelaxkak, 0, EntitateMota.HUTSA);
 			}
 			i++;
 		}
