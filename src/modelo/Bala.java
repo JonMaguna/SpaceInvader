@@ -14,7 +14,7 @@ public class Bala extends Entitate{
     	int id = 0;
 
     	if(this.koordenatu[0][1] <= 1) { 
-            mugitu = false;
+    		mugitu = false;
             setBizirik(false);             
             GelaxkaM gM = m.getGelaxka(this.koordenatu[0][0], this.koordenatu[0][1]);
             gM.egoeraAldatu(new Hutsa_M(), 0);
@@ -27,7 +27,7 @@ public class Bala extends Entitate{
     	if(mugitu && entitatea != null) { 
 			switch (entitatea) {
 			case ETSAIA:
-			    mugitu = false;
+				mugitu = false;
 			    this.setBizirik(false);
 			    int[][] hitbox = {{this.koordenatu[0][0], this.koordenatu[0][1] - 1}};
 			    int etsaiId = MatrizeM.getnMatrizeM().zeinIDDago(hitbox);
