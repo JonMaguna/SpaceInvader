@@ -25,6 +25,9 @@ public class BalaNodo extends Entitate implements Runnable{
         		int i = 0;
         		while(i < this.gelaxkak.size() && mugituDaiteke){
         			mugituDaiteke = this.gelaxkak.get(i).mugituDaiteke(Mugimendua.GORA);
+        			if(!this.gelaxkak.get(i).bizirik()) {
+        			    mugituDaiteke = false;
+        			}
         			i++;
         		}
         		if(mugituDaiteke) {
@@ -34,11 +37,12 @@ public class BalaNodo extends Entitate implements Runnable{
         			}
         			MatrizeM.getnMatrizeM().gelaxkakAktualizatu(this.gelaxkak, this.id, EntitateMota.BALA);
         			this.y--;
-        		}
+        		}else {
+					this.bizirik = false;}
             } catch (InterruptedException e) {
                 this.bizirik = false;
             }
         }
-        this.bizirik = false;
+		MatrizeM.getnMatrizeM().gelaxkakAktualizatu(this.gelaxkak, 0, EntitateMota.HUTSA);
     }
 }
