@@ -3,12 +3,13 @@ package modelo;
 import java.util.ArrayList;
 
 public class BalaNodo extends Entitate implements Runnable{
-	
+	protected MugimenduEstrategia mugimenduEstrategia;
 	private Thread ThreadBala;
 	private ArrayList<Entitate> gelaxkak = new ArrayList<>();
 
 	public BalaNodo(int x, int y, int[][] koordenatuak, int id) {
 		super(x, y, id, true);
+		this.mugimenduEstrategia = new BalaMugimenduEstrategia();
 		for (int i = 0; i < koordenatuak.length; i++) {
 			this.gelaxkak.add(new Bala(koordenatuak[i][0], koordenatuak[i][1], id));
 		}
@@ -20,29 +21,18 @@ public class BalaNodo extends Entitate implements Runnable{
 	public void run() {
 		while (bizirik && JokoKudeatzailea.getnJokoKudeatzailea().getJokoanDa()) { 
             try {
-                Thread.sleep(50);
-                boolean mugituDaiteke = true;
-        		int i = 0;
-        		while(i < this.gelaxkak.size() && mugituDaiteke){
-        			mugituDaiteke = this.gelaxkak.get(i).mugituDaiteke(Mugimendua.GORA);
-        			if(!this.gelaxkak.get(i).bizirik()) {
-        			    mugituDaiteke = false;
-        			}
-        			i++;
-        		}
-        		if(mugituDaiteke) {
-        			MatrizeM.getnMatrizeM().gelaxkakAktualizatu(this.gelaxkak, 0, EntitateMota.HUTSA);
-        			for (Entitate pixel : this.gelaxkak) {
-        				pixel.mugitu(Mugimendua.GORA);
-        			}
-        			MatrizeM.getnMatrizeM().gelaxkakAktualizatu(this.gelaxkak, this.id, EntitateMota.BALA);
-        			this.y--;
-        		}else {
-					this.bizirik = false;}
+            	Thread.sleep(50);
+                this.mugimenduEstrategia.mugitu(this, Mugimendua.GORA);
             } catch (InterruptedException e) {
                 this.bizirik = false;
             }
-        }
+            }
 		MatrizeM.getnMatrizeM().gelaxkakAktualizatu(this.gelaxkak, 0, EntitateMota.HUTSA);
     }
+	public void setEstrategy(MugimenduEstrategia estrategia) {
+		this.mugimenduEstrategia = estrategia;
+	}
+	public ArrayList<Entitate> getGelaxkak() {
+		return gelaxkak;
+	}
 }

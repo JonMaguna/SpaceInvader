@@ -3,10 +3,12 @@ package modelo;
 import java.util.ArrayList;
 
 public abstract class EtsaiNodo extends Entitate{
+	protected MugimenduEstrategia mugimenduEstrategia;
 	protected ArrayList<Entitate> gelaxkak = new ArrayList<>();
 
 	public EtsaiNodo(int x, int y, int[][] koordenatuak, int id) {
 		super(x, y, id, true);
+		this.mugimenduEstrategia = new EtsaiaMugimenduEstrategia();	
 		for (int i = 0; i < koordenatuak.length; i++) {
 		    int pX = x + koordenatuak[i][0];
 		    int pY = y + koordenatuak[i][1];
@@ -14,7 +16,7 @@ public abstract class EtsaiNodo extends Entitate{
 		}
 		MatrizeM.getnMatrizeM().gelaxkakAktualizatu(gelaxkak, id, EntitateMota.ETSAIA);
 	}
-	
+	@Override
 	public void mugitu(Mugimendua mugimendu) {
 		boolean mugituDaiteke = true;
 		int i = 0;
@@ -34,6 +36,7 @@ public abstract class EtsaiNodo extends Entitate{
 			MatrizeM.getnMatrizeM().gelaxkakAktualizatu(gelaxkak, id, EntitateMota.ETSAIA);
 			eguneratuPosizioNagusia(mugimendu);
 		}
+		this.mugimenduEstrategia.mugitu(this, mugimendu);
 	}
 	
 	private void eguneratuPosizioNagusia(Mugimendua m) {
@@ -47,5 +50,8 @@ public abstract class EtsaiNodo extends Entitate{
 	
 	public ArrayList<Entitate> getGelaxkak() {
 		return this.gelaxkak;
+	}
+	public void setEstrategy(MugimenduEstrategia estrategia) {
+		this.mugimenduEstrategia = estrategia;
 	}
 }
