@@ -1,8 +1,10 @@
 package modelo;
 import java.awt.Color;
+import java.util.ArrayList;
 
 public class Espaziontzi extends Entitate {
 	private Color kolorea;
+	protected ArrayList<Entitate> gelaxkak = new ArrayList<>();
 	
 	public Espaziontzi(int x, int y, int id, Color pKolorea) {
 		super(x, y, id, true);
@@ -20,6 +22,7 @@ public class Espaziontzi extends Entitate {
 	
 	public void setBizirik(boolean bizirik) {
 		this.bizirik = bizirik;
+		MatrizeM.getnMatrizeM().gelaxkakAktualizatu(gelaxkak, 0, EntitateMota.HUTSA);
 		if (!bizirik) {
 			JokoKudeatzailea.getnJokoKudeatzailea().jokoaGelditu(1);
 		}

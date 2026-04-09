@@ -36,12 +36,17 @@ public class BalaNodo extends Entitate implements Runnable{
         			this.y--;
         		}
         		else {
-        			this.bizirik = false;
+        			setBizirik(false);
         			MatrizeM.getnMatrizeM().gelaxkakAktualizatu(this.gelaxkak, 0, EntitateMota.HUTSA);
         		}
             } catch (InterruptedException e) {
-                this.bizirik = false;
+                setBizirik(false);
             }
         }
     }
+	
+	public void setBizirik(boolean bizirik) {
+		this.bizirik = bizirik;
+		MatrizeM.getnMatrizeM().gelaxkakAktualizatu(gelaxkak, 0, EntitateMota.HUTSA);
+	}
 }
