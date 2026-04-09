@@ -16,6 +16,7 @@ public class Etsaiak extends Entitate {
 	        case BEHERA:  yHurrengoa++; break;
 	        case EZKERRA: xHurrengoa--; break;
 	        case ESKUMA:  xHurrengoa++; break;
+	        default: break;
 		}
 		if (yHurrengoa > 59) {
 			JokoKudeatzailea.getnJokoKudeatzailea().jokoaGelditu(1);
@@ -33,6 +34,7 @@ public class Etsaiak extends Entitate {
             mugitu = false;
             break;
 		case BALA:
+			System.out.println(id);
 			EntitateKolekzio.getnPertsonaiZerrenda().setBizirik(EntitateMota.ETSAIA, this.id, false);
 			this.setBizirik(false);
 			mugitu = false;

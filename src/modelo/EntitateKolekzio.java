@@ -21,6 +21,7 @@ public class EntitateKolekzio {
 		this.mapa.put(EntitateMota.ETSAIA, new ArrayList<Entitate>());
 		this.mapa.put(EntitateMota.BALA, new ArrayList<Entitate>());
 	}
+	private ArrayList<Integer> etsaiID = new ArrayList<>();
 	
 	public static EntitateKolekzio getnPertsonaiZerrenda() {
 		if(nPertsonaiZerrenda == null) {
@@ -38,10 +39,9 @@ public class EntitateKolekzio {
 			posizio.add(i*5 - 1);
 		}
 		Collections.shuffle(posizio);
-		List<Integer> etsaiID = new ArrayList<>();
 		for (int i = 0; i < numEtsaiak; i++) {
 			int idBerria = i+1;
-			etsaiID.add(idBerria);
+			this.etsaiID.add(idBerria);
 			int x = posizio.get(i);
 			int y = 5;
 			int mota = new Random().nextInt(3) + 1;
@@ -64,9 +64,9 @@ public class EntitateKolekzio {
 		if(!JokoKudeatzailea.getnJokoKudeatzailea().getJokoanDa()) {
 			return;
 		}
-		for(int i = 0; i < this.mapa.get(EntitateMota.ETSAIA).size(); i++) {
+		for(int i = 0; i < etsaiID.size(); i++) {
 			int nora = new Random().nextInt(3);
-			Entitate etsai = this.mapa.get(EntitateMota.ETSAIA).get(i);
+			Entitate etsai = this.mapa.get(EntitateMota.ETSAIA).get(etsaiID.get(i)-1);
 			switch(nora) {
 			case 0: 
 				etsai.mugitu(Mugimendua.BEHERA);
@@ -79,13 +79,9 @@ public class EntitateKolekzio {
 				break;
 			}
 			if(!etsai.bizirik()) {
-				if(!etsai.bizirik) {
-				    ArrayList<Entitate> Etsaia = ((EtsaiNodo) etsai).getGelaxkak();
-				    MatrizeM.getnMatrizeM().gelaxkakAktualizatu(Etsaia, 0, EntitateMota.HUTSA);
-				    this.mapa.get(EntitateMota.ETSAIA).remove(i);
-				    if(this.mapa.get(EntitateMota.ETSAIA).size() == 0) {
-				        JokoKudeatzailea.getnJokoKudeatzailea().jokoaGelditu(2);
-				    }
+				this.etsaiID.remove(i);
+				if(etsaiID.size() == 0) {
+				JokoKudeatzailea.getnJokoKudeatzailea().jokoaGelditu(2);
 				}
 			}
 		}
@@ -113,13 +109,7 @@ public class EntitateKolekzio {
 	
 
 	public void setBizirik(EntitateMota entitate, int i, boolean b) {
-		ArrayList<Entitate> entitateak = this.mapa.get(entitate);
-	    for (Entitate e : entitateak) {
-	        if (e.getId() == i) {
-	            e.setBizirik(b);
-	            break; 
-	        }
-	    }
+		this.mapa.get(entitate).get(i-1).setBizirik(b);
 	}
 	
 	public void tiroEgin() {
@@ -143,15 +133,8 @@ public class EntitateKolekzio {
 		 return pasaDa;
 	}
 	
-	public int balaKopurua() {
+	private int balaKopurua() {
 		return this.mapa.get(EntitateMota.BALA).size();
-	}
-	
-	public boolean getBizirik(EntitateMota entitate, int i) {
-		return this.mapa.get(entitate).get(i-1).bizirik();
-	}
-	public HashMap<EntitateMota, ArrayList<Entitate>> getMapa() {
-		return this.mapa;
 	}
 
 	public void nextBala() {
