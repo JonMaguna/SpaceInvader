@@ -29,7 +29,6 @@ public class Espaziontzi extends Entitate {
 	}
 	
 	public boolean mugituDaiteke(Mugimendua mugimendua) {
-	    boolean mugitu = true;
 	    int xHurrengoa = this.koordenatu[0][0];
 	    int yHurrengoa = this.koordenatu[0][1];
 
