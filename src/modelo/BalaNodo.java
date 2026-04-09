@@ -27,6 +27,9 @@ public class BalaNodo extends Entitate implements Runnable{
         			mugituDaiteke = this.gelaxkak.get(i).mugituDaiteke(Mugimendua.GORA);
         			i++;
         		}
+        		/*if(this.y<=1) {
+        			this.bizirik= false;
+        		}*/
         		if(mugituDaiteke) {
         			MatrizeM.getnMatrizeM().gelaxkakAktualizatu(this.gelaxkak, 0, EntitateMota.HUTSA);
         			for (Entitate pixel : this.gelaxkak) {
