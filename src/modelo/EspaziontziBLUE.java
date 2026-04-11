@@ -27,7 +27,7 @@ public class EspaziontziBLUE extends EspaziontziNodo {
 		case 1:
 			return BalaFactory.getnBalaFactory().sortuBala(this.x, this.y - 1, id, BalaMota.BALA_NORMALA);
 		case 2:
-			return BalaFactory.getnBalaFactory().sortuBala(this.x, this.y - 1, id, BalaMota.BALA_AZKARRA);
+			return BalaFactory.getnBalaFactory().sortuBala(this.x, this.y - 2, id, BalaMota.BALA_AZKARRA);
 		case 3:
 			return BalaFactory.getnBalaFactory().sortuBala(this.x, this.y - 1, id, BalaMota.BALA_HANDIA);
 		default:

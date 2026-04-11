@@ -1,4 +1,5 @@
 package vista;
+
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.GridLayout;
@@ -8,15 +9,12 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Observable;
 import java.util.Observer;
-
 import javax.swing.Timer;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import modelo.EntitateKolekzio;
 import modelo.JokoKudeatzailea;
 import modelo.MatrizeM;
@@ -50,24 +48,13 @@ public class MatrizeV extends JFrame implements Observer, KeyListener {
 		setBounds(100, 100, 3000, 2000); 
 		
 		contentPane = new JPanel() {
-			private static final long serialVersionUID = 1L;
-			private java.awt.Image imagenFondo;
-			{
-				try {
-					java.net.URL imgUrl = getClass().getResource("/img/e_4.png");
-					if (imgUrl != null) {
-						imagenFondo = new ImageIcon(imgUrl).getImage();
-					} else {
-						System.err.println("No se pudo encontrar la imagen de fondo.");
-					}
-				} catch (Exception e) {
-					System.err.println("Error al cargar la imagen: " + e.getMessage());
-				}
-			}
-
-			@Override
-			protected void paintComponent(java.awt.Graphics g) {
-				super.paintComponent(g);
+		private static final long serialVersionUID = 1L;
+		java.net.URL imgUrl = getClass().getResource("/img/e_3.jpg");
+		java.awt.Image imagenFondo = new ImageIcon(imgUrl).getImage();
+					
+		@Override
+		protected void paintComponent(java.awt.Graphics g) {
+			super.paintComponent(g);
 				if (imagenFondo != null) {
 					g.drawImage(imagenFondo, 0, 0, getWidth(), getHeight(), this);
 				}
