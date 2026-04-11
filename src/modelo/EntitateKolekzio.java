@@ -79,9 +79,7 @@ public class EntitateKolekzio {
 				break;
 			}
 			if(!etsai.bizirik()) {
-				    ArrayList<Entitate> Etsaia = ((EtsaiNodo) etsai).getGelaxkak();
-				    MatrizeM.getnMatrizeM().gelaxkakAktualizatu(Etsaia, 0, EntitateMota.HUTSA);
-				    this.mapa.get(EntitateMota.ETSAIA).remove(i);
+				    this.mapa.get(EntitateMota.ETSAIA).remove(etsai);
 				    i--;
 				    if(this.mapa.get(EntitateMota.ETSAIA).size() == 0) {
 				        JokoKudeatzailea.getnJokoKudeatzailea().jokoaGelditu(2);
@@ -109,14 +107,19 @@ public class EntitateKolekzio {
 		 }
 		 return pasaDa;
 	}
-	
 
 	public void setBizirik(EntitateMota entitate, int i, boolean b) {
 		ArrayList<Entitate> entitateak = this.mapa.get(entitate);
 	    for (Entitate e : entitateak) {
 	        if (e.getId() == i) {
 	            e.setBizirik(b);
-	            break; 
+	            if(b == false) {
+	            	this.mapa.get(entitate).remove(e);
+	            	if(this.mapa.get(EntitateMota.ETSAIA).size() == 0) {
+				        JokoKudeatzailea.getnJokoKudeatzailea().jokoaGelditu(2);
+	            	}
+	            }
+	            break;
 	        }
 	    }
 	}
@@ -129,7 +132,7 @@ public class EntitateKolekzio {
 		this.mapa.get(EntitateMota.BALA).add(bala);
 	}
 	
-	private boolean denboraPasaBala() {
+	private boolean denboraPasaBala() {	
 		 boolean pasaDa = false;
 		 long orain = System.currentTimeMillis();
 		 

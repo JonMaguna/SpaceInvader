@@ -26,7 +26,7 @@ public class BalaNodo extends Entitate implements Runnable{
             } catch (InterruptedException e) {
                 this.bizirik = false;
             }
-            }
+		}
 		MatrizeM.getnMatrizeM().gelaxkakAktualizatu(this.gelaxkak, 0, EntitateMota.HUTSA);
     }
 	public void setEstrategy(MugimenduEstrategia estrategia) {
@@ -34,5 +34,15 @@ public class BalaNodo extends Entitate implements Runnable{
 	}
 	public ArrayList<Entitate> getGelaxkak() {
 		return gelaxkak;
+	}
+	
+	public void setBizirik(boolean bizirik) {
+		this.bizirik = bizirik;
+		for (Entitate pixel : gelaxkak) {
+			pixel.setBizirik(bizirik);
+		}
+		if(!bizirik) {
+			MatrizeM.getnMatrizeM().gelaxkakAktualizatu(gelaxkak, 0, EntitateMota.HUTSA);
+		}
 	}
 }

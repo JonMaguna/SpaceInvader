@@ -27,4 +27,14 @@ public abstract class EspaziontziNodo extends Entitate{
 	public void setEstrategy(MugimenduEstrategia estrategia) {
 		this.mugimenduEstrategia = estrategia;
 	}
+	
+	public void setBizirik(boolean bizirik) {
+		this.bizirik = bizirik;
+		for (Entitate pixel : gelaxkak) {
+			pixel.setBizirik(bizirik);
+		}
+		if(!bizirik) {
+			MatrizeM.getnMatrizeM().gelaxkakAktualizatu(gelaxkak, 0, EntitateMota.HUTSA);
+		}
+	}
 }
