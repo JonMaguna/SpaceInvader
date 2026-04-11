@@ -20,7 +20,7 @@ public class MatrizeM{
 	public void SortuMatrizea() {
 		for (int i = 0; i < 60; i++) {
 			for (int j = 0; j < 100; j++) {
-				matrizea[j][i] = new GelaxkaM(j,i);	
+				matrizea[j][i] = new GelaxkaM();	
 			}
 		}
 	}

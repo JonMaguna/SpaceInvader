@@ -57,13 +57,13 @@ public class LeihoNagusiaV extends JFrame implements Observer{
 		java.awt.Image imagenEscalada = iconoOriginal.getImage().getScaledInstance(300, 300, java.awt.Image.SCALE_SMOOTH);
 		ImageIcon iconoAlien = new ImageIcon(imagenEscalada);
 		
-		JLabel goiL = new JLabel("Press <UP,LEFT,DOWN,RIGHT> or <W,A,S,D> to move");
+		JLabel goiL = new JLabel("Press <UP,LEFT,DOWN,RIGHT> or <W,A,S,D> to move, <SPACE> to shoot, <Shift> to change bullets");
 		goiL.setFont(new Font("Arial", Font.BOLD, 20));
 		goiL.setForeground(Color.WHITE);
 		goiL.setHorizontalAlignment(JLabel.CENTER);
 	    contentPane.add(goiL, BorderLayout.NORTH);
 	    
-		JLabel titL = new JLabel("SPACE INVADER");
+		JLabel titL = new JLabel("SPACE INVADERS");
 		titL.setFont(new Font("Arial", Font.BOLD, 100));
 		titL.setForeground(Color.YELLOW);
 		titL.setHorizontalAlignment(JLabel.CENTER);
