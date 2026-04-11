@@ -28,15 +28,15 @@ public class GelaxkaV extends JLabel implements Observer{
 		switch (mota) {
 			case ESPAZIONTZI:
 				setBackground(EspaziontziFactory.getNireEspaziontziFactory().getAzkenKolorea());
-				setBorder(BorderFactory.createLineBorder(Color.GRAY, 2));
+				setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
 				break;
 			case ETSAIA:
-				setBackground(Color.BLUE);
-				setBorder(BorderFactory.createLineBorder(Color.GRAY, 2));
+				setBackground(Color.GRAY);
+				setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
 				break;
 			case BALA:
 				setBackground(Color.WHITE);
-				setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+				setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 				break;
 			case HUTSA:
 				 setBackground(Color.BLACK);
