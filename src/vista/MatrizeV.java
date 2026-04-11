@@ -54,7 +54,7 @@ public class MatrizeV extends JFrame implements Observer, KeyListener {
 			private java.awt.Image imagenFondo;
 			{
 				try {
-					java.net.URL imgUrl = getClass().getResource("/img/3.png");
+					java.net.URL imgUrl = getClass().getResource("/img/e_4.png");
 					if (imgUrl != null) {
 						imagenFondo = new ImageIcon(imgUrl).getImage();
 					} else {
