@@ -16,7 +16,7 @@ public abstract class EtsaiNodo extends Entitate{
 		}
 		MatrizeM.getnMatrizeM().gelaxkakAktualizatu(gelaxkak, id, EntitateMota.ETSAIA);
 	}
-	@Override
+	
 	public void mugitu(Mugimendua mugimendu) {
 		this.mugimenduEstrategia.mugitu(this, mugimendu);
 	}
@@ -24,7 +24,14 @@ public abstract class EtsaiNodo extends Entitate{
 	public ArrayList<Entitate> getGelaxkak() {
 		return this.gelaxkak;
 	}
-	public void setEstrategy(MugimenduEstrategia estrategia) {
-		this.mugimenduEstrategia = estrategia;
+	
+	public void setBizirik(boolean bizirik) {
+		this.bizirik = bizirik;
+		for (Entitate pixel : gelaxkak) {
+			pixel.setBizirik(bizirik);
+		}
+		if(!bizirik) {
+			MatrizeM.getnMatrizeM().gelaxkakAktualizatu(gelaxkak, 0, EntitateMota.HUTSA);
+		}
 	}
 }

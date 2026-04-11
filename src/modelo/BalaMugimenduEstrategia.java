@@ -23,7 +23,7 @@ public class BalaMugimenduEstrategia implements MugimenduEstrategia {
     public void mugitu(Entitate ent, Mugimendua m) {
         BalaNodo nodo = (BalaNodo) ent;
         ArrayList<Entitate> gelaxkak = nodo.getGelaxkak();
-        if (this.mugituDaiteke(ent, m)) {
+        if (mugituDaiteke(ent, m)) {
             MatrizeM.getnMatrizeM().gelaxkakAktualizatu(gelaxkak, 0, EntitateMota.HUTSA);
             for (Entitate pixel : gelaxkak) {
                 pixel.mugitu(Mugimendua.GORA);
