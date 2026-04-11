@@ -27,10 +27,10 @@ public class EspaziontziFactory {
         	EspaziontziKolorea = Color.GREEN;
         	return new EspaziontziGREEN(xHasiera, yHasiera, id);
         default:
-        	EspaziontziKolorea = Color.RED;
-        	return new EspaziontziRED(xHasiera, yHasiera, id);
+        	return null;
 		}
-	}	
+	}
+	
 	public Color getAzkenKolorea() {
 		return EspaziontziKolorea;
 	}
