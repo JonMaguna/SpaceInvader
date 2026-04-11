@@ -74,7 +74,7 @@ public class Etsaiak extends Entitate {
 		}
 		return mugitu;
 	}
-	public void mugitu(Mugimendua mugimendu) {
+	protected void mugitu(Mugimendua mugimendu) {
 		switch(mugimendu) {
 		case BEHERA:
 			this.koordenatu[0][1] += 1;

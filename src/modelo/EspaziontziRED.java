@@ -5,7 +5,7 @@ import java.awt.Color;
 public class EspaziontziRED extends EspaziontziNodo {
 	private int bala = 1;
 	
-	public EspaziontziRED(int x, int y, int id) {
+	protected EspaziontziRED(int x, int y, int id) {
 		super(x, y, id);
         int[][] forma = {{-1,0},{1,0},{-1,1},{0,1},{1,1},{-1,2},{0,2},{1,2}};
 		for (int[] p: forma) {

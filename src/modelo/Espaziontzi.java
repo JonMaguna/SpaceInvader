@@ -53,7 +53,7 @@ public class Espaziontzi extends Entitate {
 	    return true;
 	}
 	
-	public void mugitu(Mugimendua mugimendu) {
+	protected void mugitu(Mugimendua mugimendu) {
 		switch (mugimendu) {
 		case GORA:
 			this.koordenatu[0][1] -= 1;

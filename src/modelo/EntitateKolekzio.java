@@ -145,7 +145,7 @@ public class EntitateKolekzio {
 		 return pasaDa;
 	}
 	
-	public int balaKopurua() {
+	private int balaKopurua() {
 		return this.mapa.get(EntitateMota.BALA).size();
 	}
 	
