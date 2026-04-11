@@ -18,35 +18,8 @@ public abstract class EtsaiNodo extends Entitate{
 	}
 	@Override
 	public void mugitu(Mugimendua mugimendu) {
-		boolean mugituDaiteke = true;
-		int i = 0;
-		while(i < this.gelaxkak.size() && mugituDaiteke){
-			mugituDaiteke = this.gelaxkak.get(i).mugituDaiteke(mugimendu);
-			if(!this.gelaxkak.get(i).bizirik()) {
-				setBizirik(false);
-				MatrizeM.getnMatrizeM().gelaxkakAktualizatu(gelaxkak, 0, EntitateMota.HUTSA);
-			}
-			i++;
-		}
-		if(mugituDaiteke) {
-			MatrizeM.getnMatrizeM().gelaxkakAktualizatu(gelaxkak, 0, EntitateMota.HUTSA);
-			for (Entitate pixel : this.gelaxkak) {
-				pixel.mugitu(mugimendu);
-			}
-			MatrizeM.getnMatrizeM().gelaxkakAktualizatu(gelaxkak, id, EntitateMota.ETSAIA);
-			eguneratuPosizioNagusia(mugimendu);
-		}
 		this.mugimenduEstrategia.mugitu(this, mugimendu);
 	}
-	
-	private void eguneratuPosizioNagusia(Mugimendua m) {
-		switch(m) {
-            case EZKERRA: this.x--; break;
-            case ESKUMA:  this.x++; break;
-            case BEHERA:  this.y++; break;
-            default: break;
-        }
-    }
 	
 	public ArrayList<Entitate> getGelaxkak() {
 		return this.gelaxkak;
