@@ -22,7 +22,6 @@ import modelo.JokoKudeatzailea;
 import modelo.MatrizeM;
 import modelo.Mugimendua;
 
-
 public class MatrizeV extends JFrame implements Observer, KeyListener {
 
 	private static final long serialVersionUID = 1L;
@@ -55,7 +54,7 @@ public class MatrizeV extends JFrame implements Observer, KeyListener {
 			private java.awt.Image imagenFondo;
 			{
 				try {
-					java.net.URL imgUrl = getClass().getResource("/img/espazioa_2.jpg");
+					java.net.URL imgUrl = getClass().getResource("/img/imagina.jpeg");
 					if (imgUrl != null) {
 						imagenFondo = new ImageIcon(imgUrl).getImage();
 					} else {
