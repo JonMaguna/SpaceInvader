@@ -55,9 +55,9 @@ public class MatrizeV extends JFrame implements Observer, KeyListener {
 		contentPane.setLayout(new GridLayout(60, 100, 0, 0));
 		setContentPane(contentPane);
 		
-		java.net.URL imgUrl = getClass().getResource("/img/ikurrina.png");
+		/*java.net.URL imgUrl = getClass().getResource("/img/ikurrina.png");
 		ImageIcon iconoFondo = new ImageIcon(imgUrl);
-		/*java.awt.Image imagenEscalada = iconoOriginal.getImage().getScaledInstance(300, 300, java.awt.Image.SCALE_SMOOTH);
+		java.awt.Image imagenEscalada = iconoOriginal.getImage().getScaledInstance(300, 300, java.awt.Image.SCALE_SMOOTH);
 		ImageIcon iconoFondo = new ImageIcon(imagenEscalada);*/
 		
 		this.matrizeV = new GelaxkaV[100][60];
