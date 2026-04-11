@@ -18,7 +18,7 @@ public class GelaxkaV extends JLabel implements Observer{
 	
 	public GelaxkaV(int korX, int korY) {
 		this.mota = EntitateMota.HUTSA;
-		setOpaque(true);
+		setOpaque(false);
 		koloreaEzarri(this.mota);
 	}
 	
@@ -29,18 +29,21 @@ public class GelaxkaV extends JLabel implements Observer{
 			case ESPAZIONTZI:
 				setBackground(EspaziontziFactory.getNireEspaziontziFactory().getAzkenKolorea());
 				setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
+				setOpaque(true);
 				break;
 			case ETSAIA:
 				setBackground(Color.GRAY);
 				setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
+				setOpaque(true);
 				break;
 			case BALA:
 				setBackground(Color.WHITE);
 				setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+				setOpaque(true);
 				break;
 			case HUTSA:
-				 setBackground(Color.BLACK);
-				 setBorder(BorderFactory.createLineBorder(Color.GRAY, 0));
+				setBackground(Color.BLACK);
+				//setBorder(BorderFactory.createLineBorder(Color.GRAY, 0));
 				break;
 			default:
 				break;

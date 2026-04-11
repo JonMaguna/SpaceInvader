@@ -48,29 +48,56 @@ public class MatrizeV extends JFrame implements Observer, KeyListener {
 	
 	public MatrizeV() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 3000, 2000);
-		contentPane = new JPanel();
-		contentPane.setBackground(Color.BLACK);
+		setBounds(100, 100, 3000, 2000); // Nota: Esta resolución es muy alta, asegúrate de que tu pantalla lo soporte.
+		
+		// 1. CREAMOS EL PANEL SOBREESCRIBIENDO paintComponent PARA DIBUJAR EL FONDO
+		contentPane = new JPanel() {
+			private static final long serialVersionUID = 1L;
+			private java.awt.Image imagenFondo;
+
+			// Bloque de inicialización para cargar la imagen
+			{
+				try {
+					// Asegúrate de que la ruta coincida con la ubicación en tu proyecto (carpeta src/img)
+					java.net.URL imgUrl = getClass().getResource("/img/ikurrina.png");
+					if (imgUrl != null) {
+						imagenFondo = new ImageIcon(imgUrl).getImage();
+					} else {
+						System.err.println("No se pudo encontrar la imagen de fondo.");
+					}
+				} catch (Exception e) {
+					System.err.println("Error al cargar la imagen: " + e.getMessage());
+				}
+			}
+
+			@Override
+			protected void paintComponent(java.awt.Graphics g) {
+				super.paintComponent(g);
+				if (imagenFondo != null) {
+					// Dibuja la imagen para que ocupe todo el panel
+					g.drawImage(imagenFondo, 0, 0, getWidth(), getHeight(), this);
+				}
+			}
+		};
+
+		// Opcional: poner fondo negro por si la imagen tarda en cargar o falla
+		contentPane.setBackground(Color.BLACK); 
 		contentPane.setBorder(new EmptyBorder(1, 1, 1, 1));
 		contentPane.setLayout(new GridLayout(60, 100, 0, 0));
 		setContentPane(contentPane);
 		
-		/*java.net.URL imgUrl = getClass().getResource("/img/ikurrina.png");
-		ImageIcon iconoFondo = new ImageIcon(imgUrl);
-		java.awt.Image imagenEscalada = iconoOriginal.getImage().getScaledInstance(300, 300, java.awt.Image.SCALE_SMOOTH);
-		ImageIcon iconoFondo = new ImageIcon(imagenEscalada);*/
-		
 		this.matrizeV = new GelaxkaV[100][60];
 		JokoKudeatzailea.getnJokoKudeatzailea().addObserver(this);
-        this.addKeyListener(this); 
-        this.setFocusable(true);
-        Timer timer = new Timer(16, new ActionListener() {
-	        public void actionPerformed(ActionEvent e) {
-	            mugimenduakAktualizatu();
-	        }
-	    });
-	    timer.start();
-    }
+		this.addKeyListener(this); 
+		this.setFocusable(true);
+		
+		Timer timer = new Timer(16, new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				mugimenduakAktualizatu();
+			}
+		});
+		timer.start();
+	}
 
 	
 	public void keyPressed(KeyEvent e) {
