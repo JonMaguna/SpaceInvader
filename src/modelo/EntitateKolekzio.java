@@ -52,7 +52,7 @@ public class EntitateKolekzio {
 	}
 	
 	private void etsaienMugimendua() {
-		Timer timer = new Timer(200, new ActionListener() {
+		Timer timer = new Timer(400, new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
 	            etsaiakMugitu();
 	        }
