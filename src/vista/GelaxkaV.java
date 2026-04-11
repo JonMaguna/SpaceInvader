@@ -32,7 +32,7 @@ public class GelaxkaV extends JLabel implements Observer{
 				setOpaque(true);
 				break;
 			case ETSAIA:
-				setBackground(Color.GRAY);
+				setBackground(Color.LIGHT_GRAY);
 				setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
 				setOpaque(true);
 				break;

@@ -77,7 +77,7 @@ public class LeihoNagusiaV extends JFrame implements Observer{
 		
 		aukeraL = new JLabel("Aukeratutako ontzia: 1");
 		aukeraL.setFont(new Font("Arial", Font.BOLD, 20));
-		aukeraL.setForeground(Color.CYAN);
+		aukeraL.setForeground(Color.RED);
 		aukeraL.setHorizontalAlignment(JLabel.CENTER);
 		behekoPanela.add(aukeraL, BorderLayout.NORTH);
 		
@@ -99,17 +99,17 @@ public class LeihoNagusiaV extends JFrame implements Observer{
 				if(code == KeyEvent.VK_1) {
 					aukeratutakoOntzia=1;
 					aukeraL.setText("Aukeratutako ontzia: 1");
-					aukeraL.setForeground(Color.CYAN);
+					aukeraL.setForeground(Color.RED);
 				}
 				else if(code == KeyEvent.VK_2) {
 					aukeratutakoOntzia=2;
 					aukeraL.setText("Aukeratutako ontzia: 2");
-					aukeraL.setForeground(Color.MAGENTA);
+					aukeraL.setForeground(Color.BLUE);
 				}
 				else if(code == KeyEvent.VK_3) {
 					aukeratutakoOntzia=3;
 					aukeraL.setText("Aukeratutako ontzia: 3");
-					aukeraL.setForeground(Color.ORANGE);
+					aukeraL.setForeground(Color.GREEN);
 				}
 				if(e.getKeyCode() == KeyEvent.VK_ENTER) {
 					JokoKudeatzailea.getnJokoKudeatzailea().jokoaHasieratu(aukeratutakoOntzia);
