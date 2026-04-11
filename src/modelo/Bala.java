@@ -12,9 +12,9 @@ public class Bala extends Entitate{
     	EntitateMota entitatea = null;
     	int xHurrengoa = this.koordenatu[0][0];
     	int yHurrengoa = this.koordenatu[0][1]-1;
-    	if(yHurrengoa <= 0) { 
-            mugitu = false;
-            this.setBizirik(false);             
+    	if(yHurrengoa == -1) { 
+            this.setBizirik(false);         
+            return false;
     	}
     	int[][] Hurrengoa = {{xHurrengoa, yHurrengoa}};
     	entitatea = MatrizeM.getnMatrizeM().zerDago(Hurrengoa);
@@ -28,7 +28,6 @@ public class Bala extends Entitate{
     			    mugitu = false;
     			    this.setBizirik(false);
     			    break;
-    			    
     			case BALA:
     				if(BesteId != this.id) {
     					mugitu = false;
