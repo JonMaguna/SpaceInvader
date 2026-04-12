@@ -3,21 +3,10 @@ import java.awt.Color;
 import java.util.ArrayList;
 
 public class Espaziontzi extends Entitate {
-	private Color kolorea;
 	protected ArrayList<Entitate> gelaxkak = new ArrayList<>();
 	
 	public Espaziontzi(int x, int y, int id, Color pKolorea) {
 		super(x, y, id, true);
-		this.kolorea=pKolorea;
-	}
-	public Color getKolorea() {
-		return this.kolorea;
-	}
-	public int getX() {
-		return this.koordenatu[0][0];
-	}
-	public int getY() {
-		return this.koordenatu[0][1];
 	}
 	
 	public void setBizirik(boolean bizirik) {
@@ -46,10 +35,9 @@ public class Espaziontzi extends Entitate {
 	    EntitateMota entitatea = MatrizeM.getnMatrizeM().zerDago(posHurrengoa);
 
 	    if (entitatea == EntitateMota.ETSAIA) {
-	        this.setBizirik(false); 
+	        setBizirik(false); 
 	        return false;           
 	    }
-
 	    return true;
 	}
 	

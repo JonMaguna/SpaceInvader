@@ -15,17 +15,6 @@ public abstract class EspaziontziNodo extends Entitate{
 	}
 	public void mugitu(Mugimendua mugimendu) {
 		this.mugimenduEstrategia.mugitu(this, mugimendu);
-		}
-	protected void eguneratuPosizioNagusia(Mugimendua m) {
-		switch(m) {
-            case EZKERRA: this.x--; break;
-            case ESKUMA:  this.x++; break;
-            case GORA:    this.y--; break;
-            case BEHERA:  this.y++; break;
-        }
-    }
-	public void setEstrategy(MugimenduEstrategia estrategia) {
-		this.mugimenduEstrategia = estrategia;
 	}
 	
 	public void setBizirik(boolean bizirik) {

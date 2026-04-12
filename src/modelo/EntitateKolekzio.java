@@ -148,13 +148,6 @@ public class EntitateKolekzio {
 	private int balaKopurua() {
 		return this.mapa.get(EntitateMota.BALA).size();
 	}
-	
-	public boolean getBizirik(EntitateMota entitate, int i) {
-		return this.mapa.get(entitate).get(i-1).bizirik();
-	}
-	public HashMap<EntitateMota, ArrayList<Entitate>> getMapa() {
-		return this.mapa;
-	}
 
 	public void nextBala() {
 		this.mapa.get(EntitateMota.ESPAZIONTZI).get(0).nextBala();
