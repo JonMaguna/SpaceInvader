@@ -16,7 +16,7 @@ public abstract class Entitate {
 		this.y = y;
 	}
 	
-	public void mugitu(Mugimendua mugimendu) {	}
+	protected void mugitu(Mugimendua mugimendu) {	}
 	
 	public boolean mugituDaiteke(Mugimendua mugimendu) {
 		return true;

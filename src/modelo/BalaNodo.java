@@ -10,12 +10,26 @@ public class BalaNodo extends Entitate implements Runnable{
 	public BalaNodo(int x, int y, int[][] koordenatuak, int id) {
 		super(x, y, id, true);
 		this.mugimenduEstrategia = new BalaMugimenduEstrategia();
-		for (int i = 0; i < koordenatuak.length; i++) {
-			this.gelaxkak.add(new Bala(koordenatuak[i][0], koordenatuak[i][1], id));
-		}
-		MatrizeM.getnMatrizeM().gelaxkakAktualizatu(gelaxkak, this.id, EntitateMota.BALA);
-		this.ThreadBala = new Thread(this);
-		this.ThreadBala.start();
+		boolean EtsaiaDago = false;
+	    for (int i = 0; i < koordenatuak.length; i++) {
+	        int posX = koordenatuak[i][0];
+	        int posY = koordenatuak[i][1];
+	        int[][] posHurrengoa = {{posX, posY}};
+	        EntitateMota entitatea = MatrizeM.getnMatrizeM().zerDago(posHurrengoa);
+	        int besteId = MatrizeM.getnMatrizeM().zeinIDDago(posHurrengoa);
+	        if (entitatea == EntitateMota.ETSAIA) {
+	            EntitateKolekzio.getnPertsonaiZerrenda().setBizirik(EntitateMota.ETSAIA, besteId, false);
+	            EtsaiaDago = true;
+	        }
+	        this.gelaxkak.add(new Bala(posX, posY, id));
+	    }
+	    if (EtsaiaDago) {
+	        this.bizirik = false; 
+	    } else {
+	        MatrizeM.getnMatrizeM().gelaxkakAktualizatu(gelaxkak, this.id, EntitateMota.BALA);
+	        this.ThreadBala = new Thread(this);
+	        this.ThreadBala.start();
+	    }
 	}
 
 	public void run() {
