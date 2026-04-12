@@ -27,7 +27,7 @@ public class MatrizeV extends JFrame implements Observer, KeyListener {
 	private GelaxkaV[][] matrizeV;
 	private boolean presionatuta = false;
 	private boolean ezkerra, eskuma, gora, behera, tiroEgin, nextBala;
-	
+	private Timer mainTimer;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -70,12 +70,12 @@ public class MatrizeV extends JFrame implements Observer, KeyListener {
 		this.addKeyListener(this); 
 		this.setFocusable(true);
 		
-		Timer timer = new Timer(16, new ActionListener() {
+		mainTimer = new Timer(16, new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				mugimenduakAktualizatu();
 			}
 		});
-		timer.start();
+		mainTimer.start();
 	}
 
 	
@@ -168,11 +168,8 @@ public class MatrizeV extends JFrame implements Observer, KeyListener {
 			        aukerak[0]                        
 			    );
 			    if (aukeratutakoa == 0) {
-			        this.dispose();
-			        LeihoNagusiaV.LVmain(null);
-			        
+			    	JokoKudeatzailea.getnJokoKudeatzailea().reset();
 			    } else {
-			        this.dispose();
 			        System.exit(0);
 			    }
 			    break;
@@ -189,14 +186,16 @@ public class MatrizeV extends JFrame implements Observer, KeyListener {
 			        aukerak2[0]                        
 			    );
 			    if (aukeratutakoa2 == 0) {
-			        this.dispose();
-			        LeihoNagusiaV.LVmain(null);
-			        
+			    	JokoKudeatzailea.getnJokoKudeatzailea().reset();
 			    } else {
-			        this.dispose();
 			        System.exit(0);
 			    }
 			    break;
+			case 3:
+				if (mainTimer != null) mainTimer.stop();
+				LeihoNagusiaV.LVmain(null);
+				this.dispose();
+				break;
 			default:
 				break;
 		}

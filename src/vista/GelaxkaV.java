@@ -1,4 +1,5 @@
 package vista;
+
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import java.awt.Color;
@@ -8,8 +9,6 @@ import java.util.Observer;
 import modelo.EntitateMota;
 import modelo.GelaxkaM;
 import modelo.EspaziontziFactory;
-
-
 
 public class GelaxkaV extends JLabel implements Observer{
 	

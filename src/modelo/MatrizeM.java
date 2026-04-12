@@ -45,4 +45,8 @@ public class MatrizeM{
 	public int zeinIDDago(int[][] koordenatu) {
 		return matrizea[koordenatu[0][0]][koordenatu[0][1]].getID();
 	}
+	
+	public static void resetMatrizea() {
+		nMatrizeM = null;
+	}
 }
