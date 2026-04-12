@@ -6,6 +6,7 @@ public class BalaNodo extends Entitate implements Runnable{
 	protected MugimenduEstrategia mugimenduEstrategia;
 	private Thread ThreadBala;
 	private ArrayList<Entitate> gelaxkak = new ArrayList<>();
+	private volatile boolean bizirik = true;
 
 	public BalaNodo(int x, int y, int[][] koordenatuak, int id) {
 		super(x, y, id, true);
@@ -25,7 +26,7 @@ public class BalaNodo extends Entitate implements Runnable{
 	    }
 	    if (EtsaiaDago) {
 	        this.bizirik = false; 
-	    } else {
+	    } else {	
 	        MatrizeM.getnMatrizeM().gelaxkakAktualizatu(gelaxkak, this.id, EntitateMota.BALA);
 	        this.ThreadBala = new Thread(this);
 	        this.ThreadBala.start();
@@ -35,13 +36,12 @@ public class BalaNodo extends Entitate implements Runnable{
 	public void run() {
 		while (bizirik && JokoKudeatzailea.getnJokoKudeatzailea().getJokoanDa()) { 
             try {
-            	Thread.sleep(50);
                 this.mugimenduEstrategia.mugitu(this, Mugimendua.GORA);
+            	Thread.sleep(50);
             } catch (InterruptedException e) {
                 this.bizirik = false;
             }
 		}
-		MatrizeM.getnMatrizeM().gelaxkakAktualizatu(this.gelaxkak, 0, EntitateMota.HUTSA);
     }
 	public ArrayList<Entitate> getGelaxkak() {
 		return gelaxkak;
@@ -52,7 +52,7 @@ public class BalaNodo extends Entitate implements Runnable{
 		for (Entitate pixel : gelaxkak) {
 			pixel.setBizirik(bizirik);
 		}
-		if(!bizirik) {
+		if(!bizirik && JokoKudeatzailea.getnJokoKudeatzailea().getJokoanDa()) {
 			MatrizeM.getnMatrizeM().gelaxkakAktualizatu(gelaxkak, 0, EntitateMota.HUTSA);
 		}
 	}

@@ -16,6 +16,7 @@ public class EntitateKolekzio {
 	private long azkenMugimendua;
 	private long azkenTiroa;
 	private Timer etsaienTimer;
+	
 	private EntitateKolekzio() {
 		this.mapa = new HashMap<EntitateMota, ArrayList<Entitate>>();
 		this.mapa.put(EntitateMota.ESPAZIONTZI, new ArrayList<Entitate>());
@@ -114,7 +115,7 @@ public class EntitateKolekzio {
 	    for (Entitate e : entitateak) {
 	        if (e.getId() == i) {
 	            e.setBizirik(b);
-	            if(b == false) {
+	            if(b == false && JokoKudeatzailea.getnJokoKudeatzailea().getJokoanDa()) {
 	            	this.mapa.get(entitate).remove(e);
 	            	if(this.mapa.get(EntitateMota.ETSAIA).size() == 0) {
 				        JokoKudeatzailea.getnJokoKudeatzailea().jokoaGelditu(2);
@@ -154,15 +155,12 @@ public class EntitateKolekzio {
 		this.mapa.get(EntitateMota.ESPAZIONTZI).get(0).nextBala();
 	}
 	
-	public static void resetZerrendak() {
+	public void resetZerrendak() {
+        this.etsaienTimer.stop();
+		this.etsaienTimer = null;
+		this.azkenMugimendua = 0;
+		this.azkenTiroa = 0;
+		this.mapa = null;
 		nPertsonaiZerrenda = null;
-		System.out.println("");
-	}
-	
-	public void timerBukatu() {
-		if (this.etsaienTimer != null) {
-	        this.etsaienTimer.stop();
-	        this.etsaienTimer = null;
-	    }
 	}
 }

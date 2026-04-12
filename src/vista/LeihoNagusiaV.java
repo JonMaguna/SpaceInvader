@@ -50,7 +50,7 @@ public class LeihoNagusiaV extends JFrame implements Observer{
 		setContentPane(contentPane);
 		contentPane.setBackground(Color.BLACK);
 		contentPane.setLayout(new BorderLayout(0, 0));
-		JokoKudeatzailea.getnJokoKudeatzailea().addObserver(this);
+		//JokoKudeatzailea.getnJokoKudeatzailea().addObserver(this);
 		
 		java.net.URL imgUrl = getClass().getResource("/img/alien2.png");
 		ImageIcon iconoOriginal = new ImageIcon(imgUrl);
@@ -112,6 +112,7 @@ public class LeihoNagusiaV extends JFrame implements Observer{
 					aukeraL.setForeground(Color.GREEN);
 				}
 				if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+					JokoKudeatzailea.getnJokoKudeatzailea().addObserver(LeihoNagusiaV.this);
 					JokoKudeatzailea.getnJokoKudeatzailea().jokoaHasieratu(aukeratutakoOntzia);
 				}
 			}

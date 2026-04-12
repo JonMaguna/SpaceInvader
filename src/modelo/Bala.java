@@ -26,12 +26,12 @@ public class Bala extends Entitate{
     			case ETSAIA:
     			    EntitateKolekzio.getnPertsonaiZerrenda().setBizirik(EntitateMota.ETSAIA, BesteId, false); 
     			    mugitu = false;
-    			    this.setBizirik(false);
+    			    setBizirik(false);
     			    break;
     			case BALA:
     				if(BesteId != this.id) {
     					mugitu = false;
-    					this.setBizirik(false);
+    					setBizirik(false);
     				}
     				break;
     			default:			

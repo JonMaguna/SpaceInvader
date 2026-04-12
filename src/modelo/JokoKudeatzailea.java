@@ -37,20 +37,10 @@ public class JokoKudeatzailea extends Observable{
 	}
 	
 	public void reset() {
-		// 1. PRIMERO paramos los timers de la instancia actual antes de borrarla
-		EntitateKolekzio.getnPertsonaiZerrenda().timerBukatu();
-		
-		// 2. LUEGO borramos (reseteamos) las instancias
-		MatrizeM.resetMatrizea();
-		EntitateKolekzio.resetZerrendak();
-		
-		this.jokoanDa = false;
-		
-		// 3. Notificamos a la vista (MatrizeV) para que cierre la ventana
+		EntitateKolekzio.getnPertsonaiZerrenda().resetZerrendak();
+		MatrizeM.getnMatrizeM().resetMatrizea();
 		setChanged();
 		notifyObservers(3);
-		
-		// 4. Borramos los observadores para empezar limpio
 		this.deleteObservers();
 	}
 }

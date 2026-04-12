@@ -30,6 +30,9 @@ public class MatrizeM{
     }
 
 	public void gelaxkakAktualizatu(ArrayList<Entitate> entitateLista, int id, EntitateMota entitate) {
+		if(nMatrizeM == null || this.matrizea == null) {
+			return;
+		}
 		for (Entitate ent : entitateLista) {
 			int [][] kordenatu = ent.getKoordenatu();
 			int x = kordenatu[0][0];
@@ -46,7 +49,8 @@ public class MatrizeM{
 		return matrizea[koordenatu[0][0]][koordenatu[0][1]].getID();
 	}
 	
-	public static void resetMatrizea() {
+	public void resetMatrizea() {
+		this.matrizea = null;
 		nMatrizeM = null;
 	}
 }
