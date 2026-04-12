@@ -121,7 +121,7 @@ public class LeihoNagusiaV extends JFrame implements Observer{
 	public void update(Observable o, Object arg) {
 		if(arg == null) {
 			MatrizeV m = new MatrizeV();
-		m.setVisible(true);
+			m.setVisible(true);
 			dispose();
 		}
 	}
