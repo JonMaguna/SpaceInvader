@@ -15,6 +15,7 @@ public class EntitateKolekzio {
 	private HashMap<EntitateMota, ArrayList<Entitate>> mapa;
 	private long azkenMugimendua;
 	private long azkenTiroa;
+	private Timer etsaienTimer;
 	private EntitateKolekzio() {
 		this.mapa = new HashMap<EntitateMota, ArrayList<Entitate>>();
 		this.mapa.put(EntitateMota.ESPAZIONTZI, new ArrayList<Entitate>());
@@ -52,12 +53,12 @@ public class EntitateKolekzio {
 	}
 	
 	private void etsaienMugimendua() {
-		Timer timer = new Timer(400, new ActionListener() {
+		this.etsaienTimer = new Timer(400, new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
 	            etsaiakMugitu();
 	        }
 	    });
-	    timer.start();
+	    this.etsaienTimer.start();
 	}
 
 	private void etsaiakMugitu() {
@@ -158,5 +159,17 @@ public class EntitateKolekzio {
 
 	public void nextBala() {
 		this.mapa.get(EntitateMota.ESPAZIONTZI).get(0).nextBala();
+	}
+	
+	public static void resetZerrendak() {
+		nPertsonaiZerrenda = null;
+		System.out.println("");
+	}
+	
+	public void timerBukatu() {
+		if (this.etsaienTimer != null) {
+	        this.etsaienTimer.stop();
+	        this.etsaienTimer = null;
+	    }
 	}
 }
