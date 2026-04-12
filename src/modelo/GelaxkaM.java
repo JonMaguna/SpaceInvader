@@ -30,8 +30,8 @@ public class GelaxkaM extends Observable {
     }
 
     private void aldaketaNotifikatu() {
-        setChanged();	
-        notifyObservers(this.gelaxka_mota.getEntitateMota());
+    	    setChanged();	
+    	    notifyObservers(this.gelaxka_mota.getColor()); 
     }
 
 	public int getID() { return this.id; }
