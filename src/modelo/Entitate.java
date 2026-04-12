@@ -34,18 +34,17 @@ public abstract class Entitate {
 		return this.bizirik;
 	}
 	
-	public void setKoordenatu(int[][] koordenatu) {
-		this.koordenatu = koordenatu;
-	}
-	
 	public void setBizirik(boolean bizirik) {
 		this.bizirik = bizirik;
 	}
+	
 	public void nextBala() { }
 	public BalaNodo tiroEgin(int id) { return null; }
+	
 	public int getX() {
 		return this.x;
 	}
+	
 	public int getY() {
 		return this.y;
 	}

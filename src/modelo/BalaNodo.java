@@ -43,9 +43,6 @@ public class BalaNodo extends Entitate implements Runnable{
 		}
 		MatrizeM.getnMatrizeM().gelaxkakAktualizatu(this.gelaxkak, 0, EntitateMota.HUTSA);
     }
-	public void setEstrategy(MugimenduEstrategia estrategia) {
-		this.mugimenduEstrategia = estrategia;
-	}
 	public ArrayList<Entitate> getGelaxkak() {
 		return gelaxkak;
 	}
