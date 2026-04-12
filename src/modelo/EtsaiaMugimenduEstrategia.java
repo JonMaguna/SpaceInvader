@@ -5,22 +5,26 @@ import java.util.ArrayList;
 public class EtsaiaMugimenduEstrategia implements MugimenduEstrategia {
 	@Override
     public boolean mugituDaiteke(Entitate ent, Mugimendua m) {
-        return true;
+		EtsaiNodo nodo = (EtsaiNodo) ent;
+        ArrayList<Entitate> gelaxkak = nodo.getGelaxkak();
+        boolean mugitu = true;
+        for (Entitate pixel : gelaxkak) {
+            if (!pixel.mugituDaiteke(m)) {
+                mugitu = false;
+                if (!pixel.bizirik()) {
+                    nodo.setBizirik(false);
+                }
+                break; 
+            }
+        }
+        return mugitu;
     }
+    
     @Override
     public void mugitu(Entitate ent, Mugimendua m) {
         EtsaiNodo nodo = (EtsaiNodo) ent;
         ArrayList<Entitate> gelaxkak = nodo.getGelaxkak();
-        boolean mugituDaiteke = true;
-        int i = 0;
-        while(i < gelaxkak.size() && mugituDaiteke){
-            mugituDaiteke = gelaxkak.get(i).mugituDaiteke(m);
-            if(!gelaxkak.get(i).bizirik()) {
-                nodo.setBizirik(false);
-            }
-            i++;
-        }
-        if(mugituDaiteke) {
+        if(mugituDaiteke(ent, m)) {
             MatrizeM.getnMatrizeM().gelaxkakAktualizatu(gelaxkak, 0, EntitateMota.HUTSA);            
             for (Entitate pixel : gelaxkak) {
                 pixel.mugitu(m);
