@@ -1,4 +1,5 @@
 package vista;
+
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.GridLayout;
@@ -8,18 +9,16 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Observable;
 import java.util.Observer;
-
 import javax.swing.Timer;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import modelo.EntitateKolekzio;
 import modelo.JokoKudeatzailea;
 import modelo.MatrizeM;
 import modelo.Mugimendua;
-
 
 public class MatrizeV extends JFrame implements Observer, KeyListener {
 
@@ -28,7 +27,7 @@ public class MatrizeV extends JFrame implements Observer, KeyListener {
 	private GelaxkaV[][] matrizeV;
 	private boolean presionatuta = false;
 	private boolean ezkerra, eskuma, gora, behera, tiroEgin, nextBala;
-	
+	private Timer mainTimer;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -46,23 +45,38 @@ public class MatrizeV extends JFrame implements Observer, KeyListener {
 	
 	public MatrizeV() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 3000, 2000);
-		contentPane = new JPanel();
-		contentPane.setBackground(Color.BLACK);
+		setBounds(100, 100, 3000, 2000); 
+		
+		contentPane = new JPanel() {
+		private static final long serialVersionUID = 1L;
+		java.net.URL imgUrl = getClass().getResource("/img/e_3.jpg");
+		java.awt.Image imagenFondo = new ImageIcon(imgUrl).getImage();
+					
+		@Override
+		protected void paintComponent(java.awt.Graphics g) {
+			super.paintComponent(g);
+				if (imagenFondo != null) {
+					g.drawImage(imagenFondo, 0, 0, getWidth(), getHeight(), this);
+				}
+			}
+		};
+		contentPane.setBackground(Color.BLACK); 
 		contentPane.setBorder(new EmptyBorder(1, 1, 1, 1));
 		contentPane.setLayout(new GridLayout(60, 100, 0, 0));
 		setContentPane(contentPane);
+		
 		this.matrizeV = new GelaxkaV[100][60];
 		JokoKudeatzailea.getnJokoKudeatzailea().addObserver(this);
-        this.addKeyListener(this); 
-        this.setFocusable(true);
-        Timer timer = new Timer(16, new ActionListener() {
-	        public void actionPerformed(ActionEvent e) {
-	            mugimenduakAktualizatu();
-	        }
-	    });
-	    timer.start();
-    }
+		this.addKeyListener(this); 
+		this.setFocusable(true);
+		
+		mainTimer = new Timer(16, new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				mugimenduakAktualizatu();
+			}
+		});
+		mainTimer.start();
+	}
 
 	
 	public void keyPressed(KeyEvent e) {
@@ -142,10 +156,45 @@ public class MatrizeV extends JFrame implements Observer, KeyListener {
 				}
 				break;
 			case 1:
-				JOptionPane.showMessageDialog(this, "Jokoa galdu duzu, saiatu berriro!");
-				break;
+			    String[] aukerak = {"Saiatu berriro", "Irten"};
+			    int aukeratutakoa = JOptionPane.showOptionDialog(
+			        this,                             
+			        "Jokoa galdu duzu, zer egin nahi duzu?",
+			        "Joko Amaiera",                   
+			        JOptionPane.DEFAULT_OPTION,       
+			        JOptionPane.INFORMATION_MESSAGE,  
+			        null,                             
+			        aukerak,                          
+			        aukerak[0]                        
+			    );
+			    if (aukeratutakoa == 0) {
+			    	JokoKudeatzailea.getnJokoKudeatzailea().reset();
+			    } else {
+			        System.exit(0);
+			    }
+			    break;
 			case 2:
-				JOptionPane.showMessageDialog(this, "Zorionak, irabazi duzu!");
+				String[] aukerak2 = {"Saiatu berriro", "Irten"};
+			    int aukeratutakoa2 = JOptionPane.showOptionDialog(
+			        this,                             
+			        "Zorionak, irabazi duzu!",
+			        "Joko Amaiera",                   
+			        JOptionPane.DEFAULT_OPTION,       
+			        JOptionPane.INFORMATION_MESSAGE,  
+			        null,                             
+			        aukerak2,                          
+			        aukerak2[0]                        
+			    );
+			    if (aukeratutakoa2 == 0) {
+			    	JokoKudeatzailea.getnJokoKudeatzailea().reset();
+			    } else {
+			        System.exit(0);
+			    }
+			    break;
+			case 3:
+				if (mainTimer != null) mainTimer.stop();
+				LeihoNagusiaV.LVmain(null);
+				this.dispose();
 				break;
 			default:
 				break;

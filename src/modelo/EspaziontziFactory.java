@@ -18,19 +18,19 @@ public class EspaziontziFactory {
 		int id = 1;
 		switch(pMota) {
 		case 1:
-			EspaziontziKolorea = Color.CYAN;
-			return new EspaziontziCyan(xHasiera, yHasiera, id);
+			EspaziontziKolorea = Color.RED;
+			return new EspaziontziRED(xHasiera, yHasiera, id);
         case 2:
-        	EspaziontziKolorea = Color.MAGENTA;
-        	return new EspaziontziMagenta(xHasiera, yHasiera, id);
+        	EspaziontziKolorea = Color.BLUE;
+        	return new EspaziontziBLUE(xHasiera, yHasiera, id);
         case 3:
-        	EspaziontziKolorea = Color.ORANGE;
-        	return new EspaziontziOrange(xHasiera, yHasiera, id);
+        	EspaziontziKolorea = Color.GREEN;
+        	return new EspaziontziGREEN(xHasiera, yHasiera, id);
         default:
-        	EspaziontziKolorea = Color.CYAN;
-        	return new EspaziontziCyan(xHasiera, yHasiera, id);
+        	return null;
 		}
-	}	
+	}
+	
 	public Color getAzkenKolorea() {
 		return EspaziontziKolorea;
 	}

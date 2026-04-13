@@ -35,4 +35,12 @@ public class JokoKudeatzailea extends Observable{
 		setChanged();
 		notifyObservers(mezua);
 	}
+	
+	public void reset() {
+		EntitateKolekzio.getnPertsonaiZerrenda().resetZerrendak();
+		MatrizeM.getnMatrizeM().resetMatrizea();
+		setChanged();
+		notifyObservers(3);
+		this.deleteObservers();
+	}
 }

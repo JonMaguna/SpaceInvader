@@ -15,6 +15,8 @@ public class EntitateKolekzio {
 	private HashMap<EntitateMota, ArrayList<Entitate>> mapa;
 	private long azkenMugimendua;
 	private long azkenTiroa;
+	private Timer etsaienTimer;
+	
 	private EntitateKolekzio() {
 		this.mapa = new HashMap<EntitateMota, ArrayList<Entitate>>();
 		this.mapa.put(EntitateMota.ESPAZIONTZI, new ArrayList<Entitate>());
@@ -52,12 +54,12 @@ public class EntitateKolekzio {
 	}
 	
 	private void etsaienMugimendua() {
-		Timer timer = new Timer(200, new ActionListener() {
+		this.etsaienTimer = new Timer(400, new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
 	            etsaiakMugitu();
 	        }
 	    });
-	    timer.start();
+	    this.etsaienTimer.start();
 	}
 
 	private void etsaiakMugitu() {
@@ -79,16 +81,13 @@ public class EntitateKolekzio {
 				break;
 			}
 			if(!etsai.bizirik()) {
-				if(!etsai.bizirik) {
-				    ArrayList<Entitate> Etsaia = ((EtsaiNodo) etsai).getGelaxkak();
-				    MatrizeM.getnMatrizeM().gelaxkakAktualizatu(Etsaia, 0, EntitateMota.HUTSA);
-				    this.mapa.get(EntitateMota.ETSAIA).remove(i);
+				    this.mapa.get(EntitateMota.ETSAIA).remove(etsai);
+				    i--;
 				    if(this.mapa.get(EntitateMota.ETSAIA).size() == 0) {
 				        JokoKudeatzailea.getnJokoKudeatzailea().jokoaGelditu(2);
 				    }
 				}
 			}
-		}
 	}
 	
 	public void mugituOntzia (Mugimendua mugimendua) {
@@ -102,7 +101,7 @@ public class EntitateKolekzio {
 		 boolean pasaDa = false;
 		 long orain = System.currentTimeMillis();
 		 
-		 if (orain - this.azkenMugimendua < 125) {
+		 if (orain - this.azkenMugimendua < 130) {
 			 pasaDa = true;
 		 }
 		 else {
@@ -110,35 +109,21 @@ public class EntitateKolekzio {
 		 }
 		 return pasaDa;
 	}
-	
 
 	public void setBizirik(EntitateMota entitate, int i, boolean b) {
 		ArrayList<Entitate> entitateak = this.mapa.get(entitate);
-		Entitate ezabatu = null;
 	    for (Entitate e : entitateak) {
 	        if (e.getId() == i) {
 	            e.setBizirik(b);
-	            if (!b) {
-	            	ezabatu = e;
+	            if(b == false && JokoKudeatzailea.getnJokoKudeatzailea().getJokoanDa()) {
+	            	this.mapa.get(entitate).remove(e);
+	            	if(this.mapa.get(EntitateMota.ETSAIA).size() == 0) {
+				        JokoKudeatzailea.getnJokoKudeatzailea().jokoaGelditu(2);
+	            	}
 	            }
-	            break; 
+	            break;
 	        }
 	    }
-	    if(ezabatu != null && entitate == EntitateMota.ETSAIA) {
-	    	if(ezabatu instanceof EtsaiNodo) {
-	    		EtsaiNodo nodoa = (EtsaiNodo) ezabatu;
-	    		for(Entitate p: nodoa.getGelaxkak()) {
-	    			int [][] koordenatu = p.getKoordenatu();
-	    			int x = p.getX();
-	    			int y = p.getY();
-	    			MatrizeM.getnMatrizeM().getGelaxka(x, y).setEntitate(EntitateMota.HUTSA,0);
-	    		}
-	    	}
-	    	entitateak.remove(ezabatu);
-	    	if(entitateak.isEmpty()) {
-	    		JokoKudeatzailea.getnJokoKudeatzailea().jokoaGelditu(2);
-	    	}
-	  	}
 	}
 	
 	public void tiroEgin() {
@@ -146,10 +131,11 @@ public class EntitateKolekzio {
 			return;
 		}
 		BalaNodo bala = this.mapa.get(EntitateMota.ESPAZIONTZI).get(0).tiroEgin(balaKopurua() + 1);
+		if(bala != null) { return; }
 		this.mapa.get(EntitateMota.BALA).add(bala);
 	}
 	
-	private boolean denboraPasaBala() {
+	private boolean denboraPasaBala() {	
 		 boolean pasaDa = false;
 		 long orain = System.currentTimeMillis();
 		 
@@ -162,18 +148,20 @@ public class EntitateKolekzio {
 		 return pasaDa;
 	}
 	
-	public int balaKopurua() {
+	private int balaKopurua() {
 		return this.mapa.get(EntitateMota.BALA).size();
-	}
-	
-	public boolean getBizirik(EntitateMota entitate, int i) {
-		return this.mapa.get(entitate).get(i-1).bizirik();
-	}
-	public HashMap<EntitateMota, ArrayList<Entitate>> getMapa() {
-		return this.mapa;
 	}
 
 	public void nextBala() {
 		this.mapa.get(EntitateMota.ESPAZIONTZI).get(0).nextBala();
+	}
+	
+	public void resetZerrendak() {
+        this.etsaienTimer.stop();
+		this.etsaienTimer = null;
+		this.azkenMugimendua = 0;
+		this.azkenTiroa = 0;
+		this.mapa = null;
+		nPertsonaiZerrenda = null;
 	}
 }

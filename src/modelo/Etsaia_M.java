@@ -1,15 +1,7 @@
 package modelo;
+import java.awt.Color;
 
-public class Etsaia_M implements Egoera_G{
-	
-	@Override
-    public void gelaxkaEguneratu(GelaxkaM pGelaxka, int id) {
-        pGelaxka.setId(id);
-        pGelaxka.aldaketaNotifikatu(EntitateMota.ETSAIA);
-    }
-
-    @Override
-    public EntitateMota getEntitateMota() {
-        return EntitateMota.ETSAIA;
-    }
+public class Etsaia_M implements Egoera_G {
+    public EntitateMota getEntitateMota() { return EntitateMota.ETSAIA; }
+    public Color getColor() { return Color.LIGHT_GRAY; }
 }

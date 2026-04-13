@@ -1,8 +1,8 @@
 package modelo;
 
+import java.awt.Color;
+
 public interface Egoera_G {
-	
-	public void gelaxkaEguneratu(GelaxkaM pGelaxka, int id);
-	    
-	EntitateMota getEntitateMota();
+    EntitateMota getEntitateMota();
+    Color getColor(); 
 }

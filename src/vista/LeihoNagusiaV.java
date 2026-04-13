@@ -50,20 +50,20 @@ public class LeihoNagusiaV extends JFrame implements Observer{
 		setContentPane(contentPane);
 		contentPane.setBackground(Color.BLACK);
 		contentPane.setLayout(new BorderLayout(0, 0));
-		JokoKudeatzailea.getnJokoKudeatzailea().addObserver(this);
+		//JokoKudeatzailea.getnJokoKudeatzailea().addObserver(this);
 		
 		java.net.URL imgUrl = getClass().getResource("/img/alien2.png");
 		ImageIcon iconoOriginal = new ImageIcon(imgUrl);
 		java.awt.Image imagenEscalada = iconoOriginal.getImage().getScaledInstance(300, 300, java.awt.Image.SCALE_SMOOTH);
 		ImageIcon iconoAlien = new ImageIcon(imagenEscalada);
 		
-		JLabel goiL = new JLabel("Press <UP,LEFT,DOWN,RIGHT> or <W,A,S,D> to move");
+		JLabel goiL = new JLabel("Press <UP,LEFT,DOWN,RIGHT> or <W,A,S,D> to move, <SPACE> to shoot, <Shift> to change bullets");
 		goiL.setFont(new Font("Arial", Font.BOLD, 20));
 		goiL.setForeground(Color.WHITE);
 		goiL.setHorizontalAlignment(JLabel.CENTER);
 	    contentPane.add(goiL, BorderLayout.NORTH);
 	    
-		JLabel titL = new JLabel("SPACE INVADER");
+		JLabel titL = new JLabel("SPACE INVADERS");
 		titL.setFont(new Font("Arial", Font.BOLD, 100));
 		titL.setForeground(Color.YELLOW);
 		titL.setHorizontalAlignment(JLabel.CENTER);
@@ -77,7 +77,7 @@ public class LeihoNagusiaV extends JFrame implements Observer{
 		
 		aukeraL = new JLabel("Aukeratutako ontzia: 1");
 		aukeraL.setFont(new Font("Arial", Font.BOLD, 20));
-		aukeraL.setForeground(Color.CYAN);
+		aukeraL.setForeground(Color.RED);
 		aukeraL.setHorizontalAlignment(JLabel.CENTER);
 		behekoPanela.add(aukeraL, BorderLayout.NORTH);
 		
@@ -99,19 +99,20 @@ public class LeihoNagusiaV extends JFrame implements Observer{
 				if(code == KeyEvent.VK_1) {
 					aukeratutakoOntzia=1;
 					aukeraL.setText("Aukeratutako ontzia: 1");
-					aukeraL.setForeground(Color.CYAN);
+					aukeraL.setForeground(Color.RED);
 				}
 				else if(code == KeyEvent.VK_2) {
 					aukeratutakoOntzia=2;
 					aukeraL.setText("Aukeratutako ontzia: 2");
-					aukeraL.setForeground(Color.MAGENTA);
+					aukeraL.setForeground(Color.BLUE);
 				}
 				else if(code == KeyEvent.VK_3) {
 					aukeratutakoOntzia=3;
 					aukeraL.setText("Aukeratutako ontzia: 3");
-					aukeraL.setForeground(Color.ORANGE);
+					aukeraL.setForeground(Color.GREEN);
 				}
 				if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+					JokoKudeatzailea.getnJokoKudeatzailea().addObserver(LeihoNagusiaV.this);
 					JokoKudeatzailea.getnJokoKudeatzailea().jokoaHasieratu(aukeratutakoOntzia);
 				}
 			}
@@ -121,7 +122,7 @@ public class LeihoNagusiaV extends JFrame implements Observer{
 	public void update(Observable o, Object arg) {
 		if(arg == null) {
 			MatrizeV m = new MatrizeV();
-		m.setVisible(true);
+			m.setVisible(true);
 			dispose();
 		}
 	}

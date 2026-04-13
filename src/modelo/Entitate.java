@@ -16,7 +16,7 @@ public abstract class Entitate {
 		this.y = y;
 	}
 	
-	public void mugitu(Mugimendua mugimendu) {	}
+	protected void mugitu(Mugimendua mugimendu) {	}
 	
 	public boolean mugituDaiteke(Mugimendua mugimendu) {
 		return true;
@@ -34,20 +34,24 @@ public abstract class Entitate {
 		return this.bizirik;
 	}
 	
-	public void setKoordenatu(int[][] koordenatu) {
-		this.koordenatu = koordenatu;
-	}
-	
 	public void setBizirik(boolean bizirik) {
 		this.bizirik = bizirik;
-	}
-	public int getX() {
-		return this.koordenatu[0][0];
-	}
-	public int getY() {
-		return this.koordenatu[0][1];
 	}
 	
 	public void nextBala() { }
 	public BalaNodo tiroEgin(int id) { return null; }
+	
+	public int getX() {
+		return this.x;
+	}
+	
+	public int getY() {
+		return this.y;
+	}
+	public void setX(int x) {
+		this.x = x;
+	}
+	public void setY(int y) {
+		this.y = y;
+	}
 }
