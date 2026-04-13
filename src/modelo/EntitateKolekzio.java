@@ -131,6 +131,7 @@ public class EntitateKolekzio {
 			return;
 		}
 		BalaNodo bala = this.mapa.get(EntitateMota.ESPAZIONTZI).get(0).tiroEgin(balaKopurua() + 1);
+		if(bala != null) { return; }
 		this.mapa.get(EntitateMota.BALA).add(bala);
 	}
 	
