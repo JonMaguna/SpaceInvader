@@ -2,7 +2,6 @@ package modelo;
 
 import java.util.Observable;
 
-
 public class JokoKudeatzailea extends Observable{
 	private boolean jokoanDa = false;
 	private static JokoKudeatzailea jokonKudeatzailea = null;
