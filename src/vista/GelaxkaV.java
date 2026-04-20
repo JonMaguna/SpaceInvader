@@ -5,7 +5,9 @@ import javax.swing.JLabel;
 import java.awt.Color;
 import java.util.Observable;
 import java.util.Observer;
-
+import modelo.EntitateMota;
+import modelo.Espaziontzi;
+import modelo.EspaziontziFactory;
 import modelo.GelaxkaM;
 
 public class GelaxkaV extends JLabel implements Observer {
@@ -14,30 +16,41 @@ public class GelaxkaV extends JLabel implements Observer {
 	
 	public GelaxkaV(int korX, int korY) {
 		setOpaque(false);
-		koloreaEzarri(null); 
+		koloreaEzarri(EntitateMota.HUTSA); 
 	}
 	
 
-	private void koloreaEzarri(Color c) {
-		if (c == null) {
-			setOpaque(false);
-			setBorder(null);
-		} else {
-			setBackground(c);
+	private void koloreaEzarri(EntitateMota c) {
+		switch (c) {
+		case ESPAZIONTZI:
+			setBackground(EspaziontziFactory.getNireEspaziontziFactory().getAzkenKolorea());
+			setBorder(BorderFactory.createLineBorder(Color.GRAY, 2));
 			setOpaque(true);
-			if (c == Color.WHITE) {
-				setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-			} else {
-				setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
-			}
+			break;
+		case ETSAIA:
+			setBackground(Color.BLUE);
+			setBorder(BorderFactory.createLineBorder(Color.GRAY, 2));
+			setOpaque(true);
+			break;
+		case BALA:
+			setBackground(Color.WHITE);
+			setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+			setOpaque(true);
+			break;
+		case HUTSA:
+			setBorder(null);
+	        setOpaque(false);
+			break;
+		default:
+			break;
 		}
 	}
 
 	@Override
 	public void update(Observable o, Object arg) {
 		if(o instanceof GelaxkaM) {
-			Color colorRecibido = (Color) arg; 
-			koloreaEzarri(colorRecibido);
+			EntitateMota e = (EntitateMota) arg; 
+			koloreaEzarri(e);
 		}
 	}
 }
