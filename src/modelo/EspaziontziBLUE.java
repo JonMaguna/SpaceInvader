@@ -4,6 +4,8 @@ import java.awt.Color;
 
 public class EspaziontziBLUE extends EspaziontziNodo {
 	private int bala = 1;
+	private int bala2 = 0;
+	private int bala3 = 0;
 	
 	protected EspaziontziBLUE(int x, int y, int id) {
 		super(x,y,id);
@@ -27,8 +29,12 @@ public class EspaziontziBLUE extends EspaziontziNodo {
 		case 1:
 			return BalaFactory.getnBalaFactory().sortuBala(this.x, this.y - 1, id, BalaMota.BALA_NORMALA);
 		case 2:
+			bala2++;
+			if(this.bala2 >= 30) {return null;}
 			return BalaFactory.getnBalaFactory().sortuBala(this.x, this.y - 2, id, BalaMota.BALA_AZKARRA);
 		case 3:
+			if(this.bala3 >= 20) {return null;}
+			bala3++;
 			return BalaFactory.getnBalaFactory().sortuBala(this.x, this.y - 1, id, BalaMota.BALA_HANDIA);
 		default:
 			return null;

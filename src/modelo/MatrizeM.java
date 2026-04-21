@@ -2,9 +2,12 @@ package modelo;
 
 import java.util.ArrayList;
 
+import vista.GelaxkaV;
+
 public class MatrizeM{
 	private static MatrizeM nMatrizeM;
 	private GelaxkaM[][] matrizea;
+	private GelaxkaV[][] matrizeaV;
 	
 	private MatrizeM() {
 		this.matrizea = new GelaxkaM[100][60];
@@ -28,6 +31,15 @@ public class MatrizeM{
 	public GelaxkaM getGelaxka(int x, int y) {
         return this.matrizea[x][y];
     }
+	public GelaxkaV[][] getMatrizea() {
+		return this.matrizeaV;
+	}
+	public GelaxkaM getGelaxkaM(int x, int y) {
+		return this.matrizea[x][y];
+	}
+	public void setMatrizeaV(GelaxkaV[][] matrizeaV) {
+		this.matrizeaV = matrizeaV;
+	}
 
 	public void gelaxkakAktualizatu(ArrayList<Entitate> entitateLista, int id, EntitateMota entitate) {
 		if(nMatrizeM == null || this.matrizea == null) {
