@@ -81,7 +81,7 @@ public class LeihoNagusiaV extends JFrame implements Observer{
 		aukeraL.setHorizontalAlignment(JLabel.CENTER);
 		behekoPanela.add(aukeraL, BorderLayout.NORTH);
 		
-		JLabel infoL = new JLabel("Press <1>, <2> or <3> to select your ship and press <ENTER> to start the game");
+		JLabel infoL = new JLabel("Press <1>, <2>, <3> or <4> to select your ship and press <ENTER> to start the game");
 		infoL.setFont(new Font("Arial", Font.BOLD, 20));
 		infoL.setForeground(Color.WHITE);
 		infoL.setHorizontalAlignment(JLabel.CENTER);
@@ -111,6 +111,11 @@ public class LeihoNagusiaV extends JFrame implements Observer{
 					aukeraL.setText("Aukeratutako ontzia: 3");
 					aukeraL.setForeground(Color.GREEN);
 				}
+				else if(code == KeyEvent.VK_4) {
+		            aukeratutakoOntzia=4;
+		            aukeraL.setText("Aukeratutako ontzia: 4");
+		            aukeraL.setForeground(Color.PINK);
+		        }
 				if(e.getKeyCode() == KeyEvent.VK_ENTER) {
 					JokoKudeatzailea.getnJokoKudeatzailea().addObserver(LeihoNagusiaV.this);
 					JokoKudeatzailea.getnJokoKudeatzailea().jokoaHasieratu(aukeratutakoOntzia);
@@ -118,7 +123,6 @@ public class LeihoNagusiaV extends JFrame implements Observer{
 			}
 		});
 	}
-
 	public void update(Observable o, Object arg) {
 		if(arg == null) {
 			MatrizeV m = new MatrizeV();
