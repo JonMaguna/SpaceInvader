@@ -3,12 +3,11 @@ package modelo;
 import java.awt.Color;
 
 public class EspaziontziBLUE extends EspaziontziNodo {
-	private int bala = 1;
-	private int bala2 = 0;
 	private int bala3 = 0;
 	
 	protected EspaziontziBLUE(int x, int y, int id) {
 		super(x,y,id);
+		tiroEstrategia = new BlueTiroEstrategia();
 		int[][]forma ={{-1,0},{1,0},{-2,1},{-1,1},{0,1},{1,1},{2,1},{-2,2},{-1,2},{0,2},{1,2},{2,2},{-1,3},{0,3},{1,3}};
 		for (int[] p: forma) {
 			this.gelaxkak.add(new Espaziontzi(x+p[0], y+p[1], id, Color.BLUE));
@@ -16,28 +15,10 @@ public class EspaziontziBLUE extends EspaziontziNodo {
 		MatrizeM.getnMatrizeM().gelaxkakAktualizatu(gelaxkak, id, EntitateMota.ESPAZIONTZI);
 	}
 	
-	public void nextBala() {
-		if(this.bala == 3) {
-			this.bala = 1;
-		} else {
-			this.bala++;
-		}
+	public void setBala3(int bala) {
+		this.bala2 = bala3;
 	}
-	
-	public BalaNodo tiroEgin(int id) {
-		switch(this.bala) {
-		case 1:
-			return BalaFactory.getnBalaFactory().sortuBala(this.x, this.y - 1, id, BalaMota.BALA_NORMALA);
-		case 2:
-			bala2++;
-			if(this.bala2 >= 30) {return null;}
-			return BalaFactory.getnBalaFactory().sortuBala(this.x, this.y - 2, id, BalaMota.BALA_AZKARRA);
-		case 3:
-			if(this.bala3 >= 20) {return null;}
-			bala3++;
-			return BalaFactory.getnBalaFactory().sortuBala(this.x, this.y - 1, id, BalaMota.BALA_HANDIA);
-		default:
-			return null;
-		}
+	public int getBala3() {
+		return this.bala3;
 	}
 }

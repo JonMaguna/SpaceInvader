@@ -3,11 +3,10 @@ package modelo;
 import java.awt.Color;
 
 public class EspaziontziGREEN  extends EspaziontziNodo{
-	private int bala = 1;
-	private int bala2 = 0;
 
 	protected EspaziontziGREEN(int x, int y, int id) {
 		super(x,y,id);
+		tiroEstrategia = new GreenTiroEstrategia();
 		int[][] forma = {{0,0},{-1,1},{0,1},{1,1},{-2,2},{-1,2},{0,2},{1,2},{2,2}};
 		this.bala = 1;
 		for (int[] p: forma) {
@@ -16,23 +15,4 @@ public class EspaziontziGREEN  extends EspaziontziNodo{
 		MatrizeM.getnMatrizeM().gelaxkakAktualizatu(gelaxkak, id, EntitateMota.ESPAZIONTZI);
 	}
 	
-	public void nextBala() {
-		if(this.bala == 2) {
-			this.bala = 1;
-		}
-		else {
-			this.bala = 2;
-		}
-	}
-	
-	public BalaNodo tiroEgin(int id) {
-		if(this.bala == 1) {
-			return BalaFactory.getnBalaFactory().sortuBala(this.x, this.y - 1, id, BalaMota.BALA_NORMALA);
-		} else if (this.bala2 < 20) {
-			bala2++;
-			return BalaFactory.getnBalaFactory().sortuBala(this.x, this.y - 1, id, BalaMota.BALA_AZKARRA);
-		}
-		return null;
-	}
-
 }

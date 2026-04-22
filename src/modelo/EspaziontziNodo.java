@@ -3,7 +3,10 @@ package modelo;
 import java.util.ArrayList;
 
 public abstract class EspaziontziNodo extends Entitate {
+	protected TiroEstrategia tiroEstrategia;
     protected ArrayList<Entitate> gelaxkak = new ArrayList<>();
+    protected int bala = 1;
+    protected int bala2 = 0;
 
     public EspaziontziNodo(int x, int y, int id) {
         super(x, y, id, true);
@@ -58,4 +61,36 @@ public abstract class EspaziontziNodo extends Entitate {
             MatrizeM.getnMatrizeM().gelaxkakAktualizatu(gelaxkak, 0, EntitateMota.HUTSA);
         }
     }
+	public void nextBala() {
+		this.tiroEstrategia.nextBala(this);
+	}
+	
+	public BalaNodo tiroEgin(int id) {
+		return this.tiroEstrategia.tiroEgin(this, id);
+	}
+
+	public void setBala(int bala) {
+		this.bala = bala;
+	}
+	public int getBala() {
+		return this.bala;
+	}
+	public void setBala2(int bala) {
+		this.bala2 = bala;
+	}
+	public int getBala2() {
+		return this.bala2;
+	}
+	public void setX(int x) {
+		this.x = x;
+	}
+	public void setY(int y) {
+		this.y = y;
+	}
+	public int getX() {
+		return this.x;
+	}
+	public int getY() {
+		return this.y;
+	}
 }
