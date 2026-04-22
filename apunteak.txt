@@ -4,7 +4,7 @@ Espaziontzi mota:
 	* Ezpaziontzi balekin
 Etsai mota:
     * Etsai Kamikaze		Surya
-    * Etsai tiro egin
+    * Etsai tiro egin	
 
 Bala mota:
 	* Bala teledirijido		Surya
@@ -17,8 +17,6 @@ Java8 implementatu			Surya
 Matrize handiagoa			Surya
 
 Arazoak:
-	- Strategy 				JonZeta
-	- Strategy bala			JonZeta
 	- Bi etsairi tiro egin	Maguna
 	(Etsai bat detektatu ostean hil baina funtzionatzen jarraitu)
 	- errorea konpondu		Maguna
