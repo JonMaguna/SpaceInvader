@@ -1,16 +1,26 @@
-Etsaiak indizeekin egin behar dira hurrengo sprintarekin (estaiak beraien artean ez ikutzeko), array bat egin etsaiekin
+Espaziontzi mota:
+	* Espaziontzi flash		Batman
+	* Espaziontzi bizitzekin 
+	* Ezpaziontzi balekin
+Etsai mota:
+    * Etsai Kamikaze		Surya
+    * Etsai tiro egin
 
-jokokudeatzailea bakarrik hasi eta amaitu, txekeatu ea etsaiak amaierara eldu, jokalariaren gainean ipini den eta etsaiak hiltzen diren bakoitzean
+Bala mota:
+	* Bala teledirijido		Surya
+	* Bala azkar			Batman
+Soinuak:
+    * Soinu efektuak		Batman
+    * Musika				Batman
+Java8 implementatu			Surya
 
-listener batekin jokoa hasi (bistan)
+Matrize handiagoa			Surya
 
-timerra matrizean 
-
-
-pertsonai non dagoen HitBOx batekin, int[][]
-pertsonaiZerrenda <<Singleton>> --> hashMap id eta jokalari
-gelaxkaM id baten bidez jakin zer daukan gainean
-mota borratu(oraingoz)
-bala pertsonaiZerrenda azpian
-mugitzeko:
-matrizeM.mugituJokalari() --> mugituDaitekeJokalari() -[true]-> mugitu()
+Arazoak:
+	- Strategy 				JonZeta
+	- Strategy bala			JonZeta
+	- Bi etsairi tiro egin	Maguna
+	(Etsai bat detektatu ostean hil baina funtzionatzen jarraitu)
+	- errorea konpondu		Maguna
+	(Espaziontzia hil etsaia mugitu ostean)	 
+	

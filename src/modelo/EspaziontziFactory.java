@@ -3,9 +3,8 @@ import java.awt.Color;
 public class EspaziontziFactory {
 	private static EspaziontziFactory nireEspaziontziFactory;
 	private Color EspaziontziKolorea;
-	private EspaziontziFactory() {
-		
-	}
+	
+	private EspaziontziFactory() { }			
 	public static EspaziontziFactory getNireEspaziontziFactory() {
 		if(nireEspaziontziFactory == null) {
 			nireEspaziontziFactory = new EspaziontziFactory();
