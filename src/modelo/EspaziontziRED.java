@@ -6,6 +6,7 @@ public class EspaziontziRED extends EspaziontziNodo {
 	
 	protected EspaziontziRED(int x, int y, int id) {
 		super(x, y, id);
+		this.kolorea = Color.RED;
 		tiroEstrategia = new RedTiroEstrategia();
         int[][] forma = {{-1,0},{1,0},{-1,1},{0,1},{1,1},{-1,2},{0,2},{1,2}};
 		for (int[] p: forma) {

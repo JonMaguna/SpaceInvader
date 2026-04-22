@@ -1,12 +1,14 @@
 package modelo;
 
 import java.util.ArrayList;
+import java.awt.Color;
 
 public abstract class EspaziontziNodo extends Entitate {
 	protected TiroEstrategia tiroEstrategia;
     protected ArrayList<Entitate> gelaxkak = new ArrayList<>();
     protected int bala = 1;
     protected int bala2 = 0;
+    protected Color kolorea;
 
     public EspaziontziNodo(int x, int y, int id) {
         super(x, y, id, true);
@@ -60,6 +62,9 @@ public abstract class EspaziontziNodo extends Entitate {
         if(!bizirik && JokoKudeatzailea.getnJokoKudeatzailea().getJokoanDa()) {
             MatrizeM.getnMatrizeM().gelaxkakAktualizatu(gelaxkak, 0, EntitateMota.HUTSA);
         }
+    }
+    public Color getKolorea() {
+        return this.kolorea;
     }
 	public void nextBala() {
 		this.tiroEstrategia.nextBala(this);

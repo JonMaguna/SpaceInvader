@@ -1,6 +1,7 @@
 package modelo;
 
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -34,6 +35,7 @@ public class EntitateKolekzio {
 	public void sortuEntitateak(int pMota) {
 		EspaziontziNodo espaziontzi = EspaziontziFactory.getNireEspaziontziFactory().sortuEspaziontzia(pMota);
 		this.mapa.get(EntitateMota.ESPAZIONTZI).add(espaziontzi);
+		MatrizeM.getnMatrizeM().gelaxkakAktualizatu(espaziontzi.getGelaxkak(), espaziontzi.getId(), EntitateMota.ESPAZIONTZI);
 		int numEtsaiak = new Random().nextInt(5) + 4;
 		List<Integer> posizio = new ArrayList<>();
 		for (int i = 1; i < 19 + 1; i++) {
@@ -115,7 +117,8 @@ public class EntitateKolekzio {
 	    for (Entitate e : entitateak) {
 	        if (e.getId() == i) {
 	            e.setBizirik(b);
-	            if(b == false && JokoKudeatzailea.getnJokoKudeatzailea().getJokoanDa()) {
+	            e.setBizirik(b);
+	            if(!e.bizirik() && JokoKudeatzailea.getnJokoKudeatzailea().getJokoanDa()) {
 	            	this.mapa.get(entitate).remove(e);
 	            	if(this.mapa.get(EntitateMota.ETSAIA).size() == 0) {
 				        JokoKudeatzailea.getnJokoKudeatzailea().jokoaGelditu(2);
@@ -163,5 +166,13 @@ public class EntitateKolekzio {
 		this.azkenTiroa = 0;
 		this.mapa = null;
 		nPertsonaiZerrenda = null;
+	}
+	public Color getOntziarenKolorea() {
+	    ArrayList<Entitate> ontziak = this.mapa.get(EntitateMota.ESPAZIONTZI);
+	    if (ontziak != null && !ontziak.isEmpty()) {
+	        EspaziontziNodo ontzia = (EspaziontziNodo) ontziak.get(0);
+	        return ontzia.getKolorea();
+	    }
+	    return null;
 	}
 }

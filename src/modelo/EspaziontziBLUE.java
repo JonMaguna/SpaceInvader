@@ -7,6 +7,7 @@ public class EspaziontziBLUE extends EspaziontziNodo {
 	
 	protected EspaziontziBLUE(int x, int y, int id) {
 		super(x,y,id);
+		this.kolorea = Color.BLUE;
 		tiroEstrategia = new BlueTiroEstrategia();
 		int[][]forma ={{-1,0},{1,0},{-2,1},{-1,1},{0,1},{1,1},{2,1},{-2,2},{-1,2},{0,2},{1,2},{2,2},{-1,3},{0,3},{1,3}};
 		for (int[] p: forma) {
