@@ -65,31 +65,44 @@ public class EntitateKolekzio {
 	}
 
 	private void etsaiakMugitu() {
-		if(!JokoKudeatzailea.getnJokoKudeatzailea().getJokoanDa()) {
-			return;
-		}
-		for(int i = 0; i < this.mapa.get(EntitateMota.ETSAIA).size(); i++) {
-			int nora = new Random().nextInt(3);
-			Entitate etsai = this.mapa.get(EntitateMota.ETSAIA).get(i);
-			switch(nora) {
-			case 0: 
-				etsai.mugitu(Mugimendua.BEHERA);
-				break;
-			case 1:
-				etsai.mugitu(Mugimendua.EZKERRA);
-				break;
-			case 2:
-				etsai.mugitu(Mugimendua.ESKUMA);
-				break;
-			}
-			if(!etsai.bizirik()) {
-				    this.mapa.get(EntitateMota.ETSAIA).remove(etsai);
-				    i--;
-				    if(this.mapa.get(EntitateMota.ETSAIA).size() == 0) {
-				        JokoKudeatzailea.getnJokoKudeatzailea().jokoaGelditu(2);
-				    }
-				}
-			}
+	    if (this.mapa == null) {
+	        if (this.etsaienTimer != null) {
+	            this.etsaienTimer.stop();
+	        }
+	        return;
+	    }
+	    if (!JokoKudeatzailea.getnJokoKudeatzailea().getJokoanDa()) {
+	        return;
+	    }
+	    ArrayList<Entitate> etsaiak = this.mapa.get(EntitateMota.ETSAIA);
+	    if (etsaiak == null) {
+	        return;
+	    }
+	    int tamaina = etsaiak.size();
+	    for (int i = 0; i < tamaina; i++) {
+	        if (this.mapa == null) return;
+
+	        int nora = new Random().nextInt(3);
+	        Entitate etsai = etsaiak.get(i);
+	        
+	        if (etsai != null) {
+	            switch(nora) {
+	                case 0: etsai.mugitu(Mugimendua.BEHERA); break;
+	                case 1: etsai.mugitu(Mugimendua.EZKERRA); break;
+	                case 2: etsai.mugitu(Mugimendua.ESKUMA); break;
+	            }
+	            
+	            if (!etsai.bizirik()) {
+	                etsaiak.remove(i);
+	                i--;
+	                tamaina--;
+	                
+	                if (etsaiak.isEmpty()) {
+	                    JokoKudeatzailea.getnJokoKudeatzailea().jokoaGelditu(2);
+	                }
+	            }
+	        }
+	    }
 	}
 	
 	public void mugituOntzia (Mugimendua mugimendua) {
@@ -160,11 +173,16 @@ public class EntitateKolekzio {
 	}
 	
 	public void resetZerrendak() {
-        this.etsaienTimer.stop();
-		this.etsaienTimer = null;
+		if(this.etsaienTimer != null) {
+			this.etsaienTimer.stop();
+			this.etsaienTimer = null;
+		}
+        if(this.mapa !=null) {
+        	this.mapa.clear();
+			this.mapa = null;
+        }
 		this.azkenMugimendua = 0;
 		this.azkenTiroa = 0;
-		this.mapa = null;
 		nPertsonaiZerrenda = null;
 	}
 	public Color getOntziarenKolorea() {

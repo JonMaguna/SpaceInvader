@@ -18,6 +18,7 @@ public abstract class EtsaiNodo extends Entitate {
     
     public boolean mugituDaiteke(Mugimendua m) {
         boolean mugitu = true;
+        MatrizeM matrizeM = MatrizeM.getnMatrizeM();
         for (Entitate pixel : this.gelaxkak) {
             if (!pixel.mugituDaiteke(m)) {
                 mugitu = false;
@@ -25,6 +26,21 @@ public abstract class EtsaiNodo extends Entitate {
                     this.setBizirik(false); 
                 }
                 break; 
+            }
+            int x = pixel.getKoordenatu()[0][0];
+            int y = pixel.getKoordenatu()[0][1];
+            
+            switch(m) {
+                case EZKERRA: x--; break;
+                case ESKUMA:  x++; break;
+                case BEHERA:  y++; break;
+                default: break;
+            }
+
+            int[][] hurrengoa = {{x, y}};
+            if (matrizeM.zerDago(hurrengoa) == EntitateMota.ESPAZIONTZI) {
+                JokoKudeatzailea.getnJokoKudeatzailea().jokoaGelditu(1);
+                return false; 
             }
         }
         return mugitu;
@@ -64,7 +80,7 @@ public abstract class EtsaiNodo extends Entitate {
         for (Entitate pixel : gelaxkak) {
             pixel.setBizirik(bizirik);
         }
-        if(!bizirik) {
+        if(!bizirik && JokoKudeatzailea.getnJokoKudeatzailea().getJokoanDa()) {
             MatrizeM.getnMatrizeM().gelaxkakAktualizatu(gelaxkak, 0, EntitateMota.HUTSA);
         }
     }

@@ -49,16 +49,36 @@ public class MatrizeM{
 			int [][] kordenatu = ent.getKoordenatu();
 			int x = kordenatu[0][0];
 			int y = kordenatu[0][1];
-			this.matrizea[x][y].setEntitate(entitate, id);
+			if (x >= 0 && x < 100 && y >= 0 && y < 60) {
+				if(this.matrizea[x][y]!=null) {
+					this.matrizea[x][y].setEntitate(entitate, id);
+				}
+			}
 		}
 	}
 	
 	public EntitateMota zerDago(int[][] koordenatu) {
-		return matrizea[koordenatu[0][0]][koordenatu[0][1]].zerDago();
+		if (koordenatu == null || matrizea == null) return EntitateMota.HUTSA;
+        int x = koordenatu[0][0];
+        int y = koordenatu[0][1];
+        if (x >= 0 && x < 100 && y >= 0 && y < 60) {
+            if (this.matrizea[x][y] != null) {
+                return this.matrizea[x][y].zerDago();
+            }
+        }
+        return EntitateMota.HUTSA;
 	}
 
 	public int zeinIDDago(int[][] koordenatu) {
-		return matrizea[koordenatu[0][0]][koordenatu[0][1]].getID();
+		if (koordenatu == null || matrizea == null) return 0;
+        int x = koordenatu[0][0];
+        int y = koordenatu[0][1];
+        if (x >= 0 && x < 100 && y >= 0 && y < 60) {
+            if (this.matrizea[x][y] != null) {
+                return this.matrizea[x][y].getID();
+            }
+        }
+        return 0;
 	}
 	
 	public void resetMatrizea() {

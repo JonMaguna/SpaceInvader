@@ -30,7 +30,7 @@ public class JokoKudeatzailea extends Observable{
 	}
 	
 	public void jokoaGelditu(int mezua) {
-		this.jokoanDa = false;
+		this.jokoanDa = false;	
 		setChanged();
 		notifyObservers(mezua);
 	}
