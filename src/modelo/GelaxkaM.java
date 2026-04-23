@@ -26,12 +26,8 @@ public class GelaxkaM extends Observable {
         }
         this.gelaxka_mota = egoeraBerria;
         this.id = id;
-        aldaketaNotifikatu();
-    }
-
-    private void aldaketaNotifikatu() {
-    	    setChanged();	
-    	    notifyObservers(this.gelaxka_mota.getColor()); 
+        setChanged();	
+	    notifyObservers(this.gelaxka_mota.getEntitateMota());
     }
 
 	public int getID() { return this.id; }
