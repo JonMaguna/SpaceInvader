@@ -65,46 +65,26 @@ public class EntitateKolekzio {
 	}
 
 	private void etsaiakMugitu() {
-	    if (this.mapa == null) {
-	        if (this.etsaienTimer != null) {
-	            this.etsaienTimer.stop();
-	        }
-	        return;
-	    }
-	    if (!JokoKudeatzailea.getnJokoKudeatzailea().getJokoanDa()) {
+		if (this.mapa == null || !JokoKudeatzailea.getnJokoKudeatzailea().getJokoanDa()) {
+	        if (this.etsaienTimer != null) this.etsaienTimer.stop();
 	        return;
 	    }
 	    ArrayList<Entitate> etsaiak = this.mapa.get(EntitateMota.ETSAIA);
 	    if (etsaiak == null) {
 	        return;
 	    }
-	    int tamaina = etsaiak.size();
-	    for (int i = 0; i < tamaina; i++) {
-	        if (this.mapa == null) return;
-
+	    etsaiak.forEach(etsai -> {
 	        int nora = new Random().nextInt(3);
-	        Entitate etsai = etsaiak.get(i);
-	        
-	        if (etsai != null) {
-	            switch(nora) {
-	                case 0: etsai.mugitu(Mugimendua.BEHERA); break;
-	                case 1: etsai.mugitu(Mugimendua.EZKERRA); break;
-	                case 2: etsai.mugitu(Mugimendua.ESKUMA); break;
-	            }
-	            
-	            if (!etsai.bizirik()) {
-	                etsaiak.remove(i);
-	                i--;
-	                tamaina--;
-	                
-	                if (etsaiak.isEmpty()) {
-	                    JokoKudeatzailea.getnJokoKudeatzailea().jokoaGelditu(2);
-	                }
-	            }
+	        switch(nora) {
+	            case 0: etsai.mugitu(Mugimendua.BEHERA); break;
+	            case 1: etsai.mugitu(Mugimendua.EZKERRA); break;
+	            case 2: etsai.mugitu(Mugimendua.ESKUMA); break;
 	        }
-	    }
+	    });
+	    etsaiak.removeIf(etsai -> !etsai.bizirik());
+	    if (etsaiak.isEmpty()) { JokoKudeatzailea.getnJokoKudeatzailea().jokoaGelditu(2);}
 	}
-	
+	        	
 	public void mugituOntzia (Mugimendua mugimendua) {
 		if(!JokoKudeatzailea.getnJokoKudeatzailea().getJokoanDa() || denboraPasaMugitu()) {
 			return;
