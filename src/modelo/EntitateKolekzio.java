@@ -107,19 +107,19 @@ public class EntitateKolekzio {
 
 	public void setBizirik(EntitateMota entitate, int i, boolean b) {
 		ArrayList<Entitate> entitateak = this.mapa.get(entitate);
-	    for (Entitate e : entitateak) {
-	        if (e.getId() == i) {
-	            e.setBizirik(b);
-	            e.setBizirik(b);
-	            if(!e.bizirik() && JokoKudeatzailea.getnJokoKudeatzailea().getJokoanDa()) {
-	            	this.mapa.get(entitate).remove(e);
-	            	if(this.mapa.get(EntitateMota.ETSAIA).size() == 0) {
-				        JokoKudeatzailea.getnJokoKudeatzailea().jokoaGelditu(2);
-	            	}
-	            }
-	            break;
-	        }
-	    }
+		if (entitateak == null) return;
+	    entitateak.stream()
+	              .filter(e -> e.getId() == i) 
+	              .findFirst()                  
+	              .ifPresent(e -> {             	                  
+	                  e.setBizirik(b); 
+	                  if (!e.bizirik() && JokoKudeatzailea.getnJokoKudeatzailea().getJokoanDa()) {
+	                      entitateak.remove(e);
+	                      if (this.mapa.get(EntitateMota.ETSAIA).isEmpty()) { 
+	                          JokoKudeatzailea.getnJokoKudeatzailea().jokoaGelditu(2);
+	                      }
+	                  }
+	              });
 	}
 	
 	public void tiroEgin() {

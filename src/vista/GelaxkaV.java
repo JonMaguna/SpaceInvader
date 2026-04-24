@@ -5,6 +5,8 @@ import javax.swing.JLabel;
 import java.awt.Color;
 import java.util.Observable;
 import java.util.Observer;
+
+import modelo.EntitateKolekzio;
 import modelo.EntitateMota;
 import modelo.Espaziontzi;
 import modelo.EspaziontziFactory;
@@ -23,7 +25,7 @@ public class GelaxkaV extends JLabel implements Observer {
 	private void koloreaEzarri(EntitateMota c) {
 		switch (c) {
 		case ESPAZIONTZI:
-			setBackground(EspaziontziFactory.getNireEspaziontziFactory().getAzkenKolorea());
+			setBackground(EntitateKolekzio.getnPertsonaiZerrenda().getOntziarenKolorea());
 			setBorder(BorderFactory.createLineBorder(Color.GRAY, 2));
 			setOpaque(true);
 			break;
