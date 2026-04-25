@@ -36,9 +36,9 @@ public class EntitateKolekzio {
 		EspaziontziNodo espaziontzi = EspaziontziFactory.getNireEspaziontziFactory().sortuEspaziontzia(pMota);
 		this.mapa.get(EntitateMota.ESPAZIONTZI).add(espaziontzi);
 		MatrizeM.getnMatrizeM().gelaxkakAktualizatu(espaziontzi.getGelaxkak(), espaziontzi.getId(), EntitateMota.ESPAZIONTZI);
-		int numEtsaiak = new Random().nextInt(5) + 4;
+		int numEtsaiak = new Random().nextInt(10) + 8;
 		List<Integer> posizio = new ArrayList<>();
-		for (int i = 1; i < 19 + 1; i++) {
+		for (int i = 1; i < MatrizeM.getnMatrizeM().getX()/5; i++) {
 			posizio.add(i*5 - 1);
 		}
 		Collections.shuffle(posizio);
@@ -135,7 +135,7 @@ public class EntitateKolekzio {
 		 boolean pasaDa = false;
 		 long orain = System.currentTimeMillis();
 		 
-		 if (orain - this.azkenTiroa < 350) {
+		 if (orain - this.azkenTiroa < 375) {
 			 pasaDa = true;
 		 }
 		 else {
@@ -172,5 +172,12 @@ public class EntitateKolekzio {
 	        return ontzia.getKolorea();
 	    }
 	    return null;
+	}
+
+	public void tiroKohete() {
+		if(!JokoKudeatzailea.getnJokoKudeatzailea().getJokoanDa() || denboraPasaBala()) {
+			return;
+		}
+		(this.mapa.get(EntitateMota.ESPAZIONTZI).get(0)).tiroKohete(balaKopurua() + 1);	
 	}
 }

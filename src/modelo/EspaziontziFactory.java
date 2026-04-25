@@ -13,8 +13,8 @@ public class EspaziontziFactory {
 		return nireEspaziontziFactory;
 	}
 	public EspaziontziNodo sortuEspaziontzia(int pMota) {	
-		int xHasiera = 50;
-		int yHasiera = 55;
+		int xHasiera = MatrizeM.getnMatrizeM().getX()/2;
+		int yHasiera = MatrizeM.getnMatrizeM().getY() - 5;
 		int id = 1;
 		switch(pMota) {
 		case 1:

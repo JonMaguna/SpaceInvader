@@ -19,17 +19,16 @@ public abstract class EspaziontziNodo extends Entitate {
     }
     
     public boolean mugituDaiteke(Mugimendua m) {
-        boolean mugitu = true;
-        for (Entitate pixel : this.gelaxkak) {
-            if (!pixel.mugituDaiteke(m)) {
-                mugitu = false;
-                if (!pixel.bizirik()) {
-                    this.setBizirik(false); 
-                }
-                break;
-            }
-        }
-        return mugitu;
+    	return this.gelaxkak.stream()
+    			.filter(pixel -> !pixel.mugituDaiteke(m))
+    			.findFirst()
+    			.map(pixel -> {
+    				if (!pixel.bizirik()) {
+						this.setBizirik(false); 
+					}
+					return false;
+    			})
+				.orElse(true);
     }
     
     @Override

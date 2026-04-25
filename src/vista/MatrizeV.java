@@ -26,8 +26,10 @@ public class MatrizeV extends JFrame implements Observer, KeyListener {
 	private JPanel contentPane;
 	private GelaxkaV[][] matrizeV;
 	private boolean presionatuta = false;
-	private boolean ezkerra, eskuma, gora, behera, tiroEgin, nextBala;
+	private boolean ezkerra, eskuma, gora, behera, tiroEgin, nextBala, kohete;
 	private Timer mainTimer;
+	private int x = 200;
+	private int y = 120;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -62,10 +64,10 @@ public class MatrizeV extends JFrame implements Observer, KeyListener {
 		};
 		contentPane.setBackground(Color.BLACK); 
 		contentPane.setBorder(new EmptyBorder(1, 1, 1, 1));
-		contentPane.setLayout(new GridLayout(60, 100, 0, 0));
+		contentPane.setLayout(new GridLayout(y, x, 0, 0));
 		setContentPane(contentPane);
 		
-		this.matrizeV = new GelaxkaV[100][60];
+		this.matrizeV = new GelaxkaV[x][y];
 		JokoKudeatzailea.getnJokoKudeatzailea().addObserver(this);
 		this.addKeyListener(this); 
 		this.setFocusable(true);
@@ -100,6 +102,9 @@ public class MatrizeV extends JFrame implements Observer, KeyListener {
         case KeyEvent.VK_SHIFT:
         	nextBala = true;
 			break;
+        case KeyEvent.VK_Q:
+			kohete = true;
+			break;
 		}
     }
 	
@@ -115,6 +120,10 @@ public class MatrizeV extends JFrame implements Observer, KeyListener {
 	    if(nextBala){
 	    	EntitateKolekzio.getnPertsonaiZerrenda().nextBala();
 	    	nextBala = false;
+	    }
+	    if(kohete) {
+	    	EntitateKolekzio.getnPertsonaiZerrenda().tiroKohete();
+	    	kohete = false;
 	    }
 	}
 	
@@ -138,6 +147,9 @@ public class MatrizeV extends JFrame implements Observer, KeyListener {
         	tiroEgin = false;
         	presionatuta = false;
         	break;
+        case KeyEvent.VK_Q:
+			kohete = false;
+			break;
 		}
     } 
 	
@@ -146,8 +158,8 @@ public class MatrizeV extends JFrame implements Observer, KeyListener {
 		int argInt = (int) arg;
 		switch (argInt) {
 			case 0:
-				for (int i = 0; i < 60; i++) {
-		          	for (int j = 0; j < 100; j++) {
+				for (int i = 0; i < y; i++) {
+		          	for (int j = 0; j < x; j++) {
 		           	GelaxkaV gelaxka = new GelaxkaV(j, i);
 		           	matrizeV[j][i] = gelaxka;
 		          	contentPane.add(gelaxka);

@@ -11,13 +11,7 @@ Bala mota:
 Soinuak:
     * Soinu efektuak		Batman
     * Musika				Batman
-Java8 implementatu			Surya
+Diseinu berriak
+Etsai kopurua aldatu
 
-Matrize handiagoa			Surya
-
-Arazoak:
-	- Bi etsairi tiro egin	Maguna
-	(Etsai bat detektatu ostean hil baina funtzionatzen jarraitu)
-	- errorea konpondu		Maguna
-	(Espaziontzia hil etsaia mugitu ostean)	 
 	

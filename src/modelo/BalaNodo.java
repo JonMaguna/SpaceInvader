@@ -34,17 +34,15 @@ public class BalaNodo extends Entitate implements Runnable {
     }
 
     public boolean mugituDaiteke(Mugimendua m) {
-        boolean mugitu = true;
-        int i = 0;
-        while (i < this.gelaxkak.size() && mugitu) {
-            mugitu = this.gelaxkak.get(i).mugituDaiteke(Mugimendua.GORA);
-            if (!this.gelaxkak.get(i).bizirik()) {
-                mugitu = false;
-                this.setBizirik(false); 
-            }
-            i++;
-        }
-        return mugitu;
+    	return this.gelaxkak.stream()
+    	        .map(pixel -> {
+    	            boolean puedeEstePixel = pixel.mugituDaiteke(m);
+    	            if (!pixel.bizirik()) {
+    	                this.setBizirik(false); 
+    	            }
+    	            return puedeEstePixel;
+    	        })
+    	        .reduce(true, (acumulado, actual) -> acumulado && actual);
     }
 
     @Override

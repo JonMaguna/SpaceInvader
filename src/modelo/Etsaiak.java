@@ -16,11 +16,11 @@ public class Etsaiak extends Entitate {
 	        case ESKUMA:  xHurrengoa++; break;
 	        default: break;
 		}
-		if (yHurrengoa > 59) {
+		if (yHurrengoa > MatrizeM.getnMatrizeM().getY() - 1) {
 			JokoKudeatzailea.getnJokoKudeatzailea().jokoaGelditu(1);
 			return false;
 		}
-		if(xHurrengoa < 0 || xHurrengoa > 99) {
+		if(xHurrengoa < 0 || xHurrengoa > MatrizeM.getnMatrizeM().getX() - 1) {
 			return false;
 		}
 		int[][] Hurrengoa = {{xHurrengoa, yHurrengoa}};
@@ -31,7 +31,6 @@ public class Etsaiak extends Entitate {
 			switch(entitatea) {
 			case ESPAZIONTZI:
 				EntitateKolekzio.getnPertsonaiZerrenda().setBizirik(EntitateMota.ESPAZIONTZI, 1, false);
-			    setBizirik(false); 
 			    mugitu = false;
 	            break;
 			case BALA:
@@ -56,7 +55,7 @@ public class Etsaiak extends Entitate {
 		    default: break;
 			}
 			
-			if (Hurrengoa[0][1] <= 59 && Hurrengoa[0][0] >= 0 && Hurrengoa[0][0] <= 99) {
+			if (Hurrengoa[0][1] <= MatrizeM.getnMatrizeM().getY() - 1 && Hurrengoa[0][0] >= 0 && Hurrengoa[0][0] <= MatrizeM.getnMatrizeM().getX() - 1) {
 				entitatea = MatrizeM.getnMatrizeM().zerDago(Hurrengoa);
 				BesteId = MatrizeM.getnMatrizeM().zeinIDDago(Hurrengoa);
 				

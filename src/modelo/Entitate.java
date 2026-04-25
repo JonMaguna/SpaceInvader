@@ -54,4 +54,6 @@ public abstract class Entitate {
 	public void setY(int y) {
 		this.y = y;
 	}
+
+	protected void tiroKohete(int i) {	}
 }
