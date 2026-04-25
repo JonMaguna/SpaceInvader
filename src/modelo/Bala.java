@@ -8,7 +8,6 @@ public class Bala extends Entitate{
 	
 	public boolean mugituDaiteke(Mugimendua mugimendua) {
     	boolean mugitu = true;
-    	MatrizeM matrizeM = MatrizeM.getnMatrizeM();
     	if(this.koordenatu[0][1]<=1) { 
 			this.setBizirik(false);
 			return false;
@@ -30,6 +29,7 @@ public class Bala extends Entitate{
         			    break;
         			case BALA:
         				if(BesteId != this.id) {
+        					EntitateKolekzio.getnPertsonaiZerrenda().setBizirik(EntitateMota.BALA, BesteId, false);
         					mugitu = false;
         					setBizirik(false);
         				}
@@ -44,7 +44,19 @@ public class Bala extends Entitate{
     }
 	
     public void mugitu(Mugimendua mugimendua) {
-    	this.koordenatu[0][1] -= 1;
-        this.y = this.koordenatu[0][1]; 
+    	switch(mugimendua){
+     	case ESKUMA:
+     		this.koordenatu[0][0] += 1;
+            this.x = this.koordenatu[0][0];
+     		break;
+     	case EZKERRA:
+     		this.koordenatu[0][0] -= 1;
+            this.x = this.koordenatu[0][0];
+     	case GORA:
+     		this.koordenatu[0][1] -= 1;
+            this.y = this.koordenatu[0][1];
+     	default:
+     		break;
+    	} 
     }
 }

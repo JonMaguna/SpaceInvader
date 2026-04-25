@@ -180,4 +180,17 @@ public class EntitateKolekzio {
 		}
 		(this.mapa.get(EntitateMota.ESPAZIONTZI).get(0)).tiroKohete(balaKopurua() + 1);	
 	}
+
+	public Entitate etsaiHurbilena(int x, int y) { 
+		double distantziaZ = -1, distantziaB = 0;
+		Entitate etsaia = null;
+		for (Entitate e : this.mapa.get(EntitateMota.ETSAIA)) {
+			distantziaB = Math.sqrt(Math.pow(e.getX() - x, 2) + Math.pow(e.getY() - y, 2));
+			if(distantziaB < distantziaZ || distantziaZ == -1) {
+				distantziaZ = distantziaB;
+				etsaia = e;
+			}
+		}
+		return etsaia;
+	}
 }

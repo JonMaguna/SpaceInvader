@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class BalaNodo extends Entitate implements Runnable {
     private Thread ThreadBala;
-    private ArrayList<Entitate> gelaxkak = new ArrayList<>();
-    private volatile boolean bizirik = true;
+    protected ArrayList<Entitate> gelaxkak = new ArrayList<>();
+    protected volatile boolean bizirik = true;
 
     public BalaNodo(int x, int y, int[][] koordenatuak, int id) {
         super(x, y, id, true);
@@ -36,13 +36,13 @@ public class BalaNodo extends Entitate implements Runnable {
     public boolean mugituDaiteke(Mugimendua m) {
     	return this.gelaxkak.stream()
     	        .map(pixel -> {
-    	            boolean puedeEstePixel = pixel.mugituDaiteke(m);
+    	            boolean mugitu = pixel.mugituDaiteke(m);
     	            if (!pixel.bizirik()) {
     	                this.setBizirik(false); 
     	            }
-    	            return puedeEstePixel;
+    	            return mugitu;
     	        })
-    	        .reduce(true, (acumulado, actual) -> acumulado && actual);
+    	        .reduce(true, (x, y) -> x && y);
     }
 
     @Override
@@ -53,7 +53,7 @@ public class BalaNodo extends Entitate implements Runnable {
                 pixel.mugitu(Mugimendua.GORA);
             }
             MatrizeM.getnMatrizeM().gelaxkakAktualizatu(this.gelaxkak, this.getId(), EntitateMota.BALA);
-            this.setY(this.getY() - 1);
+            this.y--;
         } else {
             this.setBizirik(false);
         }

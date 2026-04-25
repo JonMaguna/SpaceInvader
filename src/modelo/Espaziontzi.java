@@ -28,7 +28,7 @@ public class Espaziontzi extends Entitate {
 	        case ESKUMA:  xHurrengoa++; break;
 	    }
 
-	    if (xHurrengoa < 0 || xHurrengoa > MatrizeM.getnMatrizeM().getX() || yHurrengoa < 0 || yHurrengoa > MatrizeM.getnMatrizeM().getX()) {
+	    if (xHurrengoa < 0 || xHurrengoa > MatrizeM.getnMatrizeM().getX() -1 || yHurrengoa < 0 || yHurrengoa > MatrizeM.getnMatrizeM().getX() -1)  {
 	        return false;
 	    }
 	    int[][] posHurrengoa = {{xHurrengoa, yHurrengoa}};

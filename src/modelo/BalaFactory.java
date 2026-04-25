@@ -34,7 +34,7 @@ public class BalaFactory {
 			if(y <= 1) {
 				return null;
 			}
-			return new BalaNodo(x, y, new int[][]{{x+1, y}, {x-1, y}, {x, y-1}, {x, y-2}}, id);
+			return new BalaKohete(x, y, new int[][]{{x+1, y}, {x-1, y}, {x, y-1}, {x, y-2}}, id);
 		default:
 			return null;
 		}
