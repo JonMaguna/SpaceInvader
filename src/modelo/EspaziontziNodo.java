@@ -43,7 +43,7 @@ public abstract class EspaziontziNodo extends Entitate {
         }
     }
     
-    private void eguneratuPosizioNagusia(Mugimendua m) {
+    protected void eguneratuPosizioNagusia(Mugimendua m) {
         switch(m) {
             case EZKERRA: this.setX(this.getX() - 1); break;
             case ESKUMA:  this.setX(this.getX() + 1); break;
