@@ -1,5 +1,7 @@
 package modelo;
 
+import musikie.Efektuak;
+
 public class BalaKohete extends BalaNodo {
 	public BalaKohete(int x, int y, int[][] forma, int id, int abiadura) {
 		super(x, y, forma, id,abiadura);
@@ -20,6 +22,7 @@ public class BalaKohete extends BalaNodo {
 	}
 	
 	public void mugitu() {
+		Efektuak e= new Efektuak();
 		if(this.objetiboa == null || !this.objetiboa.bizirik()) {
 			this.objetiboa = EntitateKolekzio.getnPertsonaiZerrenda().etsaiHurbilena(x, y);
 		}
@@ -62,6 +65,7 @@ public class BalaKohete extends BalaNodo {
          		break;
         	}
 		}else {
+			e.erreproduzidu("src/musikie/cohetea_exp.mp3");
 			this.setBizirik(false);
 		}
 	}
