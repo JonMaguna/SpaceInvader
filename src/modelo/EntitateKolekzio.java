@@ -18,12 +18,14 @@ public class EntitateKolekzio {
 	private long azkenMugimendua;
 	private long azkenTiroa;
 	private Timer etsaienTimer;
+	private Timer etsaienTiroTimer;
 	
 	private EntitateKolekzio() {
 		this.mapa = new HashMap<EntitateMota, ArrayList<Entitate>>();
 		this.mapa.put(EntitateMota.ESPAZIONTZI, new ArrayList<Entitate>());
 		this.mapa.put(EntitateMota.ETSAIA, new ArrayList<Entitate>());
 		this.mapa.put(EntitateMota.BALA, new ArrayList<Entitate>());
+		this.mapa.put(EntitateMota.BALA_ETSAIA, new ArrayList<>());
 	}
 	
 	public static EntitateKolekzio getnPertsonaiZerrenda() {
@@ -54,6 +56,7 @@ public class EntitateKolekzio {
 			this.mapa.get(EntitateMota.ETSAIA).add(etsai);
 		}
 		etsaienMugimendua();
+		etsaiakTiroEgin();
 	}
 	
 	private void etsaienMugimendua() {
@@ -128,8 +131,11 @@ public class EntitateKolekzio {
 			return;
 		}
 		BalaNodo bala = this.mapa.get(EntitateMota.ESPAZIONTZI).get(0).tiroEgin(balaKopurua() + 1);
-		if(bala == null) { return; }
-		this.mapa.get(EntitateMota.BALA).add(bala);
+		if(bala == null) { 
+			return; }
+		if (bala != null) {
+	        this.mapa.get(EntitateMota.BALA_ETSAIA).add(bala);
+	    }
 	}
 	
 	private boolean denboraPasaBala() {	
@@ -158,6 +164,10 @@ public class EntitateKolekzio {
 			this.etsaienTimer.stop();
 			this.etsaienTimer = null;
 		}
+		if(this.etsaienTiroTimer != null) {
+			this.etsaienTiroTimer.stop();
+			this.etsaienTiroTimer = null;
+		}
         if(this.mapa !=null) {
         	this.mapa.clear();
 			this.mapa = null;
@@ -183,19 +193,36 @@ public class EntitateKolekzio {
 	}
 
 	public Entitate etsaiHurbilena(int x, int y) { 
-		/*double distantziaZ = -1, distantziaB = 0;
-		Entitate etsaia = null;*/
 		return this.mapa.get(EntitateMota.ETSAIA).stream()
 				.min(Comparator.comparingDouble(e -> 
 				Math.sqrt(Math.pow(e.getX() - x, 2) + Math.pow(e.getY() - y, 2))))
 				.orElse(null);	
-		/*for (Entitate e : this.mapa.get(EntitateMota.ETSAIA)) {
-			distantziaB = Math.sqrt(Math.pow(e.getX() - x, 2) + Math.pow(e.getY() - y, 2));
-			if(distantziaB < distantziaZ || distantziaZ == -1) {
-				distantziaZ = distantziaB;
-				etsaia = e;
-			}
-		}
-		return etsaia;*/
 	}
+	private void etsaiakTiroEgin() {
+        try {
+            if (this.mapa == null || !JokoKudeatzailea.getnJokoKudeatzailea().getJokoanDa()) {
+                return;
+            }
+            ArrayList<Entitate> etsaiak = this.mapa.get(EntitateMota.ETSAIA);
+            if (etsaiak == null || etsaiak.isEmpty()) return;
+            int random = new java.util.Random().nextInt(etsaiak.size());
+            Entitate tiratzailea = etsaiak.get(random);
+            int idBalaEtsaia = (int)(Math.random() * 100000) + 1000;
+            System.out.println("Intentando disparar. Enemigo en Y: " + tiratzailea.getY());
+            BalaNodo bala = BalaFactory.getnBalaFactory().sortuBala(
+                tiratzailea.getX(), 
+                tiratzailea.getY() + 10, 
+                idBalaEtsaia, 
+                BalaMota.BALA_ETSAIA
+            );
+            if (bala != null) {
+                this.mapa.get(EntitateMota.BALA).add(bala);
+                System.out.println("¡Bala enemiga en camino!");
+            }
+        } catch (Exception e) {
+            System.out.println("¡ERROR FATAL AL DISPARAR!");
+            e.printStackTrace(); 
+        }
+    }
 }
+

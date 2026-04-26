@@ -3,13 +3,24 @@ package modelo;
 import java.util.ArrayList;
 
 public class BalaNodo extends Entitate implements Runnable {
+    private Mugimendua norabidea;
     private Thread ThreadBala;
+    private EntitateMota nireMota;
     protected ArrayList<Entitate> gelaxkak = new ArrayList<>();
     protected volatile boolean bizirik = true;
-
-    public BalaNodo(int x, int y, int[][] koordenatuak, int id) {
-        super(x, y, id, true);
-        
+    public BalaNodo(int x, int y, int id) {
+		super(x, y, id, true);
+		this.norabidea = Mugimendua.GORA;
+		
+	}
+    public BalaNodo(int x, int y, int[][] koordenatuak, int id, Mugimendua norabidea) {
+        super(x, y, id, true);        
+        this.norabidea = norabidea;
+        if (this.norabidea == Mugimendua.BEHERA) {
+            this.nireMota = EntitateMota.BALA_ETSAIA; 
+        } else {
+            this.nireMota = EntitateMota.BALA;        
+        }
         boolean EtsaiaDago = false;
         for (int i = 0; i < koordenatuak.length; i++) {
             int posX = koordenatuak[i][0];
@@ -17,26 +28,28 @@ public class BalaNodo extends Entitate implements Runnable {
             int[][] posHurrengoa = {{posX, posY}};
             EntitateMota entitatea = MatrizeM.getnMatrizeM().zerDago(posHurrengoa);
             int besteId = MatrizeM.getnMatrizeM().zeinIDDago(posHurrengoa);
-            if (entitatea == EntitateMota.ETSAIA) {
+            if (this.norabidea == Mugimendua.GORA && entitatea == EntitateMota.ETSAIA) {
                 EntitateKolekzio.getnPertsonaiZerrenda().setBizirik(EntitateMota.ETSAIA, besteId, false);
+                EtsaiaDago = true;
+            } else if (this.norabidea == Mugimendua.BEHERA && entitatea == EntitateMota.ESPAZIONTZI) {
+                EntitateKolekzio.getnPertsonaiZerrenda().setBizirik(EntitateMota.ESPAZIONTZI, besteId, false);
                 EtsaiaDago = true;
             }
             this.gelaxkak.add(new Bala(posX, posY, id));
         }
-        
         if (EtsaiaDago) {
             this.bizirik = false; 
         } else {    
-            MatrizeM.getnMatrizeM().gelaxkakAktualizatu(this.gelaxkak, this.id, EntitateMota.BALA);
+        	MatrizeM.getnMatrizeM().gelaxkakAktualizatu(this.gelaxkak, this.getId(), this.nireMota);
             this.ThreadBala = new Thread(this);
             this.ThreadBala.start();
         }
     }
 
-    public boolean mugituDaiteke(Mugimendua m) {
+    public boolean mugituDaiteke() {
     	return this.gelaxkak.stream()
     	        .map(pixel -> {
-    	            boolean mugitu = pixel.mugituDaiteke(m);
+    	            boolean mugitu = pixel.mugituDaiteke(this.norabidea);
     	            if (!pixel.bizirik()) {
     	                this.setBizirik(false); 
     	            }
@@ -45,15 +58,18 @@ public class BalaNodo extends Entitate implements Runnable {
     	        .reduce(true, (x, y) -> x && y);
     }
 
-    @Override
-    public void mugitu(Mugimendua m) {
-        if (this.mugituDaiteke(m)) {
+    public void mugitu() {
+        if (this.mugituDaiteke(this.norabidea)) {
             MatrizeM.getnMatrizeM().gelaxkakAktualizatu(this.gelaxkak, 0, EntitateMota.HUTSA);
             for (Entitate pixel : this.gelaxkak) {
-                pixel.mugitu(Mugimendua.GORA);
+                pixel.mugitu(this.norabidea);
             }
-            MatrizeM.getnMatrizeM().gelaxkakAktualizatu(this.gelaxkak, this.getId(), EntitateMota.BALA);
-            this.y--;
+            MatrizeM.getnMatrizeM().gelaxkakAktualizatu(this.gelaxkak, this.getId(), this.nireMota);
+            if (this.norabidea == Mugimendua.GORA) {
+                this.y--;
+            } else {
+                this.y++;
+            }
         } else {
             this.setBizirik(false);
         }
@@ -61,15 +77,26 @@ public class BalaNodo extends Entitate implements Runnable {
 
     @Override
     public void run() {
-        while (this.bizirik && JokoKudeatzailea.getnJokoKudeatzailea().getJokoanDa()) { 
-            try {
-                this.mugitu(Mugimendua.GORA); 
-                Thread.sleep(50);
-            } catch (InterruptedException e) {
-                this.bizirik = false;
+    	System.out.println("--> Hilo de la bala " + this.id + " HA ARRANCADO. Dirección: " + this.norabidea);
+            
+           while (this.bizirik && JokoKudeatzailea.getnJokoKudeatzailea().getJokoanDa()) { 
+                try {
+                    System.out.println("--> Bala " + this.id + " comprobando si puede moverse...");
+                    boolean puede = this.mugituDaiteke(this.norabidea);
+                    System.out.println("--> Bala " + this.id + " ¿puede moverse? " + puede);
+                    
+                    this.mugitu(this.norabidea); 
+                    
+                    Thread.sleep(50);
+                } catch (Exception e) {
+                    // ¡AQUÍ ESTÁ LA TRAMPA! Si hay un error de coordenadas, lo pillamos
+                    System.out.println("--> ¡ERROR FATAL DENTRO DE LA BALA " + this.id + "!");
+                    e.printStackTrace();
+                    this.bizirik = false; // La matamos para que no congele el juego
+                }
             }
+            System.out.println("--> Hilo de la bala " + this.id + " TERMINADO. Bizirik = " + this.bizirik);
         }
-    }
 
     public ArrayList<Entitate> getGelaxkak() {
         return this.gelaxkak;

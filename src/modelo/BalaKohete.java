@@ -2,7 +2,7 @@ package modelo;
 
 public class BalaKohete extends BalaNodo {
 	public BalaKohete(int x, int y, int[][] forma, int id) {
-		super(x, y, forma, id);
+		super(x, y, forma, id,null);
 	}
 	private Entitate objetiboa = EntitateKolekzio.getnPertsonaiZerrenda().etsaiHurbilena(this.x, this.y);
 	private int mugituGora = 0;

@@ -39,6 +39,11 @@ public class GelaxkaV extends JLabel implements Observer {
 			setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 			setOpaque(true);
 			break;
+		case BALA_ETSAIA:
+			setBackground(Color.PINK); 
+			setBorder(BorderFactory.createLineBorder(Color.ORANGE, 2));
+			setOpaque(true);
+			break;
 		case HUTSA:
 			setBorder(null);
 	        setOpaque(false);
