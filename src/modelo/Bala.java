@@ -29,12 +29,16 @@ public class Bala extends Entitate{
         			    break;
         			case BALA:
         				if(BesteId != this.id) {
-        					System.out.println(BesteId + "" + id);
         					EntitateKolekzio.getnPertsonaiZerrenda().setBizirik(EntitateMota.BALA, BesteId, false);
         					mugitu = false;
         					setBizirik(false);
         				}
         				break;
+        			case ESPAZIONTZI:
+        				EntitateKolekzio.getnPertsonaiZerrenda().setBizirik(EntitateMota.ESPAZIONTZI, BesteId, false); 
+        			    mugitu = false;
+        			    setBizirik(false);
+        			    break;
         			default:			
         				break;
         			}
