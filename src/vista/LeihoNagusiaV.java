@@ -111,11 +111,6 @@ public class LeihoNagusiaV extends JFrame implements Observer{
 					aukeraL.setText("Aukeratutako ontzia: 3");
 					aukeraL.setForeground(Color.GREEN);
 				}
-				else if(code == KeyEvent.VK_4) {
-		            aukeratutakoOntzia=4;
-		            aukeraL.setText("Aukeratutako ontzia: 4");
-		            aukeraL.setForeground(Color.PINK);
-		        }
 				if(e.getKeyCode() == KeyEvent.VK_ENTER) {
 					JokoKudeatzailea.getnJokoKudeatzailea().addObserver(LeihoNagusiaV.this);
 					JokoKudeatzailea.getnJokoKudeatzailea().jokoaHasieratu(aukeratutakoOntzia);
