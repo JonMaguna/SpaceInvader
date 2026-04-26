@@ -36,7 +36,7 @@ public class BalaFactory {
 			}
 			return new BalaKohete(x, y, new int[][]{{x+1, y}, {x-1, y}, {x, y-1}, {x, y-2}}, id);
 		case BALA_ETSAIA:
-			return new BalaNodo(x, y, new int[][]{{x, y}}, id, Mugimendua.BEHERA);
+            return new BalaNodo(x, y, new int[][]{{x, y}}, id, Mugimendua.BEHERA);
 		default:
 			return null;
 		}

@@ -56,7 +56,8 @@ public class EntitateKolekzio {
 			this.mapa.get(EntitateMota.ETSAIA).add(etsai);
 		}
 		etsaienMugimendua();
-		etsaiakTiroEgin();
+		this.etsaienTiroTimer = new Timer(1500, e -> etsaiakTiroEgin());
+        this.etsaienTiroTimer.start();
 	}
 	
 	private void etsaienMugimendua() {
@@ -110,19 +111,13 @@ public class EntitateKolekzio {
 	}
 
 	public void setBizirik(EntitateMota entitate, int i, boolean b) {
-		ArrayList<Entitate> entitateak = this.mapa.get(entitate);
-		if (entitateak == null) return;
+	    ArrayList<Entitate> entitateak = this.mapa.get(entitate);
+	    if (entitateak == null) return;
 	    entitateak.stream()
 	              .filter(e -> e.getId() == i) 
 	              .findFirst()                  
 	              .ifPresent(e -> {             	                  
 	                  e.setBizirik(b); 
-	                  if (!e.bizirik() && JokoKudeatzailea.getnJokoKudeatzailea().getJokoanDa()) {
-	                      entitateak.remove(e);
-	                      if (this.mapa.get(EntitateMota.ETSAIA).isEmpty()) { 
-	                          JokoKudeatzailea.getnJokoKudeatzailea().jokoaGelditu(2);
-	                      }
-	                  }
 	              });
 	}
 	
@@ -211,7 +206,7 @@ public class EntitateKolekzio {
             System.out.println("Intentando disparar. Enemigo en Y: " + tiratzailea.getY());
             BalaNodo bala = BalaFactory.getnBalaFactory().sortuBala(
                 tiratzailea.getX(), 
-                tiratzailea.getY() + 10, 
+                tiratzailea.getY() + 3, 
                 idBalaEtsaia, 
                 BalaMota.BALA_ETSAIA
             );

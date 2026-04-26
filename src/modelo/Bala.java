@@ -1,10 +1,13 @@
 package modelo;
 
+import java.util.ArrayList;
 
 public class Bala extends Entitate{
 	public Bala(int x, int y, int id) {
 		super(x, y, id, true);
+        this.koordenatu = new int[][]{{x, y}}; 
 	}
+	
 	public boolean mugituDaiteke(Mugimendua mugimendua) {
     	boolean mugitu = true;
     	if(this.koordenatu[0][1]<=1 || this.koordenatu[0][1]>=119) {
@@ -14,20 +17,11 @@ public class Bala extends Entitate{
     		int xHurrengoa = this.koordenatu[i][0];
     		int yHurrengoa = this.koordenatu[i][1];
     		switch(mugimendua) {
-	 		case GORA:
-    			yHurrengoa -= 1;
-    			break;
-    		case BEHERA:
-	 			yHurrengoa += 1;
-	 			break;
-     		case ESKUMA:
-     			xHurrengoa += 1;
-     			break;
-     		case EZKERRA:
-     			xHurrengoa -= 1;
-     			break;
-     		default:
-     			break;
+	 		case GORA: yHurrengoa -= 1; break;
+    		case BEHERA: yHurrengoa += 1; break;
+     		case ESKUMA: xHurrengoa += 1; break;
+     		case EZKERRA: xHurrengoa -= 1; break;
+     		default: break;
     		}
         	int[][] Hurrengoa = {{xHurrengoa, yHurrengoa}};
         	EntitateMota entitatea = MatrizeM.getnMatrizeM().zerDago(Hurrengoa);
@@ -37,15 +31,20 @@ public class Bala extends Entitate{
         		case ETSAIA:
         		    if (mugimendua == Mugimendua.GORA) {
         		        EntitateKolekzio.getnPertsonaiZerrenda().setBizirik(EntitateMota.ETSAIA, BesteId, false); 
+                        ArrayList<Entitate> fantasma = new ArrayList<>();
+                        fantasma.add(new Bala(xHurrengoa, yHurrengoa, 0));
+                        MatrizeM.getnMatrizeM().gelaxkakAktualizatu(fantasma, 0, EntitateMota.HUTSA);
+
         		        mugitu = false;
         		        setBizirik(false);
         		    }
         		    break;
         		case BALA:
+                case BALA_ETSAIA: 
         			if(BesteId != this.id) {
-        			EntitateKolekzio.getnPertsonaiZerrenda().setBizirik(EntitateMota.BALA, BesteId, false);
-        			mugitu = false;
-        			setBizirik(false);
+        			    EntitateKolekzio.getnPertsonaiZerrenda().setBizirik(entitatea, BesteId, false);
+        			    mugitu = false;
+        			    setBizirik(false);
         			}
         			break;
         		case ESPAZIONTZI:
@@ -57,11 +56,11 @@ public class Bala extends Entitate{
     	            break;
         		default:			
         			break;
-        			}
         		}
         	}
+        }
     	return mugitu;
-    	}
+    }
 	
     public void mugitu(Mugimendua mugimendua) {
     	switch(mugimendua){
@@ -80,7 +79,6 @@ public class Bala extends Entitate{
      	case BEHERA:
 	 		this.koordenatu[0][1] += 1;
 			this.y = this.koordenatu[0][1];
-			System.out.println("Soy la bala enemiga y estoy cayendo por la Y: " + this.y);
 			break;             
      	default:
      		break;

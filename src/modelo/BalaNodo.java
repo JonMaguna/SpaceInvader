@@ -16,14 +16,12 @@ public class BalaNodo extends Entitate implements Runnable {
 
     public BalaNodo(int x, int y, int[][] koordenatuak, int id, Mugimendua norabidea) {
         super(x, y, id, true);        
-        this.norabidea = norabidea;
-        
+        this.norabidea = norabidea;        
         if (this.norabidea == Mugimendua.BEHERA) {
             this.nireMota = EntitateMota.BALA_ETSAIA; 
         } else {
             this.nireMota = EntitateMota.BALA;        
-        }
-        
+        }        
         boolean talka = false;
         for (int i = 0; i < koordenatuak.length; i++) {
             int posX = koordenatuak[i][0];
@@ -57,7 +55,7 @@ public class BalaNodo extends Entitate implements Runnable {
     	        .map(pixel -> {
     	            boolean mugitu = pixel.mugituDaiteke(this.norabidea);
     	            if (!pixel.bizirik()) {
-    	                this.setBizirik(false); 
+    	                this.bizirik = false; 
     	            }
     	            return mugitu;
     	        })
@@ -72,11 +70,10 @@ public class BalaNodo extends Entitate implements Runnable {
                 pixel.mugitu(this.norabidea);
             }
             MatrizeM.getnMatrizeM().gelaxkakAktualizatu(this.gelaxkak, this.getId(), this.nireMota);
-            if (this.norabidea == Mugimendua.GORA) {
-                this.y--;
-            } else {
-                this.y++;
-            }
+            if (this.norabidea == Mugimendua.GORA) { 
+            	this.y--; 
+            }else { 
+            	this.y++; }
         } else {
             this.setBizirik(false);
         }
@@ -84,13 +81,17 @@ public class BalaNodo extends Entitate implements Runnable {
 
     @Override
     public void run() {
-        while (this.bizirik && JokoKudeatzailea.getnJokoKudeatzailea().getJokoanDa()) { 
-            try {
+        try {
+            while (this.bizirik && JokoKudeatzailea.getnJokoKudeatzailea().getJokoanDa()) { 
                 this.mugitu(this.norabidea); 
                 Thread.sleep(50);
-            } catch (Exception e) {
-                e.printStackTrace();
-                this.bizirik = false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            this.bizirik = false;
+            if (JokoKudeatzailea.getnJokoKudeatzailea().getJokoanDa()) {
+                MatrizeM.getnMatrizeM().gelaxkakAktualizatu(this.gelaxkak, 0, EntitateMota.HUTSA);
             }
         }
     }
