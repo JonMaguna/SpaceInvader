@@ -6,9 +6,11 @@ public class BalaNodo extends Entitate implements Runnable {
     private Thread ThreadBala;
     protected ArrayList<Entitate> gelaxkak = new ArrayList<>();
     protected volatile boolean bizirik = true;
+    protected int abiadura;
 
-    public BalaNodo(int x, int y, int[][] koordenatuak, int id) {
+    public BalaNodo(int x, int y, int[][] koordenatuak, int id, int abiadura) {
         super(x, y, id, true);
+        this.abiadura= abiadura;
         
         boolean EtsaiaDago = false;
         for (int i = 0; i < koordenatuak.length; i++) {
@@ -64,7 +66,7 @@ public class BalaNodo extends Entitate implements Runnable {
         while (this.bizirik && JokoKudeatzailea.getnJokoKudeatzailea().getJokoanDa()) { 
             try {
                 this.mugitu(Mugimendua.GORA); 
-                Thread.sleep(50);
+                Thread.sleep(this.abiadura);
             } catch (InterruptedException e) {
                 this.bizirik = false;
             }
