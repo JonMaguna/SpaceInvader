@@ -36,8 +36,6 @@ public class Espaziontzi extends Entitate {
 
 	    if (entitatea == EntitateMota.ETSAIA) {
 	    	EntitateKolekzio.getnPertsonaiZerrenda().setBizirik(EntitateMota.ESPAZIONTZI, 1, false); 
-	        int besteId = MatrizeM.getnMatrizeM().zeinIDDago(posHurrengoa);
-	        EntitateKolekzio.getnPertsonaiZerrenda().setBizirik(EntitateMota.ETSAIA, besteId, false);
 	        return false;         
 	    	}      
 	    return true;
