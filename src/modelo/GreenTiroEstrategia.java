@@ -8,7 +8,7 @@ public class GreenTiroEstrategia implements TiroEstrategia {
 			return BalaFactory.getnBalaFactory().sortuBala(nodo.getX(), nodo.getY() - 1, id, BalaMota.BALA_NORMALA);
 		} else if (nodo.getBala2() < 20) {
 			nodo.setBala2(nodo.getBala2() + 1);
-			return BalaFactory.getnBalaFactory().sortuBala(nodo.getX(), nodo.getY() - 1, id, BalaMota.BALA_AZKARRA);
+			return BalaFactory.getnBalaFactory().sortuBala(nodo.getX(), nodo.getY() - 1, id, BalaMota.BALA_HANDIA);
 		}
 		return null;
 	}

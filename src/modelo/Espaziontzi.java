@@ -34,10 +34,10 @@ public class Espaziontzi extends Entitate {
 	    int[][] posHurrengoa = {{xHurrengoa, yHurrengoa}};
 	    EntitateMota entitatea = MatrizeM.getnMatrizeM().zerDago(posHurrengoa);
 
-	    if (entitatea == EntitateMota.ETSAIA) {
+	    if (entitatea == EntitateMota.ETSAIA || entitatea == EntitateMota.BALA) {
 	    	EntitateKolekzio.getnPertsonaiZerrenda().setBizirik(EntitateMota.ESPAZIONTZI, 1, false); 
 	        int besteId = MatrizeM.getnMatrizeM().zeinIDDago(posHurrengoa);
-	        EntitateKolekzio.getnPertsonaiZerrenda().setBizirik(EntitateMota.ETSAIA, besteId, false);
+	        EntitateKolekzio.getnPertsonaiZerrenda().setBizirik(entitatea,besteId, false);
 	        return false;         
 	    	}      
 	    return true;
