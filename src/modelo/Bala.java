@@ -1,6 +1,5 @@
 package modelo;
 
-import java.awt.Color; 
 
 public class Bala extends Entitate{
 	public Bala(int x, int y, int id) {
@@ -50,8 +49,11 @@ public class Bala extends Entitate{
         			}
         			break;
         		case ESPAZIONTZI:
-    				EntitateKolekzio.getnPertsonaiZerrenda().setBizirik(EntitateMota.ESPAZIONTZI, 1, false);
-    			    mugitu = false;
+                    if (mugimendua == Mugimendua.BEHERA) {
+    				    EntitateKolekzio.getnPertsonaiZerrenda().setBizirik(EntitateMota.ESPAZIONTZI, 1, false);
+    			        mugitu = false;
+                        setBizirik(false);
+                    }
     	            break;
         		default:			
         			break;

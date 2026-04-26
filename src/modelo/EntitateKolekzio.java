@@ -134,7 +134,7 @@ public class EntitateKolekzio {
 		if(bala == null) { 
 			return; }
 		if (bala != null) {
-	        this.mapa.get(EntitateMota.BALA_ETSAIA).add(bala);
+	        this.mapa.get(EntitateMota.BALA).add(bala);
 	    }
 	}
 	
@@ -216,7 +216,7 @@ public class EntitateKolekzio {
                 BalaMota.BALA_ETSAIA
             );
             if (bala != null) {
-                this.mapa.get(EntitateMota.BALA).add(bala);
+                this.mapa.get(EntitateMota.BALA_ETSAIA).add(bala); 
                 System.out.println("¡Bala enemiga en camino!");
             }
         } catch (Exception e) {
