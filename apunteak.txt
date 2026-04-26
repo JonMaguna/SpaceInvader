@@ -6,7 +6,6 @@ Etsai mota:
     * Etsai tiro egin	
 
 Bala mota:
-	* Bala teledirijido		Surya
 	* Bala azkar			Batman
 Soinuak:
     * Soinu efektuak		Batman

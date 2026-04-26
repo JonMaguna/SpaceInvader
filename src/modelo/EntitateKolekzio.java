@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
@@ -127,7 +128,7 @@ public class EntitateKolekzio {
 			return;
 		}
 		BalaNodo bala = this.mapa.get(EntitateMota.ESPAZIONTZI).get(0).tiroEgin(balaKopurua() + 1);
-		if(bala != null) { return; }
+		if(bala == null) { return; }
 		this.mapa.get(EntitateMota.BALA).add(bala);
 	}
 	
@@ -182,15 +183,19 @@ public class EntitateKolekzio {
 	}
 
 	public Entitate etsaiHurbilena(int x, int y) { 
-		double distantziaZ = -1, distantziaB = 0;
-		Entitate etsaia = null;
-		for (Entitate e : this.mapa.get(EntitateMota.ETSAIA)) {
+		/*double distantziaZ = -1, distantziaB = 0;
+		Entitate etsaia = null;*/
+		return this.mapa.get(EntitateMota.ETSAIA).stream()
+				.min(Comparator.comparingDouble(e -> 
+				Math.sqrt(Math.pow(e.getX() - x, 2) + Math.pow(e.getY() - y, 2))))
+				.orElse(null);	
+		/*for (Entitate e : this.mapa.get(EntitateMota.ETSAIA)) {
 			distantziaB = Math.sqrt(Math.pow(e.getX() - x, 2) + Math.pow(e.getY() - y, 2));
 			if(distantziaB < distantziaZ || distantziaZ == -1) {
 				distantziaZ = distantziaB;
 				etsaia = e;
 			}
 		}
-		return etsaia;
+		return etsaia;*/
 	}
 }
