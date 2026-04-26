@@ -32,6 +32,7 @@ public class EspaziontziGREEN  extends EspaziontziNodo{
             }
         }
     }
+	
 	private void StepBack() {
 		for (int i = 0; i < 5; i++) {
 			this.mugitu(Mugimendua.BEHERA);
