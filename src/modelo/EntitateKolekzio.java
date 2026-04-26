@@ -200,10 +200,16 @@ public class EntitateKolekzio {
             }
             ArrayList<Entitate> etsaiak = this.mapa.get(EntitateMota.ETSAIA);
             if (etsaiak == null || etsaiak.isEmpty()) return;
-            int random = new java.util.Random().nextInt(etsaiak.size());
-            Entitate tiratzailea = etsaiak.get(random);
+            ArrayList<Entitate> EtsaiB = new ArrayList<>();
+            for (Entitate e : etsaiak) {
+                if (e instanceof EtsaiakB) {
+                    EtsaiB.add(e);
+                }
+            }            
+            if (EtsaiB.isEmpty()) return;
+            int random = new java.util.Random().nextInt(EtsaiB.size());
+            Entitate tiratzailea = EtsaiB.get(random);
             int idBalaEtsaia = (int)(Math.random() * 100000) + 1000;
-            System.out.println("Intentando disparar. Enemigo en Y: " + tiratzailea.getY());
             BalaNodo bala = BalaFactory.getnBalaFactory().sortuBala(
                 tiratzailea.getX(), 
                 tiratzailea.getY() + 3, 
@@ -212,7 +218,6 @@ public class EntitateKolekzio {
             );
             if (bala != null) {
                 this.mapa.get(EntitateMota.BALA_ETSAIA).add(bala); 
-                System.out.println("¡Bala enemiga en camino!");
             }
         } catch (Exception e) {
             System.out.println("¡ERROR FATAL AL DISPARAR!");

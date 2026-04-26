@@ -49,7 +49,7 @@ public class Bala extends Entitate{
         			break;
         		case ESPAZIONTZI:
                     if (mugimendua == Mugimendua.BEHERA) {
-    				    EntitateKolekzio.getnPertsonaiZerrenda().setBizirik(EntitateMota.ESPAZIONTZI, 1, false);
+    				    EntitateKolekzio.getnPertsonaiZerrenda().setBizirik(EntitateMota.ESPAZIONTZI, BesteId, false);
     			        mugitu = false;
                         setBizirik(false);
                     }
