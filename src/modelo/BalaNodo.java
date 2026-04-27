@@ -10,20 +10,23 @@ public class BalaNodo extends Entitate implements Runnable {
     protected volatile boolean bizirik = true;
     protected int abiadura;
 
+    // Constructor 1: La NAVE usa este. Llama al Constructor 2 pasándole Mugimendua.GORA
     public BalaNodo(int x, int y, int[][] koordenatuak, int id, int abiadura) {
-        super(x, y, id, true);
-        this.abiadura= abiadura;
-        this.norabidea = Mugimendua.GORA;
+        this(x, y, koordenatuak, id, abiadura, Mugimendua.GORA);
     }
 
-    public BalaNodo(int x, int y, int[][] koordenatuak, int id, int abiadura,Mugimendua norabidea) {
+    // Constructor 2: Los ENEMIGOS usan este. Centraliza toda la lógica
+    public BalaNodo(int x, int y, int[][] koordenatuak, int id, int abiadura, Mugimendua norabidea) {
         super(x, y, id, true);        
+        this.abiadura = abiadura; // ¡ARREGLADO BUG DE VELOCIDAD EXTREMA!
         this.norabidea = norabidea;        
+        
         if (this.norabidea == Mugimendua.BEHERA) {
             this.nireMota = EntitateMota.BALA_ETSAIA; 
         } else {
             this.nireMota = EntitateMota.BALA;        
         }        
+        
         boolean talka = false;
         for (int i = 0; i < koordenatuak.length; i++) {
             int posX = koordenatuak[i][0];
@@ -47,7 +50,7 @@ public class BalaNodo extends Entitate implements Runnable {
         } else {    
         	MatrizeM.getnMatrizeM().gelaxkakAktualizatu(this.gelaxkak, this.getId(), this.nireMota);
             this.ThreadBala = new Thread(this);
-            this.ThreadBala.start();
+            this.ThreadBala.start(); // ¡ARREGLADO BUG DE NAVE QUE NO DISPARABA!
         }
     }
 
@@ -74,8 +77,9 @@ public class BalaNodo extends Entitate implements Runnable {
             MatrizeM.getnMatrizeM().gelaxkakAktualizatu(this.gelaxkak, this.getId(), this.nireMota);
             if (this.norabidea == Mugimendua.GORA) { 
             	this.y--; 
-            }else { 
-            	this.y++; }
+            } else { 
+            	this.y++; 
+            }
         } else {
             this.setBizirik(false);
         }
@@ -97,7 +101,6 @@ public class BalaNodo extends Entitate implements Runnable {
             }
         }
     }
-
 
     public ArrayList<Entitate> getGelaxkak() {
         return this.gelaxkak;

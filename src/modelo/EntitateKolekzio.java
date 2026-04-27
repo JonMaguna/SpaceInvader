@@ -118,6 +118,12 @@ public class EntitateKolekzio {
 	              .findFirst()                  
 	              .ifPresent(e -> {             	                  
 	                  e.setBizirik(b); 
+	                  if (!e.bizirik() && JokoKudeatzailea.getnJokoKudeatzailea().getJokoanDa()) {
+	                      entitateak.remove(e);
+	                      if (entitate == EntitateMota.ETSAIA && entitateak.isEmpty()) { 
+	                          JokoKudeatzailea.getnJokoKudeatzailea().jokoaGelditu(2);
+	                      }
+	                  }
 	              });
 	}
 	
