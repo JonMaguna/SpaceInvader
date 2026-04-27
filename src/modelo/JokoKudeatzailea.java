@@ -5,6 +5,7 @@ import java.util.Observable;
 public class JokoKudeatzailea extends Observable{
 	private boolean jokoanDa = false;
 	private static JokoKudeatzailea jokonKudeatzailea = null;
+	private boolean kamikaze;
 	
 	private JokoKudeatzailea() {}
 	
@@ -41,5 +42,13 @@ public class JokoKudeatzailea extends Observable{
 		setChanged();
 		notifyObservers(3);
 		this.deleteObservers();
+	}
+
+	public boolean kamikazerik() {
+		return kamikaze;
+	}
+	
+	public void setKamikaze(boolean kamikazerik) {
+		this.kamikaze = kamikazerik;
 	}
 }
