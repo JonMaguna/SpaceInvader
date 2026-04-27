@@ -23,6 +23,7 @@ public class GelaxkaM extends Observable {
             case ETSAIA: egoeraBerria = new Etsaia_M(); break;
             case ESPAZIONTZI: egoeraBerria = new Espaziontzia_M(); break;
             case HUTSA: egoeraBerria = new Hutsa_M(); break;
+            case BALA_ETSAIA: egoeraBerria = new Bala_Etsaia_M(); break;
         }
         this.gelaxka_mota = egoeraBerria;
         this.id = id;

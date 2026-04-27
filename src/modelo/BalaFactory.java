@@ -42,6 +42,8 @@ public class BalaFactory {
 			}
 			e.erreproduzidu("src/musikie/cohetea_disp.mp3");
 			return new BalaKohete(x, y, new int[][]{{x+1, y}, {x-1, y}, {x, y-1}, {x, y-2}}, id,40);
+		case BALA_ETSAIA:
+            return new BalaNodo(x, y, new int[][]{{x, y}}, id,50, Mugimendua.BEHERA);
 		default:
 			return null;
 		}

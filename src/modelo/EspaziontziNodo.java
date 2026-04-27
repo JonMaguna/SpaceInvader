@@ -58,7 +58,7 @@ public abstract class EspaziontziNodo extends Entitate {
         for (Entitate pixel : gelaxkak) {
             pixel.setBizirik(bizirik);
         }
-        if(!bizirik && JokoKudeatzailea.getnJokoKudeatzailea().getJokoanDa()) {
+        if(!bizirik) {
             MatrizeM.getnMatrizeM().gelaxkakAktualizatu(gelaxkak, 0, EntitateMota.HUTSA);
         }
     }
