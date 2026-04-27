@@ -1,8 +1,9 @@
 package modelo;
 
 public enum EntitateMota {
-	BALA,
-	ESPAZIONTZI,
-	ETSAIA,
-	HUTSA
+    ESPAZIONTZI,
+    ETSAIA,
+    BALA,
+    BALA_ETSAIA, 
+    HUTSA
 }
