@@ -9,7 +9,7 @@ public class EspaziontziGREEN  extends EspaziontziNodo{
 		super(x,y,id);
 		this.kolorea = Color.GREEN;
 		tiroEstrategia = new GreenTiroEstrategia();
-		int[][] forma = {{0,0},{-1,1},{0,1},{1,1},{-2,2},{-1,2},{0,2},{1,2},{2,2}};
+		int[][] forma = {{0, -3},{-1, -2}, {0, -2}, {1, -2},{-1, -1}, {0, -1}, {1, -1},{-2, 0}, {-1, 0}, {0, 0}, {1, 0}, {2, 0},{-3, 1}, {-2, 1}, {-1, 1}, {0, 1}, {1, 1}, {2, 1}, {3, 1},{-3, 2}, {-2, 2}, {2, 2}, {3, 2},{-3, 3}, {-2, 3}, {2, 3}, {3, 3},{-3, 4}, {3, 4}};
 		this.bala = 1;
 		for (int[] p: forma) {
 			this.gelaxkak.add(new Espaziontzi(x+p[0], y+p[1], id, Color.GREEN));
@@ -31,6 +31,11 @@ public class EspaziontziGREEN  extends EspaziontziNodo{
             	this.StepBack();
             }
         }
+    }
+	
+	@Override
+    public BalaNodo tiroEgin(int pId) {
+        return this.tiroEstrategia.tiroEgin(this, pId);
     }
 	
 	private void StepBack() {

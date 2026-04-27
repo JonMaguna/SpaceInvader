@@ -28,8 +28,8 @@ public class MatrizeV extends JFrame implements Observer, KeyListener {
 	private boolean presionatuta = false;
 	private boolean ezkerra, eskuma, gora, behera, tiroEgin, nextBala, kohete;
 	private Timer mainTimer;
-	private int x = 100;
-	private int y = 60;
+	private int x = 200;
+	private int y = 120;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {

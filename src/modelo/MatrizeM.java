@@ -8,8 +8,8 @@ public class MatrizeM{
 	private static MatrizeM nMatrizeM;
 	private GelaxkaM[][] matrizea;
 	private GelaxkaV[][] matrizeaV;
-	private int x = 100;
-	private int y = 60;
+	private int x = 200;
+	private int y = 120;
 	
 	private MatrizeM() {
 		this.matrizea = new GelaxkaM[x][y];
