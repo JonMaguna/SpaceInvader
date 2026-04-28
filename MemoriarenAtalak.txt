@@ -1,0 +1,19 @@
+Sarrera
+1.1. Proiektuaren aurkezpena
+1.2. Helburuak
+2. Antolaketa
+2.1. Lanaren antolaketa
+2.2. Bilerak
+2.3. Baliabideak
+3. Diseinua
+3.1. KD, arrazoitu erabakiak
+3.2. MVC-ren azalpean (Eginda lehenengo dokumentazioan)
+3.3. Patroien azalpena (Eginda bigarren dokumentazioa, baina zuzendu beharra dago)
+4. Garapena
+4.1 Sprint bakoitzeko helburuak
+eta hartutako erabakiak
+4.2 Atazen dokumentazioa
+4.3 Proben dokumentazioa
+5. Ondorioak
+5.1 Hausnarketa
+5.2 Etorkizuneko lanak eta Hobekuntzak
