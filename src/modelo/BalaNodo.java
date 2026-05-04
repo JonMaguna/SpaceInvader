@@ -10,15 +10,13 @@ public class BalaNodo extends Entitate implements Runnable {
     protected volatile boolean bizirik = true;
     protected int abiadura;
 
-    // Constructor 1: La NAVE usa este. Llama al Constructor 2 pasándole Mugimendua.GORA
     public BalaNodo(int x, int y, int[][] koordenatuak, int id, int abiadura) {
         this(x, y, koordenatuak, id, abiadura, Mugimendua.GORA);
     }
 
-    // Constructor 2: Los ENEMIGOS usan este. Centraliza toda la lógica
     public BalaNodo(int x, int y, int[][] koordenatuak, int id, int abiadura, Mugimendua norabidea) {
         super(x, y, id, true);        
-        this.abiadura = abiadura; // ¡ARREGLADO BUG DE VELOCIDAD EXTREMA!
+        this.abiadura = abiadura; 
         this.norabidea = norabidea;        
         
         if (this.norabidea == Mugimendua.BEHERA) {
@@ -50,7 +48,7 @@ public class BalaNodo extends Entitate implements Runnable {
         } else {    
         	MatrizeM.getnMatrizeM().gelaxkakAktualizatu(this.gelaxkak, this.getId(), this.nireMota);
             this.ThreadBala = new Thread(this);
-            this.ThreadBala.start(); // ¡ARREGLADO BUG DE NAVE QUE NO DISPARABA!
+            this.ThreadBala.start();
         }
     }
 
