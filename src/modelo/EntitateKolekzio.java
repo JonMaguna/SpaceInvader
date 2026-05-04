@@ -16,12 +16,14 @@ public class EntitateKolekzio {
 	private long azkenMugimendua;
 	private long azkenTiroa;
 	private Timer etsaienTimer;
+	private Timer etsaienTiroTimer;
 	
 	private EntitateKolekzio() {
 		this.mapa = new HashMap<EntitateMota, ArrayList<Entitate>>();
 		this.mapa.put(EntitateMota.ESPAZIONTZI, new ArrayList<Entitate>());
 		this.mapa.put(EntitateMota.ETSAIA, new ArrayList<Entitate>());
 		this.mapa.put(EntitateMota.BALA, new ArrayList<Entitate>());
+		this.mapa.put(EntitateMota.BALA_ETSAIA, new ArrayList<>());
 	}
 	
 	public static EntitateKolekzio getnPertsonaiZerrenda() {
@@ -52,6 +54,8 @@ public class EntitateKolekzio {
 			this.mapa.get(EntitateMota.ETSAIA).add(etsai);
 		}
 		etsaienMugimendua();
+		this.etsaienTiroTimer = new Timer(1500, e -> etsaiakTiroEgin());
+        this.etsaienTiroTimer.start();
 	}
 	
 	private void etsaienMugimendua() {
@@ -111,8 +115,8 @@ public class EntitateKolekzio {
 	}
 
 	public void setBizirik(EntitateMota entitate, int i, boolean b) {
-		ArrayList<Entitate> entitateak = this.mapa.get(entitate);
-		if (entitateak == null) return;
+	    ArrayList<Entitate> entitateak = this.mapa.get(entitate);
+	    if (entitateak == null) return;
 	    entitateak.stream()
 	              .filter(e -> e.getId() == i) 
 	              .findFirst()                  
@@ -120,7 +124,7 @@ public class EntitateKolekzio {
 	                  e.setBizirik(b); 
 	                  if (!e.bizirik() && JokoKudeatzailea.getnJokoKudeatzailea().getJokoanDa()) {
 	                      entitateak.remove(e);
-	                      if (this.mapa.get(EntitateMota.ETSAIA).isEmpty()) { 
+	                      if (entitate == EntitateMota.ETSAIA && entitateak.isEmpty()) { 
 	                          JokoKudeatzailea.getnJokoKudeatzailea().jokoaGelditu(2);
 	                      }
 	                  }
@@ -132,8 +136,11 @@ public class EntitateKolekzio {
 			return;
 		}
 		BalaNodo bala = this.mapa.get(EntitateMota.ESPAZIONTZI).get(0).tiroEgin(balaKopurua() + 1);
-		if(bala == null) { return; }
-		this.mapa.get(EntitateMota.BALA).add(bala);
+		if(bala == null) { 
+			return; }
+		if (bala != null) {
+	        this.mapa.get(EntitateMota.BALA).add(bala);
+	    }
 	}
 	
 	private boolean denboraPasaBala() {	
@@ -161,6 +168,10 @@ public class EntitateKolekzio {
 		if(this.etsaienTimer != null) {
 			this.etsaienTimer.stop();
 			this.etsaienTimer = null;
+		}
+		if(this.etsaienTiroTimer != null) {
+			this.etsaienTiroTimer.stop();
+			this.etsaienTiroTimer = null;
 		}
         if(this.mapa !=null) {
         	this.mapa.clear();
@@ -220,4 +231,35 @@ public class EntitateKolekzio {
 		}
 		return true;
 	}
+	private void etsaiakTiroEgin() {
+        try {
+            if (this.mapa == null || !JokoKudeatzailea.getnJokoKudeatzailea().getJokoanDa()) {
+                return;
+            }
+            ArrayList<Entitate> etsaiak = this.mapa.get(EntitateMota.ETSAIA);
+            if (etsaiak == null || etsaiak.isEmpty()) return;
+            ArrayList<Entitate> EtsaiB = new ArrayList<>();
+            for (Entitate e : etsaiak) {
+                if (e instanceof EtsaiakB) {
+                    EtsaiB.add(e);
+                }
+            }            
+            if (EtsaiB.isEmpty()) return;
+            int random = new java.util.Random().nextInt(EtsaiB.size());
+            Entitate tiratzailea = EtsaiB.get(random);
+            int idBalaEtsaia = (int)(Math.random() * 100000) + 1000;
+            BalaNodo bala = BalaFactory.getnBalaFactory().sortuBala(
+                tiratzailea.getX(), 
+                tiratzailea.getY() + 3, 
+                idBalaEtsaia, 
+                BalaMota.BALA_ETSAIA
+            );
+            if (bala != null) {
+                this.mapa.get(EntitateMota.BALA_ETSAIA).add(bala); 
+            }
+        } catch (Exception e) {
+            e.printStackTrace(); 
+        }
+    }
 }
+

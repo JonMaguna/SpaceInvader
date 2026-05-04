@@ -12,8 +12,14 @@ import java.util.stream.IntStream;
 public class MatrizeM{
 	private static MatrizeM nMatrizeM;
 	private GelaxkaM[][] matrizea;
+<<<<<<< HEAD
 	private int x = 200;
 	private int y = 120;
+=======
+	private GelaxkaV[][] matrizeaV;
+	private int x = 100;
+	private int y = 60;
+>>>>>>> sprint3
 	
 	private MatrizeM() {
 		this.matrizea = new GelaxkaM[x][y];

@@ -36,6 +36,10 @@ public abstract class EtsaiNodo extends Entitate {
     }
     @Override
     public void mugitu(Mugimendua m) {
+        if (!this.bizirik) {
+            return;
+        }
+
         if (this.mugituDaiteke(m)) {
             MatrizeM.getnMatrizeM().gelaxkakAktualizatu(this.gelaxkak, 0, EntitateMota.HUTSA);            
             for (Entitate pixel : this.gelaxkak) {
@@ -48,14 +52,10 @@ public abstract class EtsaiNodo extends Entitate {
 
     private void eguneratuPosizioNagusia(Mugimendua m) {
         switch(m) {
-            case EZKERRA: this.setX(this.getX() - 1); 
-            break;
-            case ESKUMA:  this.setX(this.getX() + 1); 
-            break;
-            case BEHERA:  this.setY(this.getY() + 1); 
-            break;
-            default: 
-            break;
+            case EZKERRA: this.setX(this.getX() - 1); break;
+            case ESKUMA:  this.setX(this.getX() + 1); break;
+            case BEHERA:  this.setY(this.getY() + 1); break;
+            default: break;
         }
     }
     
