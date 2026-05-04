@@ -1,7 +1,6 @@
 package modelo;
 
 import java.awt.event.ActionEvent;
-import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -9,7 +8,6 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
-
 import javax.swing.Timer;
 
 public class EntitateKolekzio {
@@ -37,7 +35,7 @@ public class EntitateKolekzio {
 		EspaziontziNodo espaziontzi = EspaziontziFactory.getNireEspaziontziFactory().sortuEspaziontzia(pMota);
 		this.mapa.get(EntitateMota.ESPAZIONTZI).add(espaziontzi);
 		MatrizeM.getnMatrizeM().gelaxkakAktualizatu(espaziontzi.getGelaxkak(), espaziontzi.getId(), EntitateMota.ESPAZIONTZI);
-		int numEtsaiak = new Random().nextInt(10) + 8;
+		int numEtsaiak = new Random().nextInt(7) + 8;
 		List<Integer> posizio = new ArrayList<>();
 		for (int i = 1; i < MatrizeM.getnMatrizeM().getX()/5; i++) {
 			posizio.add(i*5 - 1);
@@ -75,17 +73,23 @@ public class EntitateKolekzio {
 	        return;
 	    }
 	    etsaiak.forEach(etsai -> {
+	    	if (etsai instanceof EtsaiakC && ((EtsaiakC) etsai).getKamikaze()) {return;}
+	    	if (!etsai.bizirik()) {return;	}
 	        int nora = new Random().nextInt(3);
 	        switch(nora) {
 	            case 0: etsai.mugitu(Mugimendua.BEHERA); break;
 	            case 1: etsai.mugitu(Mugimendua.EZKERRA); break;
 	            case 2: etsai.mugitu(Mugimendua.ESKUMA); break;
 	        }
+	        int probabilitate = new Random().nextInt(this.mapa.get(EntitateMota.ETSAIA).size()*5);
+	        if(etsai instanceof EtsaiakC && probabilitate == 0) {
+	        	((EtsaiakC) etsai).banzai();
+	        }
 	    });
 	    etsaiak.removeIf(etsai -> !etsai.bizirik());
 	    if (etsaiak.isEmpty()) { JokoKudeatzailea.getnJokoKudeatzailea().jokoaGelditu(2);}
 	}
-	        	
+
 	public void mugituOntzia (Mugimendua mugimendua) {
 		if(!JokoKudeatzailea.getnJokoKudeatzailea().getJokoanDa() || denboraPasaMugitu()) {
 			return;
@@ -166,14 +170,6 @@ public class EntitateKolekzio {
 		this.azkenTiroa = 0;
 		nPertsonaiZerrenda = null;
 	}
-	public Color getOntziarenKolorea() {
-	    ArrayList<Entitate> ontziak = this.mapa.get(EntitateMota.ESPAZIONTZI);
-	    if (ontziak != null && !ontziak.isEmpty()) {
-	        EspaziontziNodo ontzia = (EspaziontziNodo) ontziak.get(0);
-	        return ontzia.getKolorea();
-	    }
-	    return null;
-	}
 
 	public void tiroKohete() {
 		if(!JokoKudeatzailea.getnJokoKudeatzailea().getJokoanDa() || denboraPasaBala()) {
@@ -182,20 +178,46 @@ public class EntitateKolekzio {
 		(this.mapa.get(EntitateMota.ESPAZIONTZI).get(0)).tiroKohete(balaKopurua() + 1);	
 	}
 
-	public Entitate etsaiHurbilena(int x, int y) { 
-		/*double distantziaZ = -1, distantziaB = 0;
-		Entitate etsaia = null;*/
-		return this.mapa.get(EntitateMota.ETSAIA).stream()
+	public int etsaiHurbilena(int x, int y) { 
+		Entitate etsaia = this.mapa.get(EntitateMota.ETSAIA).stream()
 				.min(Comparator.comparingDouble(e -> 
 				Math.sqrt(Math.pow(e.getX() - x, 2) + Math.pow(e.getY() - y, 2))))
-				.orElse(null);	
-		/*for (Entitate e : this.mapa.get(EntitateMota.ETSAIA)) {
-			distantziaB = Math.sqrt(Math.pow(e.getX() - x, 2) + Math.pow(e.getY() - y, 2));
-			if(distantziaB < distantziaZ || distantziaZ == -1) {
-				distantziaZ = distantziaB;
-				etsaia = e;
-			}
+				.orElse(null);
+		if(etsaia == null) {return -1;}
+		return etsaia.getId();
+	}
+	
+	public boolean getBizirik(EntitateMota entitate, int i) {
+		ArrayList<Entitate> entitateak = this.mapa.get(entitate);
+		if (entitateak == null) return false;
+	    Entitate etsaia = entitateak.stream()
+	              .filter(e -> e.getId() == i)
+	              .findFirst().orElse(null);   
+	    if(etsaia == null) {return false;}
+	    return etsaia.bizirik();
+	}
+
+	public int getX(EntitateMota entitate, int i) {
+		ArrayList<Entitate> entitateak = this.mapa.get(entitate);
+		if (entitateak == null) return -1;
+	    Entitate ent = entitateak.stream()
+	              .filter(e -> e.getId() == i) 
+	              .findFirst().orElse(null);
+	    if(ent == null) {
+	    	return -1;
+	    }
+	    return ent.getX();
+	}
+
+	public boolean nahikoUrruti(int x, int y) {
+		double xA = this.mapa.get(EntitateMota.ESPAZIONTZI).get(0).getX() - x;
+		double yA = this.mapa.get(EntitateMota.ESPAZIONTZI).get(0).getY() - y;
+		if(yA < 1) { return false;}
+		double graduak = Math.toDegrees(Math.atan2(yA, xA));
+		if(graduak < 0) {graduak += 360;}
+		if(graduak < 25 || graduak > 175) {
+			return false;
 		}
-		return etsaia;*/
+		return true;
 	}
 }

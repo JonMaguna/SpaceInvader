@@ -1,11 +1,10 @@
 package modelo;
-import java.awt.Color;
 import java.util.ArrayList;
 
 public class Espaziontzi extends Entitate {
 	protected ArrayList<Entitate> gelaxkak = new ArrayList<>();
 	
-	public Espaziontzi(int x, int y, int id, Color pKolorea) {
+	public Espaziontzi(int x, int y, int id) {
 		super(x, y, id, true);
 	}
 	

@@ -5,7 +5,7 @@ public class Etsaiak extends Entitate {
 	public Etsaiak(int x, int y, int id) {
 		super(x, y, id, true);
 	}
-	public boolean mugituDaiteke(Mugimendua mugimendu) {
+	public boolean mugituDaiteke(Mugimendua mugimendu, boolean kamikaze) {
 		boolean mugitu = true;
 		EntitateMota entitatea = null;
 		int xHurrengoa = this.koordenatu[0][0];
@@ -16,8 +16,11 @@ public class Etsaiak extends Entitate {
 	        case ESKUMA:  xHurrengoa++; break;
 	        default: break;
 		}
-		if (yHurrengoa > MatrizeM.getnMatrizeM().getY() - 1) {
+		if (yHurrengoa > MatrizeM.getnMatrizeM().getY() - 1 && !kamikaze) {
 			JokoKudeatzailea.getnJokoKudeatzailea().jokoaGelditu(1);
+			return false;
+		}else if(yHurrengoa > MatrizeM.getnMatrizeM().getY() - 1 && kamikaze) {
+			this.bizirik = false;
 			return false;
 		}
 		if(xHurrengoa < 0 || xHurrengoa > MatrizeM.getnMatrizeM().getX() - 1) {

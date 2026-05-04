@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 
 public class MatrizeM{
@@ -106,11 +107,16 @@ public class MatrizeM{
 				.map(Optional::get)
 				.collect(Collectors.toList());
 		return baxuenak.stream()
-				.filter(g->)
-				.findFirst()
-				.map(g->{return false})
-				.orElse(true);
+			    .noneMatch(g -> 
+			        IntStream.rangeClosed(g.getY(), this.y)
+			            .anyMatch(n -> {
+			                int targetY = g.getY() + n;
+			                if (targetY < matrizea[0].length) {
+			                    return matrizea[g.getX()][targetY].zerDago() == EntitateMota.ETSAIA || matrizea[g.getX()][targetY].zerDago() == EntitateMota.BALA;
+			                }
+			                return false;
+			            })
+			    );
 		
-		return false;
 	}
 }

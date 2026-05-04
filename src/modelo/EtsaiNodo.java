@@ -17,8 +17,14 @@ public abstract class EtsaiNodo extends Entitate {
     }
     
     public boolean mugituDaiteke(Mugimendua m) {
+    	boolean kamikaze;
+    	if(this instanceof EtsaiakC) {
+    		kamikaze = true;
+    	}else {
+    		kamikaze = false;
+    	}
     	return this.gelaxkak.stream()
-    			.filter(pixel -> !pixel.mugituDaiteke(m))
+    			.filter(pixel -> !pixel.mugituDaiteke(m, kamikaze))
     			.findFirst()
     			.map(pixel -> {
     				if (!pixel.bizirik()) {
@@ -28,7 +34,6 @@ public abstract class EtsaiNodo extends Entitate {
     			})
 				.orElse(true);
     }
-    
     @Override
     public void mugitu(Mugimendua m) {
         if (this.mugituDaiteke(m)) {

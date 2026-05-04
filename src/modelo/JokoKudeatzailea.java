@@ -5,7 +5,8 @@ import java.util.Observable;
 public class JokoKudeatzailea extends Observable{
 	private boolean jokoanDa = false;
 	private static JokoKudeatzailea jokonKudeatzailea = null;
-	private boolean kamikaze;
+	private boolean kamikaze = false;
+	private int espaziontziMota;
 	
 	private JokoKudeatzailea() {}
 	
@@ -16,7 +17,9 @@ public class JokoKudeatzailea extends Observable{
 	
 	public void jokoaHasieratu(int pMota) {
 		if(!jokoanDa){
+			this.espaziontziMota = pMota;
 			jokoanDa = true;
+			kamikaze = false;
 			setChanged();
 			notifyObservers();
 			MatrizeM.getnMatrizeM().SortuMatrizea();
@@ -50,5 +53,9 @@ public class JokoKudeatzailea extends Observable{
 	
 	public void setKamikaze(boolean kamikazerik) {
 		this.kamikaze = kamikazerik;
+	}
+
+	public int getEspaziontziMota() {
+		return this.espaziontziMota;
 	}
 }
