@@ -21,6 +21,7 @@ public class JokoKudeatzailea extends Observable{
 			MatrizeM.getnMatrizeM().SortuMatrizea();
 			setChanged();
 			notifyObservers(0);
+			notifyObservers(99);
 			EntitateKolekzio.getnPertsonaiZerrenda().sortuEntitateak(pMota);
 		}
 	}

@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.util.Observable;
 import java.util.Observer;
@@ -45,32 +47,11 @@ public class LeihoNagusiaV extends JFrame implements Observer{
 	public LeihoNagusiaV() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1050, 900);
-		contentPane = new JPanel();
+		contentPane = new PanelConFondo();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setBackground(Color.BLACK);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		//JokoKudeatzailea.getnJokoKudeatzailea().addObserver(this);
-		
-		java.net.URL imgUrl = getClass().getResource("/img/alien2.png");
-		ImageIcon iconoOriginal = new ImageIcon(imgUrl);
-		java.awt.Image imagenEscalada = iconoOriginal.getImage().getScaledInstance(300, 300, java.awt.Image.SCALE_SMOOTH);
-		ImageIcon iconoAlien = new ImageIcon(imagenEscalada);
-		
-		JLabel goiL = new JLabel("Press <UP,LEFT,DOWN,RIGHT> or <W,A,S,D> to move, <SPACE> to shoot, <Shift> to change bullets");
-		goiL.setFont(new Font("Arial", Font.BOLD, 20));
-		goiL.setForeground(Color.WHITE);
-		goiL.setHorizontalAlignment(JLabel.CENTER);
-	    contentPane.add(goiL, BorderLayout.NORTH);
-	    
-		JLabel titL = new JLabel("SPACE INVADERS");
-		titL.setFont(new Font("Arial", Font.BOLD, 100));
-		titL.setForeground(Color.YELLOW);
-		titL.setHorizontalAlignment(JLabel.CENTER);
-		titL.setIcon(iconoAlien);
-		titL.setHorizontalTextPosition(JLabel.CENTER);
-		titL.setVerticalTextPosition(JLabel.BOTTOM);
-		contentPane.add(titL, BorderLayout.CENTER);
 		
 		JPanel behekoPanela = new JPanel(new BorderLayout());
 		behekoPanela.setBackground(Color.BLACK);
@@ -98,19 +79,16 @@ public class LeihoNagusiaV extends JFrame implements Observer{
 				int code = e.getKeyCode();
 				switch(code) {
 					case KeyEvent.VK_1:
-						System.out.println("1");
 						aukeratutakoOntzia=1;
 						aukeraL.setText("Aukeratutako ontzia: 1");
 						aukeraL.setForeground(Color.RED);
 						break;
 					case KeyEvent.VK_2:
-						System.out.println("2");
 						aukeratutakoOntzia=2;
 						aukeraL.setText("Aukeratutako ontzia: 2");
 						aukeraL.setForeground(Color.BLUE);
 						break;
 					case KeyEvent.VK_3:
-						System.out.println("3");
 						aukeratutakoOntzia=3;
 						aukeraL.setText("Aukeratutako ontzia: 3");
 						aukeraL.setForeground(Color.GREEN);
@@ -118,20 +96,42 @@ public class LeihoNagusiaV extends JFrame implements Observer{
 					case KeyEvent.VK_ENTER:
 						JPanel jp = new Karga_pantaila();
 						setContentPane(jp);	
-						
-				}
-				if(e.getKeyCode() == KeyEvent.VK_ENTER) {
-									
-					//JokoKudeatzailea.getnJokoKudeatzailea().addObserver(LeihoNagusiaV.this);
-					//JokoKudeatzailea.getnJokoKudeatzailea().jokoaHasieratu(aukeratutakoOntzia);
+						JokoKudeatzailea.getnJokoKudeatzailea().addObserver(LeihoNagusiaV.this);
+						JokoKudeatzailea.getnJokoKudeatzailea().jokoaHasieratu(aukeratutakoOntzia);
+						break;
 				}
 			}
 		});
 	}
+	
+	private class PanelConFondo extends JPanel {
+        private Image imagen;
+
+        public PanelConFondo() {
+            java.net.URL imgUrl = getClass().getResource("/img/k_p-1.png");
+            if (imgUrl != null) {
+                imagen = new ImageIcon(imgUrl).getImage();
+            }
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            if (imagen != null) {
+                g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
+            } else {
+                g.setColor(Color.BLACK);
+                g.fillRect(0, 0, getWidth(), getHeight());
+            }
+        }
+    }
+	
 	public void update(Observable o, Object arg) {
+		int argInt = (int) arg;
 		if(arg == null) {
 			MatrizeV m = new MatrizeV();
 			m.setVisible(true);
+		}if(argInt == 99) {
 			dispose();
 		}
 	}
