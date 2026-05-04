@@ -10,7 +10,6 @@ import java.awt.event.KeyEvent;
 import java.util.Observable;
 import java.util.Observer;
 
-import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -103,7 +102,8 @@ public class LeihoNagusiaV extends JFrame implements Observer{
 	}
 	
 	private class Fondoa extends JPanel {
-        private Image irudia;
+        private static final long serialVersionUID = 1L;
+		private Image irudia;
 
         public Fondoa() {
             java.net.URL imgUrl = getClass().getResource("/img/k_p-2.png");

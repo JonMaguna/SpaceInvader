@@ -6,7 +6,7 @@ import javax.swing.Timer;
 
 public class EtsaiakC extends EtsaiNodo{
 	private Timer kamikazeTimer;
-	private double mugituBehera = 0;
+	private boolean mugituBehera = false;
 	private boolean kamikaze = false;
 	
     protected EtsaiakC(int x, int y, int id) {
@@ -20,7 +20,7 @@ public class EtsaiakC extends EtsaiNodo{
         	kamikaze = true;
         	this.kamikazeTimer = new Timer(40, new ActionListener() {
     	        public void actionPerformed(ActionEvent e) {
-    	            mugituKamikaze(0);
+    	            mugituKamikaze();
     	        }
     	    });
     	    this.kamikazeTimer.start();
@@ -29,13 +29,12 @@ public class EtsaiakC extends EtsaiNodo{
     
 	
 	
-	private void mugituKamikaze(int saiakera) {
-		if(saiakera > 10) {return;}
+	private void mugituKamikaze() {
 		int disX = EntitateKolekzio.getnPertsonaiZerrenda().getX(EntitateMota.ESPAZIONTZI, 1);
 		boolean mugitu;
 		Mugimendua m;
-		if(disX - this.x != 0 && mugituBehera != 1) {
-			mugituBehera+=0.5;
+		if(disX - this.x != 0 && !mugituBehera) {
+			mugituBehera = true;
 			if (disX > this.x) {
 				m = Mugimendua.ESKUMA;
 				mugitu = mugituDaiteke(m);
@@ -44,7 +43,7 @@ public class EtsaiakC extends EtsaiNodo{
 				mugitu = mugituDaiteke(m);
 			}
 		}else {
-			mugituBehera = 0;
+			mugituBehera = false;
 			m = Mugimendua.BEHERA;
 			mugitu = mugituDaiteke(m);
 		}
@@ -57,20 +56,17 @@ public class EtsaiakC extends EtsaiNodo{
             switch(m){
          	case ESKUMA:
          		this.koordenatu[0][0] += 1;
-                this.x = this.koordenatu[0][0];
+                this.x +=1;
          		break;
          	case EZKERRA:
          		this.koordenatu[0][0] -= 1;
-                this.x = this.koordenatu[0][0];
+                this.x -=1;
          	case BEHERA:
          		this.koordenatu[0][1] += 1;
-                this.y = this.koordenatu[0][1];
+                this.y +=1;
          	default:
          		break;
         	}
-		}else if(this.bizirik()){
-			System.out.println(saiakera++);
-			mugituKamikaze(saiakera++);
 		}
 		if(!this.bizirik()){
 			MatrizeM.getnMatrizeM().gelaxkakAktualizatu(this.gelaxkak, 0, EntitateMota.HUTSA);

@@ -37,10 +37,10 @@ public class EntitateKolekzio {
 		EspaziontziNodo espaziontzi = EspaziontziFactory.getNireEspaziontziFactory().sortuEspaziontzia(pMota);
 		this.mapa.get(EntitateMota.ESPAZIONTZI).add(espaziontzi);
 		MatrizeM.getnMatrizeM().gelaxkakAktualizatu(espaziontzi.getGelaxkak(), espaziontzi.getId(), EntitateMota.ESPAZIONTZI);
-		int numEtsaiak = new Random().nextInt(7) + 8;
+		int numEtsaiak = new Random().nextInt(7) + 7;
 		List<Integer> posizio = new ArrayList<>();
-		for (int i = 1; i < MatrizeM.getnMatrizeM().getX()/5; i++) {
-			posizio.add(i*5 - 1);
+		for (int i = 1; i <= MatrizeM.getnMatrizeM().getX()/15; i++) {
+			posizio.add(i*13 - 1);
 		}
 		Collections.shuffle(posizio);
 		List<Integer> etsaiID = new ArrayList<>();
@@ -59,7 +59,7 @@ public class EntitateKolekzio {
 	}
 	
 	private void etsaienMugimendua() {
-		this.etsaienTimer = new Timer(400, new ActionListener() {
+		this.etsaienTimer = new Timer(200, new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
 	            etsaiakMugitu();
 	        }

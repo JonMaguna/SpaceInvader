@@ -45,11 +45,24 @@ public abstract class EspaziontziNodo extends Entitate {
     
     protected void eguneratuPosizioNagusia(Mugimendua m) {
         switch(m) {
-            case EZKERRA: this.setX(this.getX() - 1); break;
-            case ESKUMA:  this.setX(this.getX() + 1); break;
-            case GORA:    this.setY(this.getY() - 1); break;
-            case BEHERA:  this.setY(this.getY() + 1); break;
-            default: break;
+            case EZKERRA: 
+            	x--;
+            	this.koordenatu[0][0] -=1;
+            	break;
+            case ESKUMA:  
+            	x++;
+            	this.koordenatu[0][0] +=1;
+            	break;
+            case GORA:    
+            	y--; 
+            	this.koordenatu[0][1] -=1;
+            	break;
+            case BEHERA:
+            	this.koordenatu[0][1] +=1;
+            	y++; 
+            	break;
+            default: 
+            	break;
         }
     }
     
