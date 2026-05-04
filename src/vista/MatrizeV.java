@@ -194,23 +194,6 @@ public class MatrizeV extends JFrame implements Observer, KeyListener {
 	                pfI.setVisible(true);
 	            }
 				break;
-				//contentPane = new Fondoa("/img/galdu.png");
-			    /*String[] aukerak = {"Saiatu berriro", "Irten"};
-			    int aukeratutakoa = JOptionPane.showOptionDialog(
-			        this,                             
-			        "Jokoa galdu duzu, zer egin nahi duzu?",
-			        "Joko Amaiera",                   
-			        JOptionPane.DEFAULT_OPTION,       
-			        JOptionPane.INFORMATION_MESSAGE,  
-			        null,                             
-			        aukerak,                          
-			        aukerak[0]                        
-			    );
-			    if (aukeratutakoa == 0) {
-			    	JokoKudeatzailea.getnJokoKudeatzailea().reset();
-			    } else {
-			        System.exit(0);
-			    }*/
 			case 2:
 				if (!jokoaAmaituta) {
 	                jokoaAmaituta = true;
@@ -221,23 +204,7 @@ public class MatrizeV extends JFrame implements Observer, KeyListener {
 	                Pantaila_finala_irabazi pfI = new Pantaila_finala_irabazi();
 	                pfI.setVisible(true);
 	            }
-				/*String[] aukerak2 = {"Saiatu berriro", "Irten"};
-			    int aukeratutakoa2 = JOptionPane.showOptionDialog(
-			        this,                             
-			        "Zorionak, irabazi duzu!",
-			        "Joko Amaiera",                   
-			        JOptionPane.DEFAULT_OPTION,       
-			        JOptionPane.INFORMATION_MESSAGE,  
-			        null,                             
-			        aukerak2,                          
-			        aukerak2[0]                        
-			    );
-			    if (aukeratutakoa2 == 0) {
-			    	JokoKudeatzailea.getnJokoKudeatzailea().reset();
-			    } else {
-			        System.exit(0);
-			    }
-			    break;*/
+				break;
 			case 3:
 				if (mainTimer != null) mainTimer.stop();
 				LeihoNagusiaV.LVmain(null);
