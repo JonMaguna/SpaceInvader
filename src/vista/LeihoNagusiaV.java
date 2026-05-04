@@ -10,6 +10,7 @@ import java.awt.event.KeyEvent;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -46,30 +47,27 @@ public class LeihoNagusiaV extends JFrame implements Observer{
 	 */
 	public LeihoNagusiaV() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1050, 900);
-		contentPane = new PanelConFondo();
+		setBounds(100, 100, 3000, 2000); 
+		contentPane = new Fondoa();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		//JokoKudeatzailea.getnJokoKudeatzailea().addObserver(this);
 		
-		JPanel behekoPanela = new JPanel(new BorderLayout());
-		behekoPanela.setBackground(Color.BLACK);
+		JPanel contenedorTextos = new JPanel();
+		contenedorTextos.setLayout(new javax.swing.BoxLayout(contenedorTextos, javax.swing.BoxLayout.Y_AXIS));
+		contenedorTextos.setOpaque(false);
 		
-		aukeraL = new JLabel("Aukeratutako ontzia: 1");
-		aukeraL.setFont(new Font("Arial", Font.BOLD, 20));
+		contenedorTextos.setBorder(new EmptyBorder(530, -20, 0, 0));
+		
+		aukeraL = new JLabel("AUKERATUTAKO ONTZIA: 1");
+		aukeraL.setFont(new Font("Arial", Font.BOLD, 35));
 		aukeraL.setForeground(Color.RED);
-		aukeraL.setHorizontalAlignment(JLabel.CENTER);
-		behekoPanela.add(aukeraL, BorderLayout.NORTH);
+		aukeraL.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+
+		contenedorTextos.add(aukeraL);
 		
-		JLabel infoL = new JLabel("Press <1>, <2> OR <3> to select your ship and press <ENTER> to start the game");
-		infoL.setFont(new Font("Arial", Font.BOLD, 20));
-		infoL.setForeground(Color.WHITE);
-		infoL.setHorizontalAlignment(JLabel.CENTER);
-		behekoPanela.add(infoL, BorderLayout.CENTER);	
-		
-		
-	    contentPane.add(behekoPanela, BorderLayout.SOUTH);
+		contentPane.add(contenedorTextos, BorderLayout.CENTER);
 	    
 	    this.setFocusable(true); 
 		this.requestFocusInWindow();
@@ -80,17 +78,17 @@ public class LeihoNagusiaV extends JFrame implements Observer{
 				switch(code) {
 					case KeyEvent.VK_1:
 						aukeratutakoOntzia=1;
-						aukeraL.setText("Aukeratutako ontzia: 1");
+						aukeraL.setText("AUKERATUTAKO ONTZIA: 1");
 						aukeraL.setForeground(Color.RED);
 						break;
 					case KeyEvent.VK_2:
 						aukeratutakoOntzia=2;
-						aukeraL.setText("Aukeratutako ontzia: 2");
+						aukeraL.setText("AUKERATUTAKO ONTZIA: 2");
 						aukeraL.setForeground(Color.BLUE);
 						break;
 					case KeyEvent.VK_3:
 						aukeratutakoOntzia=3;
-						aukeraL.setText("Aukeratutako ontzia: 3");
+						aukeraL.setText("AUKERATUTAKO ONTZIA: 3");
 						aukeraL.setForeground(Color.GREEN);
 						break;
 					case KeyEvent.VK_ENTER:
@@ -104,21 +102,21 @@ public class LeihoNagusiaV extends JFrame implements Observer{
 		});
 	}
 	
-	private class PanelConFondo extends JPanel {
-        private Image imagen;
+	private class Fondoa extends JPanel {
+        private Image irudia;
 
-        public PanelConFondo() {
-            java.net.URL imgUrl = getClass().getResource("/img/k_p-1.png");
+        public Fondoa() {
+            java.net.URL imgUrl = getClass().getResource("/img/k_p-2.png");
             if (imgUrl != null) {
-                imagen = new ImageIcon(imgUrl).getImage();
+                irudia = new ImageIcon(imgUrl).getImage();
             }
         }
 
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
-            if (imagen != null) {
-                g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
+            if (irudia != null) {
+                g.drawImage(irudia, 0, 0, getWidth(), getHeight(), this);
             } else {
                 g.setColor(Color.BLACK);
                 g.fillRect(0, 0, getWidth(), getHeight());
