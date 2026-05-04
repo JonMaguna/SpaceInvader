@@ -23,8 +23,6 @@ public class EspaziontziFactory {
         	return new EspaziontziBLUE(xHasiera, yHasiera, id);
         case 3:
         	return new EspaziontziGREEN(xHasiera, yHasiera, id);
-        case 4:
-        	return new EspaziontziROSE(xHasiera, yHasiera, id);
         default:
         	return null;
 		}
