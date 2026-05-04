@@ -10,7 +10,7 @@ import java.lang.reflect.Field;
 public class Efektuak {
     private Player player;
     private Thread musika;
-    private float bolumena = -10.0f;
+    private float bolumena = -20.0f;
 
     public void erreproduzidu(String rutaArchivo) {
         detener();
