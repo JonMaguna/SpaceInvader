@@ -9,6 +9,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import modelo.JokoKudeatzailea;
+import musikie.Efektuak;
+import musikie.Musika_erreproduzidu;
 
 public class Pantaila_finala_irabazi extends JFrame implements KeyListener {
 
@@ -35,9 +37,12 @@ public class Pantaila_finala_irabazi extends JFrame implements KeyListener {
 	 * Create the frame.
 	 */
 	public Pantaila_finala_irabazi() {
+		Musika_erreproduzidu.getME().detener();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 3000, 2000);
 		contentPane = new Fondoa("/img/irabazi.png");
+		Efektuak eG = new Efektuak();
+		eG.erreproduzidu("src/musikie/irabazi_sound.mp3");
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		

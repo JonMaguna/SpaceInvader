@@ -11,7 +11,14 @@ public class Musika_erreproduzidu {
     private Player player;
     private Thread musika;
     private float bolumena = -10.0f; 
+    private static Musika_erreproduzidu nme = null;
 
+    private Musika_erreproduzidu() {}
+    
+    public static Musika_erreproduzidu getME() {
+    	if(nme == null) {nme = new Musika_erreproduzidu();}
+    	return nme;
+    }
     public void erreproduzidu(String rutaArchivo) {
         detener();
         try {
