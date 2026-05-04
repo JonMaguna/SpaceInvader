@@ -9,8 +9,6 @@ import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.util.Observable;
 import java.util.Observer;
-
-import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -48,7 +46,7 @@ public class LeihoNagusiaV extends JFrame implements Observer{
 	public LeihoNagusiaV() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 3000, 2000); 
-		contentPane = new Fondoa();
+		contentPane = new Fondoa("/img/k_p-2.png");
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -60,7 +58,7 @@ public class LeihoNagusiaV extends JFrame implements Observer{
 		
 		contenedorTextos.setBorder(new EmptyBorder(530, -20, 0, 0));
 		
-		aukeraL = new JLabel("AUKERATUTAKO ONTZIA: 1");
+		aukeraL = new JLabel("");
 		aukeraL.setFont(new Font("Arial", Font.BOLD, 35));
 		aukeraL.setForeground(Color.RED);
 		aukeraL.setAlignmentX(JLabel.CENTER_ALIGNMENT);
@@ -76,53 +74,33 @@ public class LeihoNagusiaV extends JFrame implements Observer{
 			public void keyPressed(KeyEvent e) {
 				int code = e.getKeyCode();
 				switch(code) {
+					case KeyEvent.VK_ESCAPE:
+						System.exit(0);
+						break;
 					case KeyEvent.VK_1:
 						aukeratutakoOntzia=1;
-						aukeraL.setText("AUKERATUTAKO ONTZIA: 1");
+						aukeraL.setText("SHIP: 1");
 						aukeraL.setForeground(Color.RED);
 						break;
 					case KeyEvent.VK_2:
 						aukeratutakoOntzia=2;
-						aukeraL.setText("AUKERATUTAKO ONTZIA: 2");
+						aukeraL.setText("SHIP: 2");
 						aukeraL.setForeground(Color.BLUE);
 						break;
 					case KeyEvent.VK_3:
 						aukeratutakoOntzia=3;
-						aukeraL.setText("AUKERATUTAKO ONTZIA: 3");
+						aukeraL.setText("SHIP: 3");
 						aukeraL.setForeground(Color.GREEN);
 						break;
 					case KeyEvent.VK_ENTER:
-						JPanel jp = new Karga_pantaila();
-						setContentPane(jp);	
 						JokoKudeatzailea.getnJokoKudeatzailea().addObserver(LeihoNagusiaV.this);
 						JokoKudeatzailea.getnJokoKudeatzailea().jokoaHasieratu(aukeratutakoOntzia);
+						dispose();
 						break;
 				}
 			}
 		});
 	}
-	
-	private class Fondoa extends JPanel {
-        private Image irudia;
-
-        public Fondoa() {
-            java.net.URL imgUrl = getClass().getResource("/img/k_p-2.png");
-            if (imgUrl != null) {
-                irudia = new ImageIcon(imgUrl).getImage();
-            }
-        }
-
-        @Override
-        protected void paintComponent(Graphics g) {
-            super.paintComponent(g);
-            if (irudia != null) {
-                g.drawImage(irudia, 0, 0, getWidth(), getHeight(), this);
-            } else {
-                g.setColor(Color.BLACK);
-                g.fillRect(0, 0, getWidth(), getHeight());
-            }
-        }
-    }
 	
 	public void update(Observable o, Object arg) {
 		if(arg == null) {

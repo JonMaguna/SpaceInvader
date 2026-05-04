@@ -2,7 +2,9 @@ package vista;
 
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -30,6 +32,7 @@ public class MatrizeV extends JFrame implements Observer, KeyListener {
 	private Timer mainTimer;
 	private int x = 100;
 	private int y = 60;
+	private boolean jokoaAmaituta = false;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -49,19 +52,8 @@ public class MatrizeV extends JFrame implements Observer, KeyListener {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 3000, 2000); 
 		
-		contentPane = new JPanel() {
-		private static final long serialVersionUID = 1L;
-		java.net.URL imgUrl = getClass().getResource("/img/e_3.jpg");
-		java.awt.Image imagenFondo = new ImageIcon(imgUrl).getImage();
-					
-		@Override
-		protected void paintComponent(java.awt.Graphics g) {
-			super.paintComponent(g);
-				if (imagenFondo != null) {
-					g.drawImage(imagenFondo, 0, 0, getWidth(), getHeight(), this);
-				}
-			}
-		};
+		contentPane = new Fondoa("/img/e_3.jpg");
+		
 		contentPane.setBackground(Color.BLACK); 
 		contentPane.setBorder(new EmptyBorder(1, 1, 1, 1));
 		contentPane.setLayout(new GridLayout(y, x, 0, 0));
@@ -151,7 +143,31 @@ public class MatrizeV extends JFrame implements Observer, KeyListener {
 			kohete = false;
 			break;
 		}
-    } 
+    }
+    
+    private class Fondoa extends JPanel {
+        private Image irudia;
+
+        public Fondoa(String errutea) {
+            java.net.URL imgUrl = getClass().getResource(errutea);
+            if (imgUrl != null) {
+                irudia = new ImageIcon(imgUrl).getImage();
+            }else {
+            	System.out.println("ERROREA");
+            }
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            if (irudia != null) {
+                g.drawImage(irudia, 0, 0, getWidth(), getHeight(), this);
+            } else {
+                g.setColor(Color.BLACK);
+                g.fillRect(0, 0, getWidth(), getHeight());
+            }
+        }
+    }
 	
 
 	public void update(Observable o, Object arg) {
@@ -168,7 +184,18 @@ public class MatrizeV extends JFrame implements Observer, KeyListener {
 				}
 				break;
 			case 1:
-			    String[] aukerak = {"Saiatu berriro", "Irten"};
+				if (!jokoaAmaituta) {
+	                jokoaAmaituta = true;
+	                if (mainTimer != null) mainTimer.stop(); 
+	                
+	                dispose();
+	                
+	                Pantaila_finala_galdu pfI = new Pantaila_finala_galdu();
+	                pfI.setVisible(true);
+	            }
+				break;
+				//contentPane = new Fondoa("/img/galdu.png");
+			    /*String[] aukerak = {"Saiatu berriro", "Irten"};
 			    int aukeratutakoa = JOptionPane.showOptionDialog(
 			        this,                             
 			        "Jokoa galdu duzu, zer egin nahi duzu?",
@@ -183,10 +210,18 @@ public class MatrizeV extends JFrame implements Observer, KeyListener {
 			    	JokoKudeatzailea.getnJokoKudeatzailea().reset();
 			    } else {
 			        System.exit(0);
-			    }
-			    break;
+			    }*/
 			case 2:
-				String[] aukerak2 = {"Saiatu berriro", "Irten"};
+				if (!jokoaAmaituta) {
+	                jokoaAmaituta = true;
+	                if (mainTimer != null) mainTimer.stop(); 
+	                
+	                dispose();
+	                
+	                Pantaila_finala_irabazi pfI = new Pantaila_finala_irabazi();
+	                pfI.setVisible(true);
+	            }
+				/*String[] aukerak2 = {"Saiatu berriro", "Irten"};
 			    int aukeratutakoa2 = JOptionPane.showOptionDialog(
 			        this,                             
 			        "Zorionak, irabazi duzu!",
@@ -202,7 +237,7 @@ public class MatrizeV extends JFrame implements Observer, KeyListener {
 			    } else {
 			        System.exit(0);
 			    }
-			    break;
+			    break;*/
 			case 3:
 				if (mainTimer != null) mainTimer.stop();
 				LeihoNagusiaV.LVmain(null);
