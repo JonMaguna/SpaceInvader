@@ -1,5 +1,3 @@
 /bin/
 vpproject/
 *.vpp
-/src/modelo/MatrizeM.java
-/src/vista/MatrizeV.java

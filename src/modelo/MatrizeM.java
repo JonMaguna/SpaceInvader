@@ -1,15 +1,19 @@
 package modelo;
 
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
-import vista.GelaxkaV;
 
 public class MatrizeM{
 	private static MatrizeM nMatrizeM;
 	private GelaxkaM[][] matrizea;
-	private GelaxkaV[][] matrizeaV;
-	private int x = 100;
-	private int y = 60;
+	private int x = 200;
+	private int y = 120;
 	
 	private MatrizeM() {
 		this.matrizea = new GelaxkaM[x][y];
@@ -33,14 +37,8 @@ public class MatrizeM{
 	public GelaxkaM getGelaxka(int x, int y) {
         return this.matrizea[x][y];
     }
-	public GelaxkaV[][] getMatrizea() {
-		return this.matrizeaV;
-	}
 	public GelaxkaM getGelaxkaM(int x, int y) {
 		return this.matrizea[x][y];
-	}
-	public void setMatrizeaV(GelaxkaV[][] matrizeaV) {
-		this.matrizeaV = matrizeaV;
 	}
 	
 	public int getX() {
@@ -96,5 +94,29 @@ public class MatrizeM{
 	public void resetMatrizea() {
 		this.matrizea = null;
 		nMatrizeM = null;
+	}
+
+	public boolean etsairikAurrean(ArrayList<Entitate> gelaxkak) {
+		Map<Integer, List<Entitate>> xBaloreak = gelaxkak.stream()
+			    .collect(Collectors.groupingBy(Entitate::getX));
+		
+		List<Entitate> baxuenak = xBaloreak.values().stream()
+				.map(l->l.stream()
+						.max(Comparator.comparingInt(Entitate::getY))
+				).filter(Optional::isPresent)
+				.map(Optional::get)
+				.collect(Collectors.toList());
+		return baxuenak.stream()
+			    .noneMatch(g -> 
+			        IntStream.rangeClosed(g.getY(), this.y)
+			            .anyMatch(n -> {
+			                int targetY = g.getY() + n;
+			                if (targetY < matrizea[0].length) {
+			                    return matrizea[g.getX()][targetY].zerDago() == EntitateMota.ETSAIA || matrizea[g.getX()][targetY].zerDago() == EntitateMota.BALA;
+			                }
+			                return false;
+			            })
+			    );
+		
 	}
 }

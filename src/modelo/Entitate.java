@@ -56,4 +56,8 @@ public abstract class Entitate {
 	}
 
 	protected void tiroKohete(int i) {	}
+
+	protected boolean mugituDaiteke(Mugimendua m, boolean kamikaze) {
+		return true;
+	}
 }

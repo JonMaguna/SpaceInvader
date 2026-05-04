@@ -17,10 +17,14 @@ public abstract class EtsaiNodo extends Entitate {
     }
     
     public boolean mugituDaiteke(Mugimendua m) {
-        if (!this.bizirik) return false; // Si está muerto, bloqueamos cálculo
-        
+    	boolean kamikaze;
+    	if(this instanceof EtsaiakC) {
+    		kamikaze = true;
+    	}else {
+    		kamikaze = false;
+    	}
     	return this.gelaxkak.stream()
-    			.filter(pixel -> !pixel.mugituDaiteke(m))
+    			.filter(pixel -> !pixel.mugituDaiteke(m, kamikaze))
     			.findFirst()
     			.map(pixel -> {
     				if (!pixel.bizirik()) {
@@ -30,10 +34,8 @@ public abstract class EtsaiNodo extends Entitate {
     			})
 				.orElse(true);
     }
-    
     @Override
     public void mugitu(Mugimendua m) {
-        // EL FIX CLAVE: Si el enemigo está muerto, abortamos el movimiento y el redibujado
         if (!this.bizirik) {
             return;
         }

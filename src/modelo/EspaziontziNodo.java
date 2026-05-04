@@ -45,11 +45,24 @@ public abstract class EspaziontziNodo extends Entitate {
     
     protected void eguneratuPosizioNagusia(Mugimendua m) {
         switch(m) {
-            case EZKERRA: this.setX(this.getX() - 1); break;
-            case ESKUMA:  this.setX(this.getX() + 1); break;
-            case GORA:    this.setY(this.getY() - 1); break;
-            case BEHERA:  this.setY(this.getY() + 1); break;
-            default: break;
+            case EZKERRA: 
+            	x--;
+            	this.koordenatu[0][0] -=1;
+            	break;
+            case ESKUMA:  
+            	x++;
+            	this.koordenatu[0][0] +=1;
+            	break;
+            case GORA:    
+            	y--; 
+            	this.koordenatu[0][1] -=1;
+            	break;
+            case BEHERA:
+            	this.koordenatu[0][1] +=1;
+            	y++; 
+            	break;
+            default: 
+            	break;
         }
     }
     
@@ -58,7 +71,7 @@ public abstract class EspaziontziNodo extends Entitate {
         for (Entitate pixel : gelaxkak) {
             pixel.setBizirik(bizirik);
         }
-        if(!bizirik) {
+        if(!bizirik && JokoKudeatzailea.getnJokoKudeatzailea().getJokoanDa()) {
             MatrizeM.getnMatrizeM().gelaxkakAktualizatu(gelaxkak, 0, EntitateMota.HUTSA);
         }
     }
@@ -84,17 +97,5 @@ public abstract class EspaziontziNodo extends Entitate {
 	}
 	public int getBala2() {
 		return this.bala2;
-	}
-	public void setX(int x) {
-		this.x = x;
-	}
-	public void setY(int y) {
-		this.y = y;
-	}
-	public int getX() {
-		return this.x;
-	}
-	public int getY() {
-		return this.y;
 	}
 }

@@ -6,11 +6,9 @@ import java.awt.Color;
 import java.util.Observable;
 import java.util.Observer;
 
-import modelo.EntitateKolekzio;
 import modelo.EntitateMota;
-import modelo.Espaziontzi;
-import modelo.EspaziontziFactory;
 import modelo.GelaxkaM;
+import modelo.JokoKudeatzailea;
 
 public class GelaxkaV extends JLabel implements Observer {
 	
@@ -25,18 +23,34 @@ public class GelaxkaV extends JLabel implements Observer {
 	private void koloreaEzarri(EntitateMota c) {
 		switch (c) {
 		case ESPAZIONTZI:
-			setBackground(EntitateKolekzio.getnPertsonaiZerrenda().getOntziarenKolorea());
-			setBorder(BorderFactory.createLineBorder(Color.GRAY, 2));
-			setOpaque(true);
-			break;
+			switch(JokoKudeatzailea.getnJokoKudeatzailea().getEspaziontziMota()) {
+			case 1:
+				setBackground(Color.RED);
+				setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
+				setOpaque(true);
+				break;
+			case 2:
+				setBackground(Color.CYAN);
+				setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
+				setOpaque(true);
+				break;
+			case 3:
+				setBackground(Color.GREEN);
+				setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
+				setOpaque(true);
+				break;
+			default:
+				break;
+			}
+		break;
 		case ETSAIA:
 			setBackground(Color.BLUE);
-			setBorder(BorderFactory.createLineBorder(Color.GRAY, 2));
+			setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
 			setOpaque(true);
 			break;
 		case BALA:
 			setBackground(Color.WHITE);
-			setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+			setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 			setOpaque(true);
 			break;
 		case BALA_ETSAIA:

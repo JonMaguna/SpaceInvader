@@ -1,16 +1,10 @@
-Espaziontzi mota:
-	* Espaziontzi flash		Batman
-	* Ezpaziontzi balekin
 Etsai mota:
     * Etsai Kamikaze		Surya
-    * Etsai tiro egin	
-
-Bala mota:
-	* Bala azkar			Batman
+    * Etsai tiro egin		Jonza 
 Soinuak:
     * Soinu efektuak		Batman
     * Musika				Batman
-Diseinu berriak
-Etsai kopurua aldatu
-
+Diseinu berriak				maguna
+Etsai kopurua aldatu		Surya
+IA 			    	        Surya
 	
