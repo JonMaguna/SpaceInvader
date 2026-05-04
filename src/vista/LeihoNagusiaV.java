@@ -55,7 +55,7 @@ public class LeihoNagusiaV extends JFrame implements Observer{
 		
 		contenedorTextos.setBorder(new EmptyBorder(530, -20, 0, 0));
 		
-		aukeraL = new JLabel("");
+		aukeraL = new JLabel("SHIP: 1");
 		aukeraL.setFont(new Font("Arial", Font.BOLD, 35));
 		aukeraL.setForeground(Color.RED);
 		aukeraL.setAlignmentX(JLabel.CENTER_ALIGNMENT);

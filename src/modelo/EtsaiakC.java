@@ -3,6 +3,7 @@ package modelo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Timer;
+import musikie.Efektuak;
 
 public class EtsaiakC extends EtsaiNodo{
 	private Timer kamikazeTimer;
@@ -15,6 +16,9 @@ public class EtsaiakC extends EtsaiNodo{
 
     
     public void banzai() {
+    	Efektuak e = new Efektuak();
+    	e.erreproduzidu("src/musikie/kamikaze.mp3");
+    	e.setVolumen(2);
     	if(!JokoKudeatzailea.getnJokoKudeatzailea().kamikazerik() && MatrizeM.getnMatrizeM().etsairikAurrean(this.gelaxkak) && EntitateKolekzio.getnPertsonaiZerrenda().nahikoUrruti(this.x, this.y)) {
         	JokoKudeatzailea.getnJokoKudeatzailea().setKamikaze(true);
         	kamikaze = true;
