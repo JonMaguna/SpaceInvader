@@ -81,7 +81,7 @@ public class LeihoNagusiaV extends JFrame implements Observer{
 		aukeraL.setHorizontalAlignment(JLabel.CENTER);
 		behekoPanela.add(aukeraL, BorderLayout.NORTH);
 		
-		JLabel infoL = new JLabel("Press <1>, <2>, <3> or <4> to select your ship and press <ENTER> to start the game");
+		JLabel infoL = new JLabel("Press <1>, <2> OR <3> to select your ship and press <ENTER> to start the game");
 		infoL.setFont(new Font("Arial", Font.BOLD, 20));
 		infoL.setForeground(Color.WHITE);
 		infoL.setHorizontalAlignment(JLabel.CENTER);
@@ -96,24 +96,34 @@ public class LeihoNagusiaV extends JFrame implements Observer{
 		this.addKeyListener(new java.awt.event.KeyAdapter() {
 			public void keyPressed(KeyEvent e) {
 				int code = e.getKeyCode();
-				if(code == KeyEvent.VK_1) {
-					aukeratutakoOntzia=1;
-					aukeraL.setText("Aukeratutako ontzia: 1");
-					aukeraL.setForeground(Color.RED);
-				}
-				else if(code == KeyEvent.VK_2) {
-					aukeratutakoOntzia=2;
-					aukeraL.setText("Aukeratutako ontzia: 2");
-					aukeraL.setForeground(Color.BLUE);
-				}
-				else if(code == KeyEvent.VK_3) {
-					aukeratutakoOntzia=3;
-					aukeraL.setText("Aukeratutako ontzia: 3");
-					aukeraL.setForeground(Color.GREEN);
+				switch(code) {
+					case KeyEvent.VK_1:
+						System.out.println("1");
+						aukeratutakoOntzia=1;
+						aukeraL.setText("Aukeratutako ontzia: 1");
+						aukeraL.setForeground(Color.RED);
+						break;
+					case KeyEvent.VK_2:
+						System.out.println("2");
+						aukeratutakoOntzia=2;
+						aukeraL.setText("Aukeratutako ontzia: 2");
+						aukeraL.setForeground(Color.BLUE);
+						break;
+					case KeyEvent.VK_3:
+						System.out.println("3");
+						aukeratutakoOntzia=3;
+						aukeraL.setText("Aukeratutako ontzia: 3");
+						aukeraL.setForeground(Color.GREEN);
+						break;
+					case KeyEvent.VK_ENTER:
+						JPanel jp = new Karga_pantaila();
+						setContentPane(jp);	
+						
 				}
 				if(e.getKeyCode() == KeyEvent.VK_ENTER) {
-					JokoKudeatzailea.getnJokoKudeatzailea().addObserver(LeihoNagusiaV.this);
-					JokoKudeatzailea.getnJokoKudeatzailea().jokoaHasieratu(aukeratutakoOntzia);
+									
+					//JokoKudeatzailea.getnJokoKudeatzailea().addObserver(LeihoNagusiaV.this);
+					//JokoKudeatzailea.getnJokoKudeatzailea().jokoaHasieratu(aukeratutakoOntzia);
 				}
 			}
 		});
