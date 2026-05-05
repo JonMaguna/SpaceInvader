@@ -58,10 +58,10 @@ public class LeihoNagusiaV extends JFrame implements Observer{
 		contenedorTextos.setLayout(new javax.swing.BoxLayout(contenedorTextos, javax.swing.BoxLayout.Y_AXIS));
 		contenedorTextos.setOpaque(false);
 		
-		contenedorTextos.setBorder(new EmptyBorder(530, -20, 0, 0));
+		contenedorTextos.setBorder(new EmptyBorder(510, -20, 0, 0));
 		
-		aukeraL = new JLabel("1 RED");
-		aukeraL.setFont(new Font("Arial", Font.BOLD, 35));
+		aukeraL = new JLabel("▲                                            ");
+		aukeraL.setFont(new Font("Arial", Font.BOLD, 50));
 		aukeraL.setForeground(Color.RED);
 		aukeraL.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 
@@ -81,17 +81,17 @@ public class LeihoNagusiaV extends JFrame implements Observer{
 						break;
 					case KeyEvent.VK_1:
 						aukeratutakoOntzia=1;
-						aukeraL.setText("1 RED");
+						aukeraL.setText("▲                                            ");
 						aukeraL.setForeground(Color.RED);
 						break;
 					case KeyEvent.VK_2:
 						aukeratutakoOntzia=2;
-						aukeraL.setText("2 BLUE");
+						aukeraL.setText("▲  ");
 						aukeraL.setForeground(Color.BLUE);
 						break;
 					case KeyEvent.VK_3:
 						aukeratutakoOntzia=3;
-						aukeraL.setText("3 GREEN");
+						aukeraL.setText("                                        ▲");
 						aukeraL.setForeground(Color.GREEN);
 						break;
 					case KeyEvent.VK_ENTER:

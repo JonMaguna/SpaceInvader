@@ -43,7 +43,7 @@ public class Pantaila_finala_irabazi extends JFrame implements KeyListener {
 		setBounds(100, 100, 3000, 2000);
 		contentPane = new Fondoa("/img/irabazi.png");
 		ef = new Efektuak();
-		ef.erreproduzidu("src/musikie/galdu_sound.mp3");
+		ef.erreproduzidu("src/musikie/irabazi_sound.mp3");
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
