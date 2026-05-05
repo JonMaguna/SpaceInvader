@@ -42,7 +42,7 @@ public class Pantaila_finala_galdu extends JFrame implements KeyListener {
 		setBounds(100, 100, 3000, 2000);
 		contentPane = new Fondoa("/img/galdu.png");
 		Efektuak eG = new Efektuak();
-		eG.erreproduzidu("src/musikie/galdu_sound.mp3");
+		eG.erreproduzidu("src/musikie/galdu_sound.mp3", 6f);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		

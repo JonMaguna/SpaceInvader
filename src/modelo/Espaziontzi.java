@@ -1,19 +1,9 @@
 package modelo;
-import java.util.ArrayList;
 
 public class Espaziontzi extends Entitate {
-	protected ArrayList<Entitate> gelaxkak = new ArrayList<>();
 	
 	public Espaziontzi(int x, int y, int id) {
 		super(x, y, id, true);
-	}
-	
-	public void setBizirik(boolean bizirik) {
-		this.bizirik = bizirik;
-		MatrizeM.getnMatrizeM().gelaxkakAktualizatu(gelaxkak, 0, EntitateMota.HUTSA);
-		if (!bizirik) {
-			JokoKudeatzailea.getnJokoKudeatzailea().jokoaGelditu(1);
-		}
 	}
 	
 	public boolean mugituDaiteke(Mugimendua mugimendua) {
@@ -39,7 +29,7 @@ public class Espaziontzi extends Entitate {
 	    return true;
 	}
 	
-	protected void mugitu(Mugimendua mugimendu) {
+	public void mugitu(Mugimendua mugimendu) {
 		switch (mugimendu) {
 		case GORA:
 			this.koordenatu[0][1] -= 1;

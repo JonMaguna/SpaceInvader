@@ -20,9 +20,8 @@ public class EtsaiakC extends EtsaiNodo{
         	JokoKudeatzailea.getnJokoKudeatzailea().setKamikaze(true);
         	kamikaze = true;
         	Efektuak e = new Efektuak();
-        	e.erreproduzidu("src/musikie/kamikaze.mp3");
-        	e.setVolumen(2);
-        	this.kamikazeTimer = new Timer(40, new ActionListener() {
+        	e.erreproduzidu("src/musikie/kamikaze.mp3", 0f);
+        	this.kamikazeTimer = new Timer(20, new ActionListener() {
     	        public void actionPerformed(ActionEvent e) {
     	            mugituKamikaze();
     	        }
@@ -37,7 +36,7 @@ public class EtsaiakC extends EtsaiNodo{
 		int disX = EntitateKolekzio.getnPertsonaiZerrenda().getX(EntitateMota.ESPAZIONTZI, 1);
 		boolean mugitu;
 		Mugimendua m;
-		if(disX - this.x != 0 && !mugituBehera) {
+		if(Math.abs(disX - this.x) != 0 && !mugituBehera) {
 			mugituBehera = true;
 			if (disX > this.x) {
 				m = Mugimendua.ESKUMA;

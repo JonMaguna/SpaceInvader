@@ -39,6 +39,7 @@ public abstract class Entitate {
 	}
 	
 	public void nextBala() { }
+	
 	public BalaNodo tiroEgin(int id) { return null; }
 	
 	public int getX() {

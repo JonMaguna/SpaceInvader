@@ -30,7 +30,7 @@ public class GelaxkaV extends JLabel implements Observer {
 				setOpaque(true);
 				break;
 			case 2:
-				setBackground(Color.CYAN);
+				setBackground(Color.BLUE);
 				setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
 				setOpaque(true);
 				break;

@@ -37,9 +37,6 @@ public class MatrizeM{
 	public GelaxkaM getGelaxka(int x, int y) {
         return this.matrizea[x][y];
     }
-	public GelaxkaM getGelaxkaM(int x, int y) {
-		return this.matrizea[x][y];
-	}
 	
 	public int getX() {
 		return this.x;

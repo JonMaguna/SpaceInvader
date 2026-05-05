@@ -10,7 +10,7 @@ import java.lang.reflect.Field;
 public class Musika_erreproduzidu {
     private Player player;
     private Thread musika;
-    private float bolumena = -10.0f; 
+    private float bolumena = -5.0f; 
     private static Musika_erreproduzidu nme = null;
 
     private Musika_erreproduzidu() {}

@@ -2,6 +2,8 @@ package modelo;
 
 import java.util.ArrayList;
 
+import musikie.Efektuak;
+
 public abstract class EtsaiNodo extends Entitate {
     protected ArrayList<Entitate> gelaxkak = new ArrayList<>();
 
@@ -59,11 +61,9 @@ public abstract class EtsaiNodo extends Entitate {
         }
     }
     
-    public ArrayList<Entitate> getGelaxkak() {
-        return this.gelaxkak;
-    }
-    
     public void setBizirik(boolean bizirik) {
+		Efektuak e = new Efektuak();
+		e.erreproduzidu("src/musikie/cohetea_exp.mp3", -40f);
         this.bizirik = bizirik;
         for (Entitate pixel : gelaxkak) {
             pixel.setBizirik(bizirik);

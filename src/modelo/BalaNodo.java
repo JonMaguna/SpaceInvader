@@ -10,9 +10,9 @@ public class BalaNodo extends Entitate implements Runnable {
     protected volatile boolean bizirik = true;
     protected int abiadura;
 
-    public BalaNodo(int x, int y, int[][] koordenatuak, int id, int abiadura) {
+   /* public BalaNodo(int x, int y, int[][] koordenatuak, int id, int abiadura) {
         this(x, y, koordenatuak, id, abiadura, Mugimendua.GORA);
-    }
+    }*/
 
     public BalaNodo(int x, int y, int[][] koordenatuak, int id, int abiadura, Mugimendua norabidea) {
         super(x, y, id, true);        
@@ -98,10 +98,6 @@ public class BalaNodo extends Entitate implements Runnable {
                 MatrizeM.getnMatrizeM().gelaxkakAktualizatu(this.gelaxkak, 0, EntitateMota.HUTSA);
             }
         }
-    }
-
-    public ArrayList<Entitate> getGelaxkak() {
-        return this.gelaxkak;
     }
     
     public void setBizirik(boolean bizirik) {

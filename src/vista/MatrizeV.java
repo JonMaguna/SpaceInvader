@@ -14,7 +14,6 @@ import java.util.Observer;
 import javax.swing.Timer;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import modelo.EntitateKolekzio;
@@ -146,14 +145,14 @@ public class MatrizeV extends JFrame implements Observer, KeyListener {
     }
     
     private class Fondoa extends JPanel {
-        private Image irudia;
+        private static final long serialVersionUID = 1L;
+		private Image irudia;
 
         public Fondoa(String errutea) {
             java.net.URL imgUrl = getClass().getResource(errutea);
             if (imgUrl != null) {
                 irudia = new ImageIcon(imgUrl).getImage();
             }else {
-            	System.out.println("ERROREA");
             }
         }
 

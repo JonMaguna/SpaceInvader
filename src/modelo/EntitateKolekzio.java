@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Random;
 import javax.swing.Timer;
 
+import musikie.Efektuak;
+
 public class EntitateKolekzio {
 	private static EntitateKolekzio nPertsonaiZerrenda;
 	private HashMap<EntitateMota, ArrayList<Entitate>> mapa;
@@ -54,7 +56,7 @@ public class EntitateKolekzio {
 			this.mapa.get(EntitateMota.ETSAIA).add(etsai);
 		}
 		etsaienMugimendua();
-		this.etsaienTiroTimer = new Timer(1500, e -> etsaiakTiroEgin());
+		this.etsaienTiroTimer = new Timer(750, e -> etsaiakTiroEgin());
         this.etsaienTiroTimer.start();
 	}
 	
@@ -76,19 +78,21 @@ public class EntitateKolekzio {
 	    if (etsaiak == null) {
 	        return;
 	    }
-	    for(Entitate etsai : etsaiak) {
-	    	if (etsai instanceof EtsaiakC && ((EtsaiakC) etsai).getKamikaze()) {return;}
-	    	if (!etsai.bizirik()) {return;	}
-	        int nora = new Random().nextInt(3);
-	        switch(nora) {
-	            case 0: etsai.mugitu(Mugimendua.BEHERA); break;
-	            case 1: etsai.mugitu(Mugimendua.EZKERRA); break;
-	            case 2: etsai.mugitu(Mugimendua.ESKUMA); break;
-	        }
-	        int probabilitate = new Random().nextInt(this.mapa.get(EntitateMota.ETSAIA).size()*5);
-	        if(etsai instanceof EtsaiakC && probabilitate == 0) {
-	        	((EtsaiakC) etsai).banzai();
-	        }
+	    for(int i = 0; i < etsaiak.size(); i++) {
+	    	Entitate etsai = etsaiak.get(i);
+	    	if ((etsai instanceof EtsaiakC && ((EtsaiakC) etsai).getKamikaze()) || !etsai.bizirik()) {}
+	    	else {
+	    		int nora = new Random().nextInt(3);
+	        	switch(nora) {
+	            	case 0: etsai.mugitu(Mugimendua.BEHERA); break;
+	            	case 1: etsai.mugitu(Mugimendua.EZKERRA); break;
+	            	case 2: etsai.mugitu(Mugimendua.ESKUMA); break;
+	        	}
+	        	int probabilitate = new Random().nextInt(this.mapa.get(EntitateMota.ETSAIA).size()*5);
+	        	if(etsai instanceof EtsaiakC && probabilitate == 0) {
+	        		((EtsaiakC) etsai).banzai();
+	        	}
+	    	}
 	    }
 	    etsaiak.removeIf(etsai -> !etsai.bizirik());
 	    if (etsaiak.isEmpty()) { JokoKudeatzailea.getnJokoKudeatzailea().jokoaGelditu(2);}
@@ -105,7 +109,7 @@ public class EntitateKolekzio {
 		 boolean pasaDa = false;
 		 long orain = System.currentTimeMillis();
 		 
-		 if (orain - this.azkenMugimendua < 130) {
+		 if (orain - this.azkenMugimendua < 100) {
 			 pasaDa = true;
 		 }
 		 else {
@@ -226,11 +230,12 @@ public class EntitateKolekzio {
 		if(yA < 1) { return false;}
 		double graduak = Math.toDegrees(Math.atan2(yA, xA));
 		if(graduak < 0) {graduak += 360;}
-		if(graduak < 25 || graduak > 175) {
+		if(graduak < 45 || graduak > 135) {
 			return false;
 		}
 		return true;
 	}
+	
 	private void etsaiakTiroEgin() {
         try {
             if (this.mapa == null || !JokoKudeatzailea.getnJokoKudeatzailea().getJokoanDa()) {

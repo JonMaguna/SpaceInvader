@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import modelo.JokoKudeatzailea;
+import musikie.Musika_erreproduzidu;
 
 public class LeihoNagusiaV extends JFrame implements Observer{
 
@@ -41,6 +42,7 @@ public class LeihoNagusiaV extends JFrame implements Observer{
 	 * Create the frame.
 	 */
 	public LeihoNagusiaV() {
+		Musika_erreproduzidu.getME().erreproduzidu("src/musikie/DU.mp3");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 3000, 2000); 
 		contentPane = new Fondoa("/img/k_p-2.png");

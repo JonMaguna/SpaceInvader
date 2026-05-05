@@ -3,7 +3,7 @@ package modelo;
 public class EspaziontziGREEN  extends EspaziontziNodo{
 	private int bizitzak = 3;
 	private long azkenKolpea = 0;
-	protected EspaziontziGREEN(int x, int y, int id) {
+	public EspaziontziGREEN(int x, int y, int id) {
 		super(x,y,id);
 		tiroEstrategia = new GreenTiroEstrategia();
 		int[][] forma = {{0, -3},{-1, -2}, {0, -2}, {1, -2},{-1, -1}, {0, -1}, {1, -1},{-2, 0}, {-1, 0}, {0, 0}, {1, 0}, {2, 0},{-3, 1}, {-2, 1}, {-1, 1}, {0, 1}, {1, 1}, {2, 1}, {3, 1},{-3, 2}, {-2, 2}, {2, 2}, {3, 2},{-3, 3}, {-2, 3}, {2, 3}, {3, 3},{-3, 4}, {3, 4}};

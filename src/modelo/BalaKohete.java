@@ -1,10 +1,8 @@
 package modelo;
 
-import musikie.Efektuak;
-
 public class BalaKohete extends BalaNodo {
 	public BalaKohete(int x, int y, int[][] forma, int id, int abiadura) {
-		super(x, y, forma, id,abiadura);
+		super(x, y, forma, id,abiadura, Mugimendua.GORA);
 	}
 	private int objetiboa = EntitateKolekzio.getnPertsonaiZerrenda().etsaiHurbilena(this.x, this.y);
 	private int mugituGora = 0;
@@ -21,8 +19,7 @@ public class BalaKohete extends BalaNodo {
 		}
 	}
 	
-	public void mugitu() {
-		Efektuak e= new Efektuak();
+	private void mugitu() {
 		if(this.objetiboa == -1 || !EntitateKolekzio.getnPertsonaiZerrenda().getBizirik(EntitateMota.ETSAIA, this.objetiboa)) {
 			this.objetiboa = EntitateKolekzio.getnPertsonaiZerrenda().etsaiHurbilena(x, y);
 		}
@@ -64,7 +61,6 @@ public class BalaKohete extends BalaNodo {
          		break;
         	}
 		}else {
-			e.erreproduzidu("src/musikie/cohetea_exp.mp3");
 			this.setBizirik(false);
 		}
 	}

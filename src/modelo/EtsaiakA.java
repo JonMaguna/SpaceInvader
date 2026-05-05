@@ -1,7 +1,9 @@
 package modelo;
 
+import musikie.Efektuak;
+
 public class EtsaiakA extends EtsaiNodo{
-		private int bizitzak = 2;
+		private int bizitzak = 4;
 	    protected EtsaiakA(int x, int y, int id) {
 	        super(x, y, new int[][]{ {-4, -4}, {-3, -4}, {-2, -4}, {-1, -4},   {1, -4}, {2, -4}, {3, -4}, {4, -4},{-4, -3}, {-3, -3}, {-2, -3}, {-1, -3},{1, -3}, {2, -3}, {3, -3}, {4, -3},{-3, -2}, {-2, -2}, {-1, -2}, {0, -2}, {1, -2}, {2, -2}, {3, -2},{-1, -1}, {0, -1}, {1, -1},{0, 0}}, id);
 	    }
@@ -9,6 +11,8 @@ public class EtsaiakA extends EtsaiNodo{
 	    public void setBizirik(boolean bizirik) {
 
 	        if(!bizirik && JokoKudeatzailea.getnJokoKudeatzailea().getJokoanDa()) {
+	    		Efektuak e = new Efektuak();
+	    		e.erreproduzidu("src/musikie/cohetea_exp.mp3", -40f);
 	        	if(bizitzak > 0) {
 	        		bizitzak--;
 	        	}else {
