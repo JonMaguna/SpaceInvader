@@ -10,8 +10,9 @@ import java.lang.reflect.Field;
 public class Efektuak {
     private Player player;
     private Thread musika;
+    private float bolumena = -40.0f;
 
-    public void erreproduzidu(String rutaArchivo, float bolumena) {
+    public void erreproduzidu(String rutaArchivo) {
         detener();
         try {
             FileInputStream fis = new FileInputStream(rutaArchivo);

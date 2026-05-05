@@ -12,7 +12,7 @@ public class EtsaiakA extends EtsaiNodo{
 
 	        if(!bizirik && JokoKudeatzailea.getnJokoKudeatzailea().getJokoanDa()) {
 	    		Efektuak e = new Efektuak();
-	    		e.erreproduzidu("src/musikie/cohetea_exp.mp3", -40f);
+	    		e.erreproduzidu("src/musikie/cohetea_exp.mp3");
 	        	if(bizitzak > 0) {
 	        		bizitzak--;
 	        	}else {

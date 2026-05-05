@@ -16,6 +16,7 @@ public class Pantaila_finala_irabazi extends JFrame implements KeyListener {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private Efektuak ef = null;
 
 	/**
 	 * Launch the application.
@@ -41,8 +42,8 @@ public class Pantaila_finala_irabazi extends JFrame implements KeyListener {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 3000, 2000);
 		contentPane = new Fondoa("/img/irabazi.png");
-		Efektuak eG = new Efektuak();
-		eG.erreproduzidu("src/musikie/irabazi_sound.mp3", 6f);
+		ef = new Efektuak();
+		ef.erreproduzidu("src/musikie/irabazi_sound.mp3");
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
@@ -57,6 +58,7 @@ public class Pantaila_finala_irabazi extends JFrame implements KeyListener {
 		switch (keyCode) {
         case KeyEvent.VK_R: 
         	JokoKudeatzailea.getnJokoKudeatzailea().reset();
+        	ef.detener();
         	dispose();
         	break;
         case KeyEvent.VK_ESCAPE:
