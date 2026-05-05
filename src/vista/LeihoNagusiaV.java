@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import modelo.JokoKudeatzailea;
+import musikie.Musika_erreproduzidu;
 
 public class LeihoNagusiaV extends JFrame implements Observer{
 
@@ -46,6 +47,7 @@ public class LeihoNagusiaV extends JFrame implements Observer{
 	public LeihoNagusiaV() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 3000, 2000); 
+		Musika_erreproduzidu.getME().erreproduzidu("src/musikie/DU.mp3");
 		contentPane = new Fondoa("/img/k_p-2.png");
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -58,7 +60,7 @@ public class LeihoNagusiaV extends JFrame implements Observer{
 		
 		contenedorTextos.setBorder(new EmptyBorder(530, -20, 0, 0));
 		
-		aukeraL = new JLabel("");
+		aukeraL = new JLabel("1 RED");
 		aukeraL.setFont(new Font("Arial", Font.BOLD, 35));
 		aukeraL.setForeground(Color.RED);
 		aukeraL.setAlignmentX(JLabel.CENTER_ALIGNMENT);
@@ -79,17 +81,17 @@ public class LeihoNagusiaV extends JFrame implements Observer{
 						break;
 					case KeyEvent.VK_1:
 						aukeratutakoOntzia=1;
-						aukeraL.setText("SHIP: 1");
+						aukeraL.setText("1 RED");
 						aukeraL.setForeground(Color.RED);
 						break;
 					case KeyEvent.VK_2:
 						aukeratutakoOntzia=2;
-						aukeraL.setText("SHIP: 2");
+						aukeraL.setText("2 BLUE");
 						aukeraL.setForeground(Color.BLUE);
 						break;
 					case KeyEvent.VK_3:
 						aukeratutakoOntzia=3;
-						aukeraL.setText("SHIP: 3");
+						aukeraL.setText("3 GREEN");
 						aukeraL.setForeground(Color.GREEN);
 						break;
 					case KeyEvent.VK_ENTER:
