@@ -16,12 +16,12 @@ public class EtsaiakC extends EtsaiNodo{
 
     
     public void banzai() {
-    	Efektuak e = new Efektuak();
-    	e.erreproduzidu("src/musikie/kamikaze.mp3");
-    	e.setVolumen(2);
     	if(!JokoKudeatzailea.getnJokoKudeatzailea().kamikazerik() && MatrizeM.getnMatrizeM().etsairikAurrean(this.gelaxkak) && EntitateKolekzio.getnPertsonaiZerrenda().nahikoUrruti(this.x, this.y)) {
         	JokoKudeatzailea.getnJokoKudeatzailea().setKamikaze(true);
         	kamikaze = true;
+        	Efektuak e = new Efektuak();
+        	e.erreproduzidu("src/musikie/kamikaze.mp3");
+        	e.setVolumen(2);
         	this.kamikazeTimer = new Timer(40, new ActionListener() {
     	        public void actionPerformed(ActionEvent e) {
     	            mugituKamikaze();

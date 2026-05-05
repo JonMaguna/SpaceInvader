@@ -35,6 +35,7 @@ public class Etsaiak extends Entitate {
 			case ESPAZIONTZI:
 				EntitateKolekzio.getnPertsonaiZerrenda().setBizirik(EntitateMota.ESPAZIONTZI, 1, false);
 			    mugitu = false;
+			    setBizirik(false);
 	            break;
 			case BALA:
 				EntitateKolekzio.getnPertsonaiZerrenda().setBizirik(EntitateMota.BALA, BesteId, false);

@@ -76,7 +76,7 @@ public class EntitateKolekzio {
 	    if (etsaiak == null) {
 	        return;
 	    }
-	    etsaiak.forEach(etsai -> {
+	    for(Entitate etsai : etsaiak) {
 	    	if (etsai instanceof EtsaiakC && ((EtsaiakC) etsai).getKamikaze()) {return;}
 	    	if (!etsai.bizirik()) {return;	}
 	        int nora = new Random().nextInt(3);
@@ -89,7 +89,7 @@ public class EntitateKolekzio {
 	        if(etsai instanceof EtsaiakC && probabilitate == 0) {
 	        	((EtsaiakC) etsai).banzai();
 	        }
-	    });
+	    }
 	    etsaiak.removeIf(etsai -> !etsai.bizirik());
 	    if (etsaiak.isEmpty()) { JokoKudeatzailea.getnJokoKudeatzailea().jokoaGelditu(2);}
 	}

@@ -6,7 +6,7 @@ public class GreenTiroEstrategia implements TiroEstrategia {
 	public BalaNodo tiroEgin(EspaziontziNodo nodo,int id) {
 		if(nodo.getBala() == 1) {
 			return BalaFactory.getnBalaFactory().sortuBala(nodo.getX(), nodo.getY() - 4, id, BalaMota.BALA_NORMALA);
-		} else if (nodo.getBala2() < 20) {
+		} else if (nodo.getBala2() < 10) {
 			nodo.setBala2(nodo.getBala2() + 1);
 			return BalaFactory.getnBalaFactory().sortuBala(nodo.getX(), nodo.getY() - 4, id, BalaMota.BALA_HANDIA);
 		}
