@@ -20,7 +20,7 @@ public class EtsaiakC extends EtsaiNodo{
         	JokoKudeatzailea.getnJokoKudeatzailea().setKamikaze(true);
         	kamikaze = true;
         	Efektuak e = new Efektuak();
-        	e.erreproduzidu("src/musikie/kamikaze.mp3");
+        	e.erreproduzidu("src/musikie/kamikaze.mp3", 0f);
         	this.kamikazeTimer = new Timer(20, new ActionListener() {
     	        public void actionPerformed(ActionEvent e) {
     	            mugituKamikaze();

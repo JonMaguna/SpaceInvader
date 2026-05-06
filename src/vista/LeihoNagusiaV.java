@@ -42,7 +42,7 @@ public class LeihoNagusiaV extends JFrame implements Observer{
 	 * Create the frame.
 	 */
 	public LeihoNagusiaV() {
-		Musika_erreproduzidu.getME().erreproduzidu("src/musikie/DU.mp3");
+		//Musika_erreproduzidu.getME().erreproduzidu("src/musikie/DU.mp3");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 3000, 2000); 
 		Musika_erreproduzidu.getME().erreproduzidu("src/musikie/DU.mp3");
@@ -50,7 +50,6 @@ public class LeihoNagusiaV extends JFrame implements Observer{
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
-		//JokoKudeatzailea.getnJokoKudeatzailea().addObserver(this);
 		
 		JPanel contenedorTextos = new JPanel();
 		contenedorTextos.setLayout(new javax.swing.BoxLayout(contenedorTextos, javax.swing.BoxLayout.Y_AXIS));

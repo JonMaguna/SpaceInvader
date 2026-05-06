@@ -10,9 +10,8 @@ import java.lang.reflect.Field;
 public class Efektuak {
     private Player player;
     private Thread musika;
-    private float bolumena = -40.0f;
 
-    public void erreproduzidu(String rutaArchivo) {
+    public void erreproduzidu(String rutaArchivo, float bolumena) {
         detener();
         try {
             FileInputStream fis = new FileInputStream(rutaArchivo);
@@ -36,7 +35,7 @@ public class Efektuak {
         }
     }
 
-    public void setVolumen(float volumen) {
+    private void setVolumen(float bolumena) {
         if (player == null) return;
 
         try {
@@ -50,7 +49,7 @@ public class Efektuak {
 
             if (line != null && line.isControlSupported(FloatControl.Type.MASTER_GAIN)) {
                 FloatControl gainControl = (FloatControl) line.getControl(FloatControl.Type.MASTER_GAIN);
-                gainControl.setValue(volumen); 
+                gainControl.setValue(bolumena); 
             }
         } catch (Exception e) {
             System.err.println("No se pudo ajustar el volumen: " + e.getMessage());

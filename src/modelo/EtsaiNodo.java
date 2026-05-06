@@ -63,7 +63,7 @@ public abstract class EtsaiNodo extends Entitate {
     
     public void setBizirik(boolean bizirik) {
 		Efektuak e = new Efektuak();
-		e.erreproduzidu("src/musikie/cohetea_exp.mp3");
+		e.erreproduzidu("src/musikie/cohetea_exp.mp3", -30f);
         this.bizirik = bizirik;
         for (Entitate pixel : gelaxkak) {
             pixel.setBizirik(bizirik);
